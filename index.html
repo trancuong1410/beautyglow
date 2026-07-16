@@ -1,0 +1,1829 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beauty Glow</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header" aria-label="Đầu trang Beauty Glow">
+    <div class="header-main">
+      <div class="container header-container">
+        <a class="brand-logo" href="#" aria-label="Beauty Glow - Trang chủ">
+          <img src="assets/images/logo.png" alt="Beauty Glow">
+        </a>
+
+        <div class="header-content">
+          <nav class="utility-nav" aria-label="Liên kết hỗ trợ">
+            <a href="tel:19001900">Hotline: <strong>1900 1900</strong></a>
+            <a href="#order-lookup">Tra cứu đơn hàng</a>
+            <a href="#stores">Hệ thống cửa hàng</a>
+            <a href="#beauty-tips">Beauty Tips</a>
+          </nav>
+
+          <div class="header-actions">
+            <form class="search-form" role="search" novalidate>
+              <label class="visually-hidden" for="site-search">Tìm kiếm sản phẩm</label>
+              <input id="site-search" type="search" placeholder="Tìm sản phẩm, danh mục hay thương hiệu mong muốn" autocomplete="off">
+              <button type="submit" aria-label="Tìm kiếm">
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </button>
+              <div class="search-message" aria-live="polite"></div>
+            </form>
+
+            <button class="account-button header-pill" type="button" data-auth-open="login">
+              <i class="bi bi-person-fill" aria-hidden="true"></i>
+              <span class="account-button-label">
+                <span data-auth-choice="login">??ng nh?p</span>
+                <span class="account-separator">/</span>
+                <span data-auth-choice="register">??ng k?</span>
+              </span>
+            </button>
+
+            <button class="cart-button header-pill" type="button">
+              <i class="bi bi-basket2-fill" aria-hidden="true"></i>
+              <span class="cart-copy">
+                <small>GIỎ HÀNG</small>
+                <strong><span id="cart-count">0</span> Sản phẩm</strong>
+              </span>
+            </button>
+
+            <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Mở menu">
+              <i class="bi bi-list" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav id="primary-navigation" class="category-nav" aria-label="Danh mục chính">
+      <div class="container category-container">
+        <div class="category-dropdown">
+          <button class="category-button" type="button" aria-expanded="false">
+            <i class="bi bi-list" aria-hidden="true"></i>
+            <span>Danh mục sản phẩm</span>
+          </button>
+          <div class="category-menu" aria-label="Menu danh mục sản phẩm">
+            <div class="mega-menu-inner">
+              <div class="mega-menu-sidebar">
+                <a class="mega-menu-tab is-active" href="#makeup" data-menu-target="makeup" aria-current="page">
+                  <span>Trang điểm</span>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                </a>
+                <a class="mega-menu-tab" href="#skincare" data-menu-target="skincare">
+                  <span>Chăm sóc da</span>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                </a>
+                <a class="mega-menu-tab" href="#bodycare" data-menu-target="bodycare">
+                  <span>Chăm sóc cơ thể</span>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                </a>
+                <a class="mega-menu-tab" href="#haircare" data-menu-target="haircare">
+                  <span>Chăm sóc tóc</span>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                </a>
+                <a class="mega-menu-tab" href="#tools" data-menu-target="tools">
+                  <span>Tool &amp; Brushes</span>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                </a>
+                <a class="mega-menu-tab" href="#accessories" data-menu-target="accessories">
+                  <span>Phụ kiện</span>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                </a>
+                <a class="mega-menu-tab" href="#men" data-menu-target="men">
+                  <span>Dành cho nam</span>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                </a>
+                <a class="mega-menu-tab" href="#brands" data-menu-target="brands">
+                  <span>Tất cả các thương hiệu</span>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                </a>
+              </div>
+
+              <div class="mega-menu-content">
+                <div class="mega-menu-panel is-active" data-menu-panel="makeup">
+                <section class="mega-menu-column" aria-labelledby="makeup-face-title">
+                  <h2 id="makeup-face-title">MẶT</h2>
+                  <a href="#foundation">Kem nền - BB Cream</a>
+                  <a href="#cushion">Cushion - Phấn nước</a>
+                  <a href="#powder">Phấn nền - Phấn phủ</a>
+                  <a href="#concealer">Che khuyết điểm</a>
+                  <a href="#blush">Má hồng</a>
+                  <a href="#primer">Kem lót</a>
+                  <a href="#contour">Tạo khối</a>
+                  <a href="#setting-spray">Xịt khóa nền</a>
+                </section>
+
+                <section class="mega-menu-column" aria-labelledby="makeup-eye-title">
+                  <h2 id="makeup-eye-title">MẮT - CHỈ MÀY</h2>
+                  <a href="#eyebrow">Chỉ kẻ mày</a>
+                  <a href="#mascara">Mascara</a>
+                  <a href="#eyeliner">Kẻ mắt - Eyeliner</a>
+                  <a href="#eyeshadow">Phấn mắt</a>
+                </section>
+
+                <section class="mega-menu-column" aria-labelledby="makeup-lip-title">
+                  <h2 id="makeup-lip-title">MÔI</h2>
+                  <a href="#lipstick">Son môi</a>
+                  <a href="#lip-balm">Son dưỡng</a>
+                </section>
+
+                <section class="mega-menu-column" aria-labelledby="makeup-tools-title">
+                  <h2 id="makeup-tools-title">PHỤ KIỆN TRANG ĐIỂM</h2>
+                  <a href="#other-makeup-tools">Dụng cụ trang điểm khác</a>
+                  <a href="#makeup-sponge">Bông mút trang điểm</a>
+                  <a href="#makeup-brush">Cọ trang điểm</a>
+                </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-links">
+          <a href="#makeup">Trang Điểm</a>
+          <a href="#skincare">Chăm Sóc Da</a>
+          <a href="#bodycare">Chăm Sóc Cơ Thể</a>
+          <a href="#haircare">Chăm Sóc Tóc</a>
+          <a href="#tools">Tools &amp; Brushes</a>
+          <a href="#accessories">Phụ Kiện</a>
+          <a href="#men">Dành Cho Nam</a>
+          <a href="#brands">Tất Cả Thương Hiệu</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="home-main">
+    <section class="main-banner" aria-label="Banner khuyến mãi">
+      <div class="main-banner-slides">
+        <div class="main-banner-slide is-active" data-banner-slide="0">
+          <img src="assets/images/mainbanner1.png" alt="Beauty Glow banner 1">
+        </div>
+        <div class="main-banner-slide" data-banner-slide="1">
+          <img src="assets/images/mainbanner2.webp" alt="Beauty Glow banner 2">
+        </div>
+        <div class="main-banner-slide" data-banner-slide="2">
+          <img src="assets/images/mainbanner3.png" alt="Beauty Glow banner 3">
+        </div>
+      </div>
+
+      <button class="banner-arrow banner-arrow-prev" type="button" aria-label="Banner trước">
+        <img src="assets/Icon/Group 23.png" alt="">
+      </button>
+      <button class="banner-arrow banner-arrow-next" type="button" aria-label="Banner tiếp theo">
+        <img src="assets/Icon/Group 23.png" alt="">
+      </button>
+
+      <div class="banner-dots" aria-label="Chọn banner">
+        <button class="is-active" type="button" data-banner-dot="0" aria-label="Banner 1" aria-current="true"></button>
+        <button type="button" data-banner-dot="1" aria-label="Banner 2"></button>
+        <button type="button" data-banner-dot="2" aria-label="Banner 3"></button>
+      </div>
+    </section>
+
+    <section class="category-voucher-section" aria-label="Danh mục và voucher">
+      <div class="home-category-list">
+        <a href="#makeup" aria-label="Trang điểm"><img src="assets/images/1.png" alt=""></a>
+        <a href="#skincare" aria-label="Chăm sóc da"><img src="assets/images/2.png" alt=""></a>
+        <a href="#bodycare" aria-label="Chăm sóc cơ thể"><img src="assets/images/3.png" alt=""></a>
+        <a href="#haircare" aria-label="Chăm sóc tóc"><img src="assets/images/4.png" alt=""></a>
+        <a href="#tools" aria-label="Tools và Brushes"><img src="assets/images/5.png" alt=""></a>
+        <a href="#accessories" aria-label="Phụ kiện"><img src="assets/images/6.png" alt=""></a>
+        <a href="#men" aria-label="Dành cho nam"><img src="assets/images/7.png" alt=""></a>
+        <a href="#brands" aria-label="Thương hiệu"><img src="assets/images/8.png" alt=""></a>
+        <a href="#promotions" aria-label="Khuyến mãi"><img src="assets/images/9.png" alt=""></a>
+      </div>
+
+      <div class="voucher-list">
+        <article class="voucher-card">
+          <div class="voucher-logo" aria-hidden="true"><img src="assets/images/logo.png" alt=""></div>
+          <span class="voucher-divider"></span>
+          <div class="voucher-content">
+            <div class="voucher-top">
+              <strong>VNLB</strong>
+              <a href="#voucher-condition">Điều kiện</a>
+            </div>
+            <h3>Giảm 12%</h3>
+            <p>Đơn hàng từ 199K</p>
+            <p>Giảm tối đa 50,000đ</p>
+            <p>Áp dụng cho nhóm <a href="#local-brands">Local Brands</a></p>
+          </div>
+        </article>
+        <article class="voucher-card">
+          <div class="voucher-logo" aria-hidden="true"><img src="assets/images/logo.png" alt=""></div>
+          <span class="voucher-divider"></span>
+          <div class="voucher-content">
+            <div class="voucher-top">
+              <strong>NEW199</strong>
+              <a href="#voucher-condition">Điều kiện</a>
+            </div>
+            <h3>Giảm 12%</h3>
+            <p>Đơn hàng từ 199K</p>
+            <p>Giảm tối đa 50,000đ</p>
+            <p>Áp dụng cho nhóm <a href="#new-products">HÀNG MỚI VỀ</a></p>
+          </div>
+        </article>
+        <article class="voucher-card">
+          <div class="voucher-logo" aria-hidden="true"><img src="assets/images/logo.png" alt=""></div>
+          <span class="voucher-divider"></span>
+          <div class="voucher-content">
+            <div class="voucher-top">
+              <strong>349K</strong>
+              <a href="#voucher-condition">Điều kiện</a>
+            </div>
+            <h3>Giảm 8%</h3>
+            <p>Đơn hàng từ 349K</p>
+            <p>Giảm tối đa 50,000đ</p>
+            <p>Áp dụng cho tất cả sản phẩm</p>
+          </div>
+        </article>
+        <article class="voucher-card">
+          <div class="voucher-logo" aria-hidden="true"><img src="assets/images/logo.png" alt=""></div>
+          <span class="voucher-divider"></span>
+          <div class="voucher-content">
+            <div class="voucher-top">
+              <strong>549K</strong>
+              <a href="#voucher-condition">Điều kiện</a>
+            </div>
+            <h3>Giảm 10%</h3>
+            <p>Đơn hàng từ 549K</p>
+            <p>Giảm tối đa 80,000đ</p>
+            <p>Áp dụng cho tất cả sản phẩm</p>
+          </div>
+        </article>
+      </div>
+
+      <a class="view-all-vouchers" href="#all-vouchers">XEM TẤT CẢ</a>
+    </section>
+
+    <section class="sale-section" aria-labelledby="sale-title">
+      <div class="container sale-container">
+        <div class="sale-heading">
+          <h2 id="sale-title">ƯU ĐÃI HOT, ĐỪNG BỎ LỠ!!!</h2>
+          <p>Sản phẩm sẽ trở về giá gốc khi hết giờ</p>
+        </div>
+
+        <div class="sale-countdown" aria-label="Thời gian ưu đãi còn lại">
+          <div><strong id="sale-hours">10</strong><span>Giờ</span></div>
+          <div><strong id="sale-minutes">10</strong><span>Phút</span></div>
+          <div><strong id="sale-seconds">10</strong><span>Giây</span></div>
+        </div>
+
+        <a class="sale-view-all" href="#all-sale-products">
+          <span>Xem tất cả</span>
+          <i class="bi bi-chevron-right" aria-hidden="true"></i>
+        </a>
+
+        <div class="sale-product-grid" aria-label="Sản phẩm đang ưu đãi"></div>
+      </div>
+    </section>
+
+    <section class="top-sale-section" aria-labelledby="top-sale-title">
+      <h2 id="top-sale-title">TOP SẢN PHẨM BÁN CHẠY</h2>
+
+      <nav class="top-sale-tabs" aria-label="Danh mục sản phẩm bán chạy">
+        <button type="button" data-top-category="mask">MẶT NẠ</button>
+        <button type="button" data-top-category="lipstick">SON MÔI</button>
+        <button type="button" data-top-category="cleanser">TẨY TRANG</button>
+        <button type="button" data-top-category="sunscreen">CHỐNG NẮNG</button>
+        <button type="button" data-top-category="makeup">TRANG ĐIỂM</button>
+        <button type="button" data-top-category="facecare">CHĂM SÓC DA MẶT</button>
+        <button type="button" data-top-category="bodycare">CHĂM SÓC CƠ THỂ</button>
+        <a href="#all-top-products">Xem tất cả</a>
+      </nav>
+
+      <div class="top-sale-content">
+        <a class="top-sale-banner" href="#top-sale-banner" aria-label="Banner sản phẩm bán chạy"></a>
+
+        <div class="top-product-carousel">
+          <div class="top-product-grid" aria-live="polite"></div>
+          <button class="top-product-arrow top-product-prev" type="button" aria-label="Sản phẩm trước">
+            <i class="bi bi-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="top-product-arrow top-product-next" type="button" aria-label="Sản phẩm tiếp theo">
+            <i class="bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="triple-banner-section" aria-label="Banner nổi bật">
+      <div class="triple-banner-viewport">
+        <div class="triple-banner-track">
+          <a class="triple-banner-card" href="#banner-feature-1" aria-label="Banner nổi bật 1"><i class="bi bi-image" aria-hidden="true"></i></a>
+          <a class="triple-banner-card" href="#banner-feature-2" aria-label="Banner nổi bật 2"><i class="bi bi-image" aria-hidden="true"></i></a>
+          <a class="triple-banner-card" href="#banner-feature-3" aria-label="Banner nổi bật 3"><i class="bi bi-image" aria-hidden="true"></i></a>
+          <a class="triple-banner-card" href="#banner-feature-4" aria-label="Banner nổi bật 4"><i class="bi bi-image" aria-hidden="true"></i></a>
+          <a class="triple-banner-card" href="#banner-feature-5" aria-label="Banner nổi bật 5"><i class="bi bi-image" aria-hidden="true"></i></a>
+          <a class="triple-banner-card" href="#banner-feature-6" aria-label="Banner nổi bật 6"><i class="bi bi-image" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <button class="triple-banner-arrow triple-banner-prev" type="button" aria-label="Banner trước">
+        <i class="bi bi-chevron-left" aria-hidden="true"></i>
+      </button>
+      <button class="triple-banner-arrow triple-banner-next" type="button" aria-label="Banner tiếp theo">
+        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+      </button>
+    </section>
+
+    <section class="beauty-showcase-section" aria-labelledby="beauty-showcase-title">
+      <div class="beauty-showcase-container">
+        <div class="beauty-showcase-heading">
+          <h2 id="beauty-showcase-title">CHĂM DA XỊN - TRANG ĐIỂM XINH</h2>
+
+          <div class="beauty-showcase-tabs" role="tablist" aria-label="Danh mục làm đẹp">
+            <button class="is-active" type="button" role="tab" aria-selected="true" data-beauty-category="makeup">Trang điểm</button>
+            <button type="button" role="tab" aria-selected="false" data-beauty-category="skincare">Chăm sóc da</button>
+            <button type="button" role="tab" aria-selected="false" data-beauty-category="bodycare">Chăm sóc cơ thể</button>
+            <a href="#all-beauty-products">Xem tất cả <span><i class="bi bi-chevron-right" aria-hidden="true"></i></span></a>
+          </div>
+        </div>
+
+        <div class="beauty-product-grid" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="featured-brands-section" aria-labelledby="featured-brands-title">
+      <div class="featured-brands-container">
+        <h2 id="featured-brands-title">THƯƠNG HIỆU NỔI BẬT</h2>
+
+        <a class="featured-brands-view-all" href="#all-brands">
+          Xem tất cả
+          <span><i class="bi bi-chevron-right" aria-hidden="true"></i></span>
+        </a>
+
+        <div class="featured-brands-grid">
+          <a class="featured-brand-card" href="#brand-1" aria-label="Xem sản phẩm thương hiệu nổi bật">
+            <img src="assets/Logo thương hiệu/normalized/925b59bc-69a5-4dae-bb80-68d13d02d90f.png" alt="Logo thương hiệu nổi bật">
+          </a>
+          <a class="featured-brand-card" href="#brand-la-roche-posay" aria-label="Xem sản phẩm La Roche-Posay">
+            <img src="assets/Logo thương hiệu/normalized/0e38252a-f941-473e-9d18-7bc3b701865d.png" alt="La Roche-Posay">
+          </a>
+          <a class="featured-brand-card" href="#brand-cocoon" aria-label="Xem sản phẩm Cocoon">
+            <img src="assets/Logo thương hiệu/normalized/1201b3de-2688-437a-bc2a-9619f09d0ee7.png" alt="Cocoon">
+          </a>
+          <a class="featured-brand-card" href="#brand-tsubaki" aria-label="Xem sản phẩm Tsubaki">
+            <img src="assets/Logo thương hiệu/normalized/6fbaf898-a6ac-4d7e-8064-ffd967fe64eb.png" alt="Tsubaki">
+          </a>
+          <a class="featured-brand-card" href="#brand-simple" aria-label="Xem sản phẩm Simple">
+            <img src="assets/Logo thương hiệu/normalized/5645b45b-a59b-4958-9cf1-6c15a6a9b88a.png" alt="Simple">
+          </a>
+          <a class="featured-brand-card" href="#brand-biore" aria-label="Xem sản phẩm Bioré">
+            <img src="assets/Logo thương hiệu/normalized/biore-brandlogo.net_.png" alt="Bioré">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="beauty-tips" class="blog-section" aria-labelledby="beauty-tips-title">
+      <div class="blog-container">
+        <div class="blog-heading">
+          <h2 id="beauty-tips-title">BEAUTY TIPS</h2>
+          <a class="blog-view-all" href="#all-beauty-tips">
+            Xem tất cả
+            <span><i class="bi bi-chevron-right" aria-hidden="true"></i></span>
+          </a>
+        </div>
+
+        <div class="blog-grid">
+          <article class="blog-card">
+            <a class="blog-card-image" href="#tip-dry-skin" aria-label="Da khô mùa Hè? Cấp ẩm sao cho đúng?"></a>
+            <h3><a href="#tip-dry-skin">Da khô mùa Hè? Cấp ẩm sao cho đúng?</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Mùa hè không chỉ khiến da đổ dầu nhiều hơn mà còn dễ mất nước nếu chăm sóc sai cách. Cùng tìm hiểu cách cấp ẩm nhẹ nhàng để da luôn mềm mịn và căng bóng.</p>
+            <a class="blog-read-more" href="#tip-dry-skin">Đọc tiếp</a>
+          </article>
+
+          <article class="blog-card">
+            <a class="blog-card-image" href="#tip-sunscreen" aria-label="Bí kíp chọn kem chống nắng cho từng loại da"></a>
+            <h3><a href="#tip-sunscreen">Bí kíp chọn kem chống nắng cho từng loại da</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Kem chống nắng là bước không thể thiếu mỗi ngày. Tùy vào da dầu, da khô hay da nhạy cảm, bạn nên chọn sản phẩm phù hợp để bảo vệ da tốt hơn.</p>
+            <a class="blog-read-more" href="#tip-sunscreen">Đọc tiếp</a>
+          </article>
+
+          <article class="blog-card">
+            <a class="blog-card-image" href="#tip-morning-routine" aria-label="Routine buổi sáng nhẹ nhàng cho làn da rạng rỡ"></a>
+            <h3><a href="#tip-morning-routine">Routine buổi sáng nhẹ nhàng cho làn da rạng rỡ</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Một routine đơn giản vào buổi sáng sẽ giúp làn da tươi tắn và khỏe khoắn hơn. Chỉ vài bước cơ bản, bạn đã có thể tự tin bắt đầu ngày mới.</p>
+            <a class="blog-read-more" href="#tip-morning-routine">Đọc tiếp</a>
+          </article>
+
+          <article class="blog-card">
+            <a class="blog-card-image" href="#tip-clean-skin" aria-label="Làm sạch da đúng cách để da luôn mịn màng"></a>
+            <h3><a href="#tip-clean-skin">Làm sạch da đúng cách để da luôn mịn màng</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Làm sạch là bước nền quan trọng trong chăm sóc da. Tẩy trang và rửa mặt đúng cách sẽ giúp da thông thoáng, sạch sâu và hấp thụ dưỡng chất tốt hơn.</p>
+            <a class="blog-read-more" href="#tip-clean-skin">Đọc tiếp</a>
+          </article>
+        </div>
+
+        <div class="blog-heading promotion-heading">
+          <h2 id="promotion-title">CHƯƠNG TRÌNH KHUYẾN MÃI</h2>
+          <a class="blog-view-all" href="#all-promotions">
+            Xem tất cả
+            <span><i class="bi bi-chevron-right" aria-hidden="true"></i></span>
+          </a>
+        </div>
+
+        <div class="blog-grid promotion-grid" aria-labelledby="promotion-title">
+          <article class="blog-card">
+            <a class="blog-card-image" href="#promotion-9k" aria-label="Deal xinh từ 9K - săn ngay kẻo lỡ"></a>
+            <h3><a href="#promotion-9k">Deal xinh từ 9K - săn ngay kẻo lỡ</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Hàng loạt sản phẩm làm đẹp được giảm giá cực hấp dẫn, chỉ từ 9K. Cơ hội tốt để bạn mua thêm những món skincare, makeup yêu thích với mức giá tiết kiệm hơn.</p>
+            <a class="blog-read-more" href="#promotion-9k">Đọc tiếp</a>
+          </article>
+
+          <article class="blog-card">
+            <a class="blog-card-image" href="#promotion-member" aria-label="Tích điểm thành viên - nhận ưu đãi mỗi lần mua sắm"></a>
+            <h3><a href="#promotion-member">Tích điểm thành viên - nhận ưu đãi mỗi lần mua sắm</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Mua sắm càng nhiều, ưu đãi càng lớn. Khách hàng thành viên có thể tích điểm sau mỗi đơn hàng và sử dụng điểm để giảm giá cho những lần mua tiếp theo.</p>
+            <a class="blog-read-more" href="#promotion-member">Đọc tiếp</a>
+          </article>
+
+          <article class="blog-card">
+            <a class="blog-card-image" href="#promotion-buy-one" aria-label="Mua 1 tặng 1 - deal làm đẹp không thể bỏ qua"></a>
+            <h3><a href="#promotion-buy-one">Mua 1 tặng 1 - deal làm đẹp không thể bỏ qua</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Cơ hội sở hữu thêm sản phẩm yêu thích với chương trình mua 1 tặng 1. Áp dụng cho nhiều dòng sản phẩm chăm sóc da, trang điểm và chăm sóc cơ thể.</p>
+            <a class="blog-read-more" href="#promotion-buy-one">Đọc tiếp</a>
+          </article>
+
+          <article class="blog-card">
+            <a class="blog-card-image" href="#promotion-voucher" aria-label="Voucher giảm đến 40K cho đơn hàng đầu tiên"></a>
+            <h3><a href="#promotion-voucher">Voucher giảm đến 40K cho đơn hàng đầu tiên</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Nhận ngay voucher ưu đãi dành cho khách hàng mới. Chỉ cần chọn sản phẩm yêu thích, áp mã giảm giá và hoàn tất đơn hàng để tiết kiệm hơn khi mua sắm.</p>
+            <a class="blog-read-more" href="#promotion-voucher">Đọc tiếp</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <main class="blog-page-main" aria-live="polite" hidden>
+    <nav class="blog-page-breadcrumb" aria-label="Đường dẫn Beauty Tips">
+      <div class="container blog-page-breadcrumb-container">
+        <a href="#" data-blog-home>Trang chủ</a>
+        <span>/</span>
+        <strong>Beauty Tips</strong>
+      </div>
+    </nav>
+
+    <section class="blog-page-section" aria-labelledby="blog-page-title">
+      <div class="blog-page-container">
+        <h1 id="blog-page-title">Tin tức</h1>
+
+        <div class="blog-page-featured" aria-label="Tin tức nổi bật">
+          <button class="blog-page-arrow blog-page-arrow-prev" type="button" aria-label="Tin trước">
+            <i class="bi bi-chevron-left" aria-hidden="true"></i>
+          </button>
+          <a href="#blog-feature-1" aria-label="Tin tức nổi bật 1"></a>
+          <a href="#blog-feature-2" aria-label="Tin tức nổi bật 2"></a>
+          <a href="#blog-feature-3" aria-label="Tin tức nổi bật 3"></a>
+          <button class="blog-page-arrow blog-page-arrow-next" type="button" aria-label="Tin sau">
+            <i class="bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div class="blog-page-category-row" aria-label="Danh mục blog">
+          <button class="is-active" type="button">Tất cả bài viết</button>
+          <button type="button">Beauty Tips</button>
+          <button type="button">Chăm sóc sức khỏe</button>
+          <button type="button">Tin tức</button>
+          <button type="button">Khuyến mãi</button>
+        </div>
+
+        <div class="blog-page-grid">
+          <article class="blog-card">
+            <a class="blog-card-image" href="#tip-dry-skin" aria-label="Da khô mùa Hè? Cấp ẩm sao cho đúng?"></a>
+            <h3><a href="#tip-dry-skin">Da khô mùa Hè? Cấp ẩm sao cho đúng?</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Mùa hè không chỉ khiến da đổ dầu nhiều hơn mà còn dễ mất nước nếu chăm sóc sai cách. Cùng tìm hiểu cách cấp ẩm nhẹ nhàng để da luôn mềm mịn và căng bóng.</p>
+            <a class="blog-read-more" href="#tip-dry-skin">Đọc tiếp</a>
+          </article>
+          <article class="blog-card">
+            <a class="blog-card-image" href="#tip-sunscreen" aria-label="Bí kíp chọn kem chống nắng cho từng loại da"></a>
+            <h3><a href="#tip-sunscreen">Bí kíp chọn kem chống nắng cho từng loại da</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Kem chống nắng là bước không thể thiếu mỗi ngày. Tùy vào da dầu, da khô hay da nhạy cảm, bạn nên chọn sản phẩm phù hợp để bảo vệ da tốt hơn.</p>
+            <a class="blog-read-more" href="#tip-sunscreen">Đọc tiếp</a>
+          </article>
+          <article class="blog-card">
+            <a class="blog-card-image" href="#tip-morning-routine" aria-label="Routine buổi sáng nhẹ nhàng cho làn da rạng rỡ"></a>
+            <h3><a href="#tip-morning-routine">Routine buổi sáng nhẹ nhàng cho làn da rạng rỡ</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Một routine đơn giản vào buổi sáng sẽ giúp làn da tươi tắn và khỏe khoắn hơn. Chỉ vài bước cơ bản, bạn đã có thể tự tin bắt đầu ngày mới.</p>
+            <a class="blog-read-more" href="#tip-morning-routine">Đọc tiếp</a>
+          </article>
+          <article class="blog-card">
+            <a class="blog-card-image" href="#tip-clean-skin" aria-label="Làm sạch da đúng cách để da luôn mịn màng"></a>
+            <h3><a href="#tip-clean-skin">Làm sạch da đúng cách để da luôn mịn màng</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Làm sạch là bước nền quan trọng trong chăm sóc da. Tẩy trang và rửa mặt đúng cách sẽ giúp da thông thoáng, sạch sâu và hấp thụ dưỡng chất tốt hơn.</p>
+            <a class="blog-read-more" href="#tip-clean-skin">Đọc tiếp</a>
+          </article>
+          <article class="blog-card">
+            <a class="blog-card-image" href="#blog-5" aria-label="Da khô mùa Hè? Cấp ẩm sao cho đúng?"></a>
+            <h3><a href="#blog-5">Da khô mùa Hè? Cấp ẩm sao cho đúng?</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Mùa hè không chỉ khiến da đổ dầu nhiều hơn mà còn dễ mất nước nếu chăm sóc sai cách. Cùng tìm hiểu cách cấp ẩm nhẹ nhàng để da luôn mềm mịn và căng bóng.</p>
+            <a class="blog-read-more" href="#blog-5">Đọc tiếp</a>
+          </article>
+          <article class="blog-card">
+            <a class="blog-card-image" href="#blog-6" aria-label="Bí kíp chọn kem chống nắng cho từng loại da"></a>
+            <h3><a href="#blog-6">Bí kíp chọn kem chống nắng cho từng loại da</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Kem chống nắng là bước không thể thiếu mỗi ngày. Tùy vào da dầu, da khô hay da nhạy cảm, bạn nên chọn sản phẩm phù hợp để bảo vệ da tốt hơn.</p>
+            <a class="blog-read-more" href="#blog-6">Đọc tiếp</a>
+          </article>
+          <article class="blog-card">
+            <a class="blog-card-image" href="#blog-7" aria-label="Routine buổi sáng nhẹ nhàng cho làn da rạng rỡ"></a>
+            <h3><a href="#blog-7">Routine buổi sáng nhẹ nhàng cho làn da rạng rỡ</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Một routine đơn giản vào buổi sáng sẽ giúp làn da tươi tắn và khỏe khoắn hơn. Chỉ vài bước cơ bản, bạn đã có thể tự tin bắt đầu ngày mới.</p>
+            <a class="blog-read-more" href="#blog-7">Đọc tiếp</a>
+          </article>
+          <article class="blog-card">
+            <a class="blog-card-image" href="#blog-8" aria-label="Làm sạch da đúng cách để da luôn mịn màng"></a>
+            <h3><a href="#blog-8">Làm sạch da đúng cách để da luôn mịn màng</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Làm sạch là bước nền quan trọng trong chăm sóc da. Tẩy trang và rửa mặt đúng cách sẽ giúp da thông thoáng, sạch sâu và hấp thụ dưỡng chất tốt hơn.</p>
+            <a class="blog-read-more" href="#blog-8">Đọc tiếp</a>
+          </article>
+          <article class="blog-card">
+            <a class="blog-card-image" href="#blog-9" aria-label="Da khô mùa Hè? Cấp ẩm sao cho đúng?"></a>
+            <h3><a href="#blog-9">Da khô mùa Hè? Cấp ẩm sao cho đúng?</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Mùa hè không chỉ khiến da đổ dầu nhiều hơn mà còn dễ mất nước nếu chăm sóc sai cách. Cùng tìm hiểu cách cấp ẩm nhẹ nhàng để da luôn mềm mịn và căng bóng.</p>
+            <a class="blog-read-more" href="#blog-9">Đọc tiếp</a>
+          </article>
+          <article class="blog-card">
+            <a class="blog-card-image" href="#blog-10" aria-label="Bí kíp chọn kem chống nắng cho từng loại da"></a>
+            <h3><a href="#blog-10">Bí kíp chọn kem chống nắng cho từng loại da</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Kem chống nắng là bước không thể thiếu mỗi ngày. Tùy vào da dầu, da khô hay da nhạy cảm, bạn nên chọn sản phẩm phù hợp để bảo vệ da tốt hơn.</p>
+            <a class="blog-read-more" href="#blog-10">Đọc tiếp</a>
+          </article>
+          <article class="blog-card">
+            <a class="blog-card-image" href="#blog-11" aria-label="Routine buổi sáng nhẹ nhàng cho làn da rạng rỡ"></a>
+            <h3><a href="#blog-11">Routine buổi sáng nhẹ nhàng cho làn da rạng rỡ</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Một routine đơn giản vào buổi sáng sẽ giúp làn da tươi tắn và khỏe khoắn hơn. Chỉ vài bước cơ bản, bạn đã có thể tự tin bắt đầu ngày mới.</p>
+            <a class="blog-read-more" href="#blog-11">Đọc tiếp</a>
+          </article>
+          <article class="blog-card">
+            <a class="blog-card-image" href="#blog-12" aria-label="Làm sạch da đúng cách để da luôn mịn màng"></a>
+            <h3><a href="#blog-12">Làm sạch da đúng cách để da luôn mịn màng</a></h3>
+            <time datetime="2026-10-10">Th 2 10/10/2026</time>
+            <p>Làm sạch là bước nền quan trọng trong chăm sóc da. Tẩy trang và rửa mặt đúng cách sẽ giúp da thông thoáng, sạch sâu và hấp thụ dưỡng chất tốt hơn.</p>
+            <a class="blog-read-more" href="#blog-12">Đọc tiếp</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <main class="listing-main" aria-live="polite" hidden>
+    <nav class="listing-breadcrumb" aria-label="Đường dẫn danh mục">
+      <div class="container listing-breadcrumb-container">
+        <a href="#" data-listing-home>Trang chủ</a>
+        <span>/</span>
+        <a href="#categories">Danh mục</a>
+        <span>/</span>
+        <strong>Trang điểm</strong>
+      </div>
+    </nav>
+
+    <section class="listing-page" aria-labelledby="listing-title">
+      <div class="listing-container">
+        <a class="listing-hero" href="#makeup-banner" aria-label="Banner danh mục trang điểm">
+          <i class="bi bi-image" aria-hidden="true"></i>
+        </a>
+
+        <div class="listing-layout">
+          <aside class="listing-sidebar" aria-label="Bộ lọc sản phẩm">
+            <div class="filter-block category-filter is-open">
+              <button class="filter-title" type="button" data-filter-toggle aria-expanded="true">
+                <span>DANH MỤC</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="filter-panel">
+                <div class="category-filter-group" data-filter-category="makeup">
+                  <button class="category-filter-toggle" type="button" aria-expanded="false">Trang điểm <i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+                  <div class="category-filter-sublist" hidden>
+                    <label><input type="checkbox"> Kem nền - BB Cream</label>
+                    <label><input type="checkbox"> Cushion - Phấn nước</label>
+                    <label><input type="checkbox"> Phấn nền - Phấn phủ</label>
+                    <label><input type="checkbox"> Che khuyết điểm</label>
+                    <label><input type="checkbox"> Má hồng</label>
+                    <label><input type="checkbox"> Kem lót</label>
+                    <label><input type="checkbox"> Tạo khối</label>
+                    <label><input type="checkbox"> Xịt khóa nền</label>
+                    <label><input type="checkbox"> Chì kẻ mày</label>
+                    <label><input type="checkbox"> Mascara</label>
+                    <label><input type="checkbox"> Kẻ mắt - Eyeliner</label>
+                    <label><input type="checkbox"> Phấn mắt</label>
+                    <label><input type="checkbox"> Son môi</label>
+                    <label><input type="checkbox"> Son dưỡng</label>
+                    <label><input type="checkbox"> Dụng cụ trang điểm khác</label>
+                    <label><input type="checkbox"> Bông mút trang điểm</label>
+                    <label><input type="checkbox"> Cọ trang điểm</label>
+                  </div>
+                </div>
+
+                <div class="category-filter-group" data-filter-category="skincare">
+                  <button class="category-filter-toggle" type="button" aria-expanded="false">Chăm sóc da <i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+                  <div class="category-filter-sublist" hidden>
+                    <label><input type="checkbox"> Tẩy trang</label>
+                    <label><input type="checkbox"> Sữa rửa mặt</label>
+                    <label><input type="checkbox"> Tẩy tế bào chết</label>
+                    <label><input type="checkbox"> Nước hoa hồng / Toner</label>
+                    <label><input type="checkbox"> Xịt khoáng</label>
+                    <label><input type="checkbox"> Serum / Tinh chất</label>
+                    <label><input type="checkbox"> Kem dưỡng ẩm</label>
+                    <label><input type="checkbox"> Kem dưỡng trắng</label>
+                    <label><input type="checkbox"> Kem chống lão hóa</label>
+                    <label><input type="checkbox"> Mặt nạ dưỡng da</label>
+                    <label><input type="checkbox"> Dầu dưỡng da</label>
+                    <label><input type="checkbox"> Trị mụn</label>
+                    <label><input type="checkbox"> Trị thâm</label>
+                    <label><input type="checkbox"> Trị nám</label>
+                    <label><input type="checkbox"> Se khít lỗ chân lông</label>
+                    <label><input type="checkbox"> Phục hồi da</label>
+                    <label><input type="checkbox"> Dưỡng mắt</label>
+                    <label><input type="checkbox"> Kem chống nắng</label>
+                    <label><input type="checkbox"> Chống nắng dạng gel</label>
+                    <label><input type="checkbox"> Chống nắng dạng xịt</label>
+                    <label><input type="checkbox"> Chống nắng nâng tone</label>
+                  </div>
+                </div>
+
+                <div class="category-filter-group" data-filter-category="haircare">
+                  <button class="category-filter-toggle" type="button" aria-expanded="false">Chăm sóc tóc <i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+                  <div class="category-filter-sublist" hidden>
+                    <label><input type="checkbox"> Dầu gội</label>
+                    <label><input type="checkbox"> Dầu xả</label>
+                    <label><input type="checkbox"> Dầu gội khô</label>
+                    <label><input type="checkbox"> Tẩy tế bào chết da đầu</label>
+                    <label><input type="checkbox"> Kem ủ tóc</label>
+                    <label><input type="checkbox"> Serum dưỡng tóc</label>
+                    <label><input type="checkbox"> Dầu dưỡng tóc</label>
+                    <label><input type="checkbox"> Xịt dưỡng tóc</label>
+                    <label><input type="checkbox"> Mặt nạ tóc</label>
+                    <label><input type="checkbox"> Sáp vuốt tóc</label>
+                    <label><input type="checkbox"> Gel vuốt tóc</label>
+                    <label><input type="checkbox"> Gôm xịt tóc</label>
+                    <label><input type="checkbox"> Xịt giữ nếp</label>
+                    <label><input type="checkbox"> Keo tạo kiểu</label>
+                    <label><input type="checkbox"> Trị gàu</label>
+                    <label><input type="checkbox"> Trị rụng tóc</label>
+                    <label><input type="checkbox"> Kích thích mọc tóc</label>
+                    <label><input type="checkbox"> Phục hồi tóc hư tổn</label>
+                    <label><input type="checkbox"> Chăm sóc da đầu</label>
+                  </div>
+                </div>
+
+                <div class="category-filter-group" data-filter-category="bodycare">
+                  <button class="category-filter-toggle" type="button" aria-expanded="false">Chăm sóc cơ thể <i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+                  <div class="category-filter-sublist" hidden>
+                    <label><input type="checkbox"> Sữa tắm</label>
+                    <label><input type="checkbox"> Xà phòng tắm</label>
+                    <label><input type="checkbox"> Tẩy tế bào chết body</label>
+                    <label><input type="checkbox"> Muối tắm</label>
+                    <label><input type="checkbox"> Dung dịch vệ sinh</label>
+                    <label><input type="checkbox"> Sữa dưỡng thể</label>
+                    <label><input type="checkbox"> Kem dưỡng body</label>
+                    <label><input type="checkbox"> Dầu dưỡng thể</label>
+                    <label><input type="checkbox"> Dưỡng trắng body</label>
+                    <label><input type="checkbox"> Dưỡng da tay</label>
+                    <label><input type="checkbox"> Dưỡng da chân</label>
+                    <label><input type="checkbox"> Lăn khử mùi</label>
+                    <label><input type="checkbox"> Xịt khử mùi</label>
+                    <label><input type="checkbox"> Sáp khử mùi</label>
+                    <label><input type="checkbox"> Nước hoa body mist</label>
+                    <label><input type="checkbox"> Kem chống nắng body</label>
+                    <label><input type="checkbox"> Kem tẩy lông</label>
+                    <label><input type="checkbox"> Dao cạo</label>
+                    <label><input type="checkbox"> Sản phẩm massage</label>
+                  </div>
+                </div>
+
+                <div class="category-filter-group" data-filter-category="tools">
+                  <button class="category-filter-toggle" type="button" aria-expanded="false">Tools &amp; Brushes <i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+                  <div class="category-filter-sublist" hidden>
+                    <label><input type="checkbox"> Cọ trang điểm</label>
+                    <label><input type="checkbox"> Bộ cọ trang điểm</label>
+                    <label><input type="checkbox"> Bông mút trang điểm</label>
+                    <label><input type="checkbox"> Dụng cụ vệ sinh cọ</label>
+                    <label><input type="checkbox"> Kẹp bấm mi</label>
+                    <label><input type="checkbox"> Nhíp</label>
+                    <label><input type="checkbox"> Dao tỉa chân mày</label>
+                    <label><input type="checkbox"> Gương trang điểm</label>
+                    <label><input type="checkbox"> Hộp đựng cọ</label>
+                  </div>
+                </div>
+
+                <div class="category-filter-group" data-filter-category="accessories">
+                  <button class="category-filter-toggle" type="button" aria-expanded="false">Phụ kiện <i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+                  <div class="category-filter-sublist" hidden>
+                    <label><input type="checkbox"> Bông tẩy trang</label>
+                    <label><input type="checkbox"> Tăm bông</label>
+                    <label><input type="checkbox"> Khăn mặt</label>
+                    <label><input type="checkbox"> Băng đô rửa mặt</label>
+                    <label><input type="checkbox"> Gương mini</label>
+                    <label><input type="checkbox"> Túi đựng mỹ phẩm</label>
+                    <label><input type="checkbox"> Kẹp tóc</label>
+                    <label><input type="checkbox"> Dây buộc tóc</label>
+                    <label><input type="checkbox"> Băng đô</label>
+                    <label><input type="checkbox"> Lược chải tóc</label>
+                    <label><input type="checkbox"> Kẹp càng cua</label>
+                    <label><input type="checkbox"> Mũ trùm tóc</label>
+                    <label><input type="checkbox"> Chai chiết mỹ phẩm</label>
+                    <label><input type="checkbox"> Hộp đựng lens</label>
+                    <label><input type="checkbox"> Bộ chiết du lịch</label>
+                  </div>
+                </div>
+
+                <div class="category-filter-group" data-filter-category="men">
+                  <button class="category-filter-toggle" type="button" aria-expanded="false">Dành cho nam <i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+                  <div class="category-filter-sublist" hidden>
+                    <label><input type="checkbox"> Sữa rửa mặt nam</label>
+                    <label><input type="checkbox"> Kem dưỡng da nam</label>
+                    <label><input type="checkbox"> Kem chống nắng nam</label>
+                    <label><input type="checkbox"> Dao cạo râu</label>
+                    <label><input type="checkbox"> Bọt cạo râu</label>
+                    <label><input type="checkbox"> Gel cạo râu</label>
+                    <label><input type="checkbox"> Dầu gội nam</label>
+                    <label><input type="checkbox"> Sáp vuốt tóc nam</label>
+                    <label><input type="checkbox"> Sữa tắm nam</label>
+                    <label><input type="checkbox"> Lăn khử mùi nam</label>
+                    <label><input type="checkbox"> Nước hoa nam</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-block price-filter is-open">
+              <button class="filter-title" type="button" data-filter-toggle aria-expanded="true">
+                <span>KHOẢNG GIÁ</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="filter-panel">
+                <div class="price-slider">
+                  <div class="price-slider-track"></div>
+                  <input class="price-range-min" type="range" min="0" max="1000000" step="10000" value="0" aria-label="Giá thấp nhất">
+                  <input class="price-range-max" type="range" min="0" max="1000000" step="10000" value="1000000" aria-label="Giá cao nhất">
+                </div>
+                <div class="price-range-labels">
+                  <span class="price-label-min">0đ</span>
+                  <span class="price-label-max">1,000,000đ</span>
+                </div>
+                <div class="price-inputs">
+                  <input class="price-input-min" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Từ" aria-label="Giá từ">
+                  <span>-</span>
+                  <input class="price-input-max" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Đến" aria-label="Giá đến">
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-block brand-filter is-open">
+              <button class="filter-title" type="button" data-filter-toggle aria-expanded="true">
+                <span>THƯƠNG HIỆU</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="filter-panel">
+                <label><input type="checkbox"> Cocoon</label>
+                <label><input type="checkbox"> Maybelline</label>
+                <label><input type="checkbox"> L'Oréal</label>
+                <label><input type="checkbox"> 3CE</label>
+                <label><input type="checkbox"> Romand</label>
+                <label><input type="checkbox"> Innisfree</label>
+                <label><input type="checkbox"> Some By Mi</label>
+                <label><input type="checkbox"> La Roche-Posay</label>
+                <label><input type="checkbox"> Simple</label>
+                <label><input type="checkbox"> Laneige</label>
+                <label><input type="checkbox"> The Face Shop</label>
+                <label><input type="checkbox"> Etude</label>
+                <label><input type="checkbox"> Skin1004</label>
+                <label><input type="checkbox"> Cosrx</label>
+                <label><input type="checkbox"> Beauty of Joseon</label>
+                <label><input type="checkbox"> CeraVe</label>
+                <label><input type="checkbox"> Bioderma</label>
+                <label><input type="checkbox"> Eucerin</label>
+                <label><input type="checkbox"> Neutrogena</label>
+                <label><input type="checkbox"> Lemonade</label>
+                <label><input type="checkbox"> Cỏ Mềm</label>
+                <label><input type="checkbox"> Thorakao</label>
+                <label><input type="checkbox"> Herbario</label>
+                <label><input type="checkbox"> Skinlosophy</label>
+              </div>
+            </div>
+          </aside>
+
+          <section class="listing-content">
+            <div class="listing-heading">
+              <h1 id="listing-title">TRANG ĐIỂM <span>(100 Sản phẩm)</span></h1>
+              <div class="listing-sort">
+                <strong>Sắp xếp:</strong>
+                <button class="is-active" type="button">Nổi bật</button>
+                <button type="button">Giá tăng dần</button>
+                <button type="button">Giá giảm dần</button>
+                <button type="button">Hàng mới</button>
+                <button type="button">Bán chạy</button>
+              </div>
+              <div class="listing-limit-dropdown">
+                <button class="listing-limit" type="button" aria-expanded="false">
+                  <span>Hiển thị 20</span>
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="listing-limit-menu" hidden>
+                  <button type="button" data-listing-limit="8">Hiển thị 8</button>
+                  <button type="button" data-listing-limit="12">Hiển thị 12</button>
+                  <button type="button" data-listing-limit="16">Hiển thị 16</button>
+                  <button class="is-active" type="button" data-listing-limit="20">Hiển thị 20</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="listing-product-grid" aria-label="Danh sách sản phẩm trang điểm"></div>
+
+            <nav class="listing-pagination" aria-label="Phân trang sản phẩm">
+              <button type="button" aria-label="Trang trước"><i class="bi bi-chevron-double-left" aria-hidden="true"></i></button>
+              <button class="is-active" type="button">1</button>
+              <button type="button">2</button>
+              <button type="button">3</button>
+              <span>...</span>
+              <button type="button">10</button>
+              <button type="button" aria-label="Trang sau"><i class="bi bi-chevron-double-right" aria-hidden="true"></i></button>
+            </nav>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <main class="product-detail-main" aria-live="polite" hidden>
+    <nav class="detail-breadcrumb" aria-label="Đường dẫn chi tiết sản phẩm">
+      <div class="container detail-breadcrumb-container">
+        <a href="#" data-detail-home>Trang chủ</a>
+        <span>/</span>
+        <a href="#makeup" data-detail-listing>Trang điểm</a>
+        <span>/</span>
+        <strong>COMBO Cocoon Tẩy da chết cà phê Đak Lak</strong>
+      </div>
+    </nav>
+
+    <section class="product-detail-section" aria-labelledby="product-detail-title">
+      <div class="product-detail-container">
+        <div class="product-gallery">
+          <div class="product-gallery-main" aria-label="Ảnh sản phẩm chính"></div>
+          <div class="product-thumbnails" aria-label="Ảnh sản phẩm khác">
+            <button class="is-active" type="button" aria-label="Ảnh sản phẩm 1"></button>
+            <button type="button" aria-label="Ảnh sản phẩm 2"></button>
+            <button type="button" aria-label="Ảnh sản phẩm 3"></button>
+            <button type="button" aria-label="Ảnh sản phẩm 4"></button>
+            <button type="button" aria-label="Ảnh sản phẩm 5"></button>
+          </div>
+        </div>
+
+        <article class="product-detail-info">
+          <p class="product-detail-brand">Cocoon</p>
+          <h1 id="product-detail-title">COMBO Cocoon Tẩy da chết cà phê Đak Lak (200ml) (IP07) + Tẩy da chết làm sạch da chết mặt Cocoon cà phê Đắk Lắk 150ml (IP07)</h1>
+
+          <div class="product-detail-meta">
+            <span>Tình trạng: <a href="#stock-status">Còn hàng</a></span>
+            <span>Mã SP: <a href="#product-code">Đang cập nhật</a></span>
+            <span class="product-rating-inline"><i class="bi bi-star-fill" aria-hidden="true"></i> <strong>5.0</strong> <a href="#reviews">(100 đánh giá)</a></span>
+            <button class="product-detail-favorite-button product-favorite-button" type="button" aria-pressed="false" aria-label="Thêm sản phẩm vào yêu thích">
+              <img src="assets/Icon/icon thêm vào yêu thích.png" alt="" aria-hidden="true">
+            </button>
+          </div>
+
+          <div class="product-detail-price">
+            <strong>139.000đ</strong>
+            <del>305.000đ</del>
+          </div>
+
+          <section class="product-voucher-box" aria-labelledby="voucher-box-title">
+            <h2 id="voucher-box-title">Voucher tiết kiệm</h2>
+            <p>Voucher <strong>GLOWNEW</strong> - Giảm 15% tối đa 120K cho đơn hàng đầu tiên.</p>
+            <p>Voucher <strong>BEAUTY10</strong> - Giảm 10K cho mọi đơn hàng từ 149K.</p>
+            <p>Voucher <strong>SKINCARE25</strong> - Giảm 25K cho đơn hàng từ 399K.</p>
+            <p>Voucher <strong>GLOW50</strong> - Giảm 50K cho đơn hàng từ 699K.</p>
+          </section>
+
+          <div class="product-action-row">
+            <div class="product-quantity" aria-label="Số lượng sản phẩm">
+              <button class="product-qty-minus" type="button" aria-label="Giảm số lượng">-</button>
+              <input type="text" value="1" inputmode="numeric" aria-label="Số lượng">
+              <button class="product-qty-plus" type="button" aria-label="Tăng số lượng">+</button>
+            </div>
+
+            <button class="product-add-cart" type="button">Thêm vào giỏ</button>
+            <button class="product-buy-now" type="button">Mua ngay</button>
+          </div>
+
+          <div class="product-benefits" aria-label="Cam kết mua hàng">
+            <span>FREESHIP ĐƠN TỪ 0Đ</span>
+            <span>GIAO HÀNG TOÀN QUỐC</span>
+            <span>CAM KẾT CHÍNH HÃNG</span>
+          </div>
+        </article>
+      </div>
+
+      <section class="product-description" aria-labelledby="product-description-title">
+        <div class="product-description-tabs" role="tablist" aria-label="Thông tin chi tiết sản phẩm">
+          <button class="is-active" type="button" role="tab" aria-selected="true" data-detail-tab="intro">Giới thiệu</button>
+          <button type="button" role="tab" aria-selected="false" data-detail-tab="ingredients">Thành phần</button>
+          <button type="button" role="tab" aria-selected="false" data-detail-tab="benefits">Công dụng</button>
+          <button type="button" role="tab" aria-selected="false" data-detail-tab="usage">Hướng dẫn sử dụng</button>
+        </div>
+
+        <div class="product-description-content">
+          <div class="product-description-panel is-active" data-detail-panel="intro" role="tabpanel">
+            <h2 id="product-description-title" class="visually-hidden">Giới thiệu sản phẩm</h2>
+            <p>COMBO Cocoon Tẩy da chết cà phê Đắk Lắk gồm tẩy da chết cơ thể 200ml và tẩy da chết mặt 150ml, là lựa chọn phù hợp cho những ai muốn làm sạch da chết toàn diện từ mặt đến body. Sản phẩm lấy cảm hứng từ hạt cà phê Đắk Lắk, giúp nhẹ nhàng loại bỏ lớp da chết, bụi bẩn và bã nhờn tích tụ trên da, mang lại cảm giác sạch thoáng, mịn màng và tươi mới hơn sau khi sử dụng.</p>
+            <p>Với kết cấu dễ massage, combo giúp hỗ trợ làm mềm da, cải thiện bề mặt da sần sùi và giúp các bước dưỡng da sau đó thẩm thấu tốt hơn. Đây là bộ sản phẩm tiện lợi cho routine chăm sóc da hằng tuần, phù hợp với những ai yêu thích cảm giác làm sạch tự nhiên, thư giãn và có hương cà phê đặc trưng.</p>
+            <p>COMBO Cocoon Tẩy da chết cà phê Đắk Lắk gồm tẩy da chết cơ thể 200ml và tẩy da chết mặt 150ml, là lựa chọn phù hợp cho những ai muốn làm sạch da chết toàn diện từ mặt đến body. Sản phẩm lấy cảm hứng từ hạt cà phê Đắk Lắk, giúp nhẹ nhàng loại bỏ lớp da chết, bụi bẩn và bã nhờn tích tụ trên da, mang lại cảm giác sạch thoáng, mịn màng và tươi mới hơn sau khi sử dụng.</p>
+            <p>Với kết cấu dễ massage, combo giúp hỗ trợ làm mềm da, cải thiện bề mặt da sần sùi và giúp các bước dưỡng da sau đó thẩm thấu tốt hơn. Đây là bộ sản phẩm tiện lợi cho routine chăm sóc da hằng tuần, phù hợp với những ai yêu thích cảm giác làm sạch tự nhiên, thư giãn và có hương cà phê đặc trưng.</p>
+          </div>
+
+          <div class="product-description-panel" data-detail-panel="ingredients" role="tabpanel" hidden>
+            <p>Sản phẩm nổi bật với chiết xuất cà phê Đắk Lắk giàu chất chống oxy hóa, kết hợp cùng các hạt scrub có nguồn gốc tự nhiên giúp hỗ trợ loại bỏ tế bào chết nhẹ nhàng. Công thức còn được bổ sung bơ ca cao và các thành phần làm mềm da, giúp da sau khi massage vẫn giữ được cảm giác ẩm mượt, không khô căng.</p>
+            <p>Các thành phần được chọn lọc theo hướng thân thiện với làn da, phù hợp để chăm sóc định kỳ cho cả da mặt và cơ thể. Hương cà phê đặc trưng mang lại cảm giác thư giãn, dễ chịu trong quá trình sử dụng.</p>
+          </div>
+
+          <div class="product-description-panel" data-detail-panel="benefits" role="tabpanel" hidden>
+            <p>Combo giúp làm sạch lớp tế bào chết tích tụ trên bề mặt da, hỗ trợ loại bỏ bụi bẩn và bã nhờn để da trở nên thông thoáng hơn. Sau khi sử dụng, làn da có cảm giác mềm mịn, tươi mới và dễ hấp thụ dưỡng chất ở các bước chăm sóc tiếp theo.</p>
+            <p>Việc tẩy tế bào chết đều đặn còn giúp cải thiện bề mặt da sần sùi, hạn chế tình trạng da xỉn màu và mang lại cảm giác sạch khỏe. Bộ sản phẩm phù hợp cho những ai muốn chăm sóc cả da mặt và cơ thể trong cùng một routine tiện lợi.</p>
+          </div>
+
+          <div class="product-description-panel" data-detail-panel="usage" role="tabpanel" hidden>
+            <p>Làm ướt vùng da cần sử dụng, lấy một lượng sản phẩm vừa đủ rồi massage nhẹ nhàng theo chuyển động tròn để các hạt scrub làm sạch tế bào chết trên bề mặt da. Sau đó rửa sạch lại với nước và tiếp tục các bước dưỡng da như bình thường.</p>
+            <p>Nên sử dụng 1-2 lần mỗi tuần, tùy theo nhu cầu và tình trạng da. Tránh dùng trên vùng da đang bị kích ứng, trầy xước hoặc có vết thương hở. Với da nhạy cảm, nên thử sản phẩm trên một vùng da nhỏ trước khi dùng cho toàn mặt hoặc cơ thể.</p>
+          </div>
+        </div>
+
+        <button class="product-description-more" type="button">
+          Xem thêm
+          <i class="bi bi-chevron-down" aria-hidden="true"></i>
+        </button>
+      </section>
+
+      <section class="related-products-section" aria-labelledby="related-products-title">
+        <h2 id="related-products-title">Có thể bạn thích</h2>
+        <div class="related-products-grid" aria-label="Sản phẩm gợi ý"></div>
+      </section>
+
+      <section class="customer-reviews-section" aria-labelledby="customer-reviews-title">
+        <div class="customer-reviews-heading">
+          <h2 id="customer-reviews-title">ĐÁNH GIÁ CỦA KHÁCH HÀNG</h2>
+          <span><i class="bi bi-star-fill" aria-hidden="true"></i> <strong>5.0</strong></span>
+          <a href="#all-reviews">(100 đánh giá)</a>
+        </div>
+
+        <div class="customer-reviews-layout">
+          <div class="customer-reviews-main">
+            <div class="review-filter-box" aria-label="Bộ lọc đánh giá">
+              <button type="button">Tất cả (100)</button>
+              <button type="button">5 Sao (100)</button>
+              <button type="button">4 Sao (100)</button>
+              <button type="button">3 Sao (100)</button>
+              <button type="button">2 Sao (100)</button>
+              <button type="button">1 Sao (100)</button>
+              <button type="button">Có Bình luận (100)</button>
+              <button type="button">Có Hình ảnh / Video (100)</button>
+              <button type="button">Mới nhất</button>
+              <button type="button">Cũ nhất</button>
+            </div>
+
+            <form class="review-input" novalidate>
+              <button type="button" aria-label="Thêm hình ảnh hoặc video"><i class="bi bi-plus-lg" aria-hidden="true"></i></button>
+              <input type="text" placeholder="Viết chút cảm nghĩ của bạn về sản phẩm" aria-label="Viết đánh giá">
+              <button type="submit" aria-label="Gửi đánh giá"><i class="bi bi-send-fill" aria-hidden="true"></i></button>
+            </form>
+
+            <article class="review-card">
+              <div class="review-card-header">
+                <p><strong>Trần Tấn Cường</strong> <span><i class="bi bi-star-fill" aria-hidden="true"></i> 5.0</span> <em>Đã mua hàng</em></p>
+                <time datetime="2026-10-10">10 Tháng 10, 2026</time>
+              </div>
+              <p>Sản phẩm dùng khá ổn, mùi cà phê dễ chịu, tẩy da chết nhẹ nhàng và giúp da mềm mịn hơn sau khi sử dụng.</p>
+              <div class="review-actions"><i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i> Hữu ích (100) <span>•</span> Trả lời</div>
+            </article>
+
+            <article class="review-card review-reply">
+              <div class="review-card-header">
+                <p><strong>Trần Tấn Cường</strong> <em>Quản trị viên</em></p>
+                <time datetime="2026-10-10">10 Tháng 10, 2026</time>
+              </div>
+              <p>Cảm ơn bạn đã tin tưởng và chia sẻ trải nghiệm về sản phẩm. Shop rất vui khi sản phẩm mang lại cảm giác hài lòng cho bạn. Hy vọng sẽ tiếp tục được đồng hành cùng bạn trong những lần mua sắm tiếp theo!</p>
+              <div class="review-actions"><i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i> Hữu ích (100) <span>•</span> Trả lời</div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card-header">
+                <p><strong>Trần Tấn Cường</strong> <span><i class="bi bi-star-fill" aria-hidden="true"></i> 5.0</span> <em>Đã mua hàng</em></p>
+                <time datetime="2026-10-10">10 Tháng 10, 2026</time>
+              </div>
+              <p>Sản phẩm dùng khá ổn, mùi cà phê dễ chịu, tẩy da chết nhẹ nhàng và giúp da mềm mịn hơn sau khi sử dụng.</p>
+              <div class="review-actions"><i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i> Hữu ích (100) <span>•</span> Trả lời</div>
+            </article>
+
+            <article class="review-card review-reply">
+              <div class="review-card-header">
+                <p><strong>Trần Tấn Cường</strong> <em>Quản trị viên</em></p>
+                <time datetime="2026-10-10">10 Tháng 10, 2026</time>
+              </div>
+              <p>Cảm ơn bạn đã tin tưởng và chia sẻ trải nghiệm về sản phẩm. Shop rất vui khi sản phẩm mang lại cảm giác hài lòng cho bạn. Hy vọng sẽ tiếp tục được đồng hành cùng bạn trong những lần mua sắm tiếp theo!</p>
+              <div class="review-actions"><i class="bi bi-hand-thumbs-up-fill" aria-hidden="true"></i> Hữu ích (100) <span>•</span> Trả lời</div>
+            </article>
+
+            <button class="review-more" type="button">
+              Xem thêm
+              <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <aside class="review-side-banner" aria-label="Banner đánh giá"></aside>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <main class="auth-main" aria-live="polite" hidden>
+    <nav class="auth-breadcrumb" aria-label="Đường dẫn tài khoản">
+      <div class="container auth-breadcrumb-container">
+        <a href="#" data-auth-home>Trang chủ</a>
+        <span>/</span>
+        <strong data-auth-breadcrumb-current>Đăng nhập</strong>
+      </div>
+    </nav>
+
+    <section class="auth-section" aria-labelledby="auth-title">
+      <div class="auth-card">
+        <div class="auth-tabs" role="tablist" aria-label="Chọn đăng nhập hoặc đăng ký">
+          <button class="is-active" type="button" role="tab" aria-selected="true" data-auth-tab="login">Đăng nhập</button>
+          <button type="button" role="tab" aria-selected="false" data-auth-tab="register">Đăng ký</button>
+        </div>
+
+        <form class="auth-form auth-login-form is-active" novalidate data-auth-form="login">
+          <div class="auth-form-heading">
+            <h1 id="auth-title">Chào mừng trở lại</h1>
+            <p>Vui lòng đăng nhập để tiếp tục mua sắm</p>
+          </div>
+
+          <div class="auth-field">
+            <label for="login-email">Địa chỉ Email</label>
+            <div class="auth-input">
+              <i class="bi bi-envelope" aria-hidden="true"></i>
+              <input id="login-email" type="email" placeholder="Nhập email của bạn" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="auth-field">
+            <div class="auth-field-label-row">
+              <label for="login-password">Mật khẩu</label>
+              <a href="#forgot-password">Quên mật khẩu?</a>
+            </div>
+            <div class="auth-input">
+              <i class="bi bi-lock" aria-hidden="true"></i>
+              <input id="login-password" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password" required>
+              <button class="auth-password-toggle" type="button" aria-label="Hiện mật khẩu">
+                <i class="bi bi-eye-slash" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <button class="auth-submit" type="submit">
+            Đăng nhập
+            <i class="bi bi-arrow-right" aria-hidden="true"></i>
+          </button>
+
+          <p class="auth-status" aria-live="polite"></p>
+        </form>
+
+        <form class="auth-form auth-register-form" novalidate data-auth-form="register">
+          <div class="auth-form-heading">
+            <h1>Tạo tài khoản mới</h1>
+            <p>Tham gia để nhận ưu đãi đặc quyền.</p>
+          </div>
+
+          <div class="auth-field">
+            <label for="register-name">Họ và tên</label>
+            <div class="auth-input">
+              <i class="bi bi-person" aria-hidden="true"></i>
+              <input id="register-name" type="text" placeholder="Nhập họ và tên" autocomplete="name" required>
+            </div>
+          </div>
+
+          <div class="auth-field">
+            <label for="register-phone">Số điện thoại</label>
+            <div class="auth-input">
+              <i class="bi bi-telephone" aria-hidden="true"></i>
+              <input id="register-phone" type="tel" placeholder="Nhập số điện thoại" autocomplete="tel" required>
+            </div>
+          </div>
+
+          <div class="auth-field">
+            <label for="register-email">Địa chỉ Email</label>
+            <div class="auth-input">
+              <i class="bi bi-envelope" aria-hidden="true"></i>
+              <input id="register-email" type="email" placeholder="Nhập email của bạn" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="auth-field">
+            <label for="register-password">Mật khẩu</label>
+            <div class="auth-input">
+              <i class="bi bi-lock" aria-hidden="true"></i>
+              <input id="register-password" type="password" placeholder="Tạo mật khẩu" autocomplete="new-password" required>
+              <button class="auth-password-toggle" type="button" aria-label="Hiện mật khẩu">
+                <i class="bi bi-eye-slash" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="auth-field">
+            <label for="register-confirm-password">Xác nhận mật khẩu</label>
+            <div class="auth-input">
+              <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>
+              <input id="register-confirm-password" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password" required>
+              <button class="auth-password-toggle" type="button" aria-label="Hiện mật khẩu">
+                <i class="bi bi-eye-slash" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <button class="auth-submit" type="submit">
+            Đăng ký ngay
+            <i class="bi bi-person-plus" aria-hidden="true"></i>
+          </button>
+
+          <p class="auth-status" aria-live="polite"></p>
+        </form>
+
+        <div class="auth-divider"><span>Hoặc tiếp tục với</span></div>
+
+        <div class="auth-socials">
+          <button type="button">
+            <img class="auth-google" src="assets/Icon/logo google.png" alt="">
+            Google
+          </button>
+          <button type="button">
+            <i class="bi bi-facebook" aria-hidden="true"></i>
+            Facebook
+          </button>
+        </div>
+      </div>
+
+      <p class="auth-bottom-note auth-login-note">Bằng việc tiếp tục, bạn đồng ý với <a href="#terms">Điều khoản dịch vụ</a> &amp; <a href="#privacy-policy">Chính sách bảo mật</a> của chúng tôi.</p>
+      <p class="auth-bottom-note auth-register-note" hidden>Đã có tài khoản? <button type="button" data-auth-tab="login">Đăng nhập ngay</button></p>
+    </section>
+  </main>
+
+  <main class="account-main" aria-live="polite" hidden>
+    <nav class="account-breadcrumb" aria-label="Đường dẫn tài khoản">
+      <div class="container account-breadcrumb-container">
+        <a href="#" data-account-home>Trang chủ</a>
+        <span>/</span>
+        <a href="#account">Tài khoản</a>
+        <span>/</span>
+        <strong>Thông tin cá nhân</strong>
+      </div>
+    </nav>
+
+    <section class="account-section" aria-labelledby="account-page-title">
+      <div class="account-container">
+        <aside class="account-sidebar">
+          <h1 id="account-page-title">Trang tài khoản</h1>
+          <p>Xin chào, <strong data-account-name>cuongtran !!!</strong></p>
+          <button class="is-active" type="button" data-account-view-button="profile">Thông tin cá nhân</button>
+          <button type="button" data-account-view-button="addresses">Quản lý sổ địa chỉ</button>
+          <button type="button" data-account-view-button="orders">Đơn hàng của tôi</button>
+          <button type="button" data-account-view-button="favorites">Sản phẩm yêu thích</button>
+          <button type="button" data-account-logout>Đăng xuất</button>
+        </aside>
+
+        <article class="account-content account-profile-view" data-account-view="profile">
+          <h2>Thông tin cá nhân</h2>
+          <div data-account-profile-summary>
+            <p><strong>Tên tài khoản:</strong> <span data-account-username>cuongtran !!!</span></p>
+            <p><strong>Họ và tên:</strong> <span data-account-fullname>Cần cập nhật</span></p>
+            <p><strong>Email:</strong> <span data-account-email>cskh@glow.com</span></p>
+            <p><strong>Giới tính:</strong> <span data-account-gender>Cần cập nhật</span></p>
+            <p><strong>Ngày sinh:</strong> <span data-account-birthday>Cần cập nhật</span></p>
+            <p><strong>Số điện thoại:</strong> <span data-account-phone>Cần cập nhật</span></p>
+          </div>
+          <button class="account-edit-button" type="button">Chỉnh sửa thông tin</button>
+          <form class="account-profile-form" data-account-profile-form hidden novalidate>
+            <label>
+              Họ và tên
+              <input type="text" placeholder="Nhập họ và tên" data-profile-fullname-input>
+            </label>
+            <label>
+              Giới tính
+              <select data-profile-gender-input>
+                <option value="">Chọn giới tính</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+              </select>
+            </label>
+            <label>
+              Ngày sinh
+              <input type="date" data-profile-birthday-input>
+            </label>
+            <label>
+              Số điện thoại
+              <input type="tel" placeholder="Nhập số điện thoại" data-profile-phone-input>
+            </label>
+            <div class="account-profile-form-actions">
+              <button type="submit">Lưu thông tin</button>
+              <button type="button" data-profile-edit-cancel>Hủy</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="account-content account-address-view" data-account-view="addresses" hidden>
+          <div class="account-address-header">
+            <h2>Quản lý sổ địa chỉ</h2>
+            <button type="button" data-address-drawer-open>Thêm địa chỉ mới</button>
+          </div>
+          <div class="account-address-list" data-address-list hidden></div>
+          <div class="account-address-empty">
+            <div class="account-address-illustration" aria-hidden="true">
+              <span class="address-pin"><i class="bi bi-geo-alt-fill"></i></span>
+            </div>
+            <h3>Bạn chưa lưu địa chỉ nào</h3>
+            <p>Cập nhật địa chỉ ngay để có trải nghiệm<br>mua hàng nhanh nhất.</p>
+            <button type="button" data-address-drawer-open>Thêm địa chỉ mới</button>
+          </div>
+        </article>
+
+        <article class="account-content account-orders-view" data-account-view="orders" hidden>
+          <div class="account-orders-header">
+            <h2>Đơn hàng của bạn</h2>
+            <form class="account-order-search" novalidate>
+              <label class="visually-hidden" for="account-order-search">Tìm đơn hàng</label>
+              <input id="account-order-search" type="search" placeholder="Tìm theo tên đơn, mã đơn, hoặc ghi tên sản phẩm...">
+              <button type="submit" aria-label="Tìm kiếm đơn hàng">
+                <i class="bi bi-search" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+
+          <nav class="account-order-tabs" aria-label="Trạng thái đơn hàng">
+            <button class="is-active" type="button">Tất cả</button>
+            <button type="button">Đang xử lý</button>
+            <button type="button">Đang giao</button>
+            <button type="button">Đã giao</button>
+            <button type="button">Đã hủy</button>
+            <button type="button">Trả hàng</button>
+          </nav>
+
+          <div class="account-order-list" aria-label="Danh sách đơn hàng">
+            <article class="account-order-card">
+              <div class="account-order-top">
+                <strong>Đơn hàng 10/10/2026</strong>
+                <span>• Đã giao</span>
+              </div>
+              <div class="account-order-body">
+                <div class="account-order-image"></div>
+                <div class="account-order-info">
+                  <h3>COMBO Cocoon Tẩy da chết cà phê Đak Lak (200ml) (IP07) + Tẩy da chết làm sạch da chết mặt Cocoon cà phê Đắk Lắk 150ml (IP07)</h3>
+                  <a href="#order-detail">Xem chi tiết <i class="bi bi-chevron-right" aria-hidden="true"></i></a>
+                </div>
+                <strong class="account-order-price">139.000đ</strong>
+                <span class="account-order-quantity">Số lượng: 04</span>
+              </div>
+              <div class="account-order-bottom">
+                <p><strong>Thành tiền:</strong> <span>556.000đ</span></p>
+                <button type="button">Mua lại</button>
+              </div>
+            </article>
+
+            <article class="account-order-card">
+              <div class="account-order-top">
+                <strong>Đơn hàng 10/10/2026</strong>
+                <span>• Đã giao</span>
+              </div>
+              <div class="account-order-body">
+                <div class="account-order-image"></div>
+                <div class="account-order-info">
+                  <h3>COMBO Cocoon Tẩy da chết cà phê Đak Lak (200ml) (IP07) + Tẩy da chết làm sạch da chết mặt Cocoon cà phê Đắk Lắk 150ml (IP07)</h3>
+                  <a href="#order-detail">Xem chi tiết <i class="bi bi-chevron-right" aria-hidden="true"></i></a>
+                </div>
+                <strong class="account-order-price">139.000đ</strong>
+                <span class="account-order-quantity">Số lượng: 04</span>
+              </div>
+              <div class="account-order-bottom">
+                <p><strong>Thành tiền:</strong> <span>556.000đ</span></p>
+                <button type="button">Mua lại</button>
+              </div>
+            </article>
+
+            <article class="account-order-card">
+              <div class="account-order-top">
+                <strong>Đơn hàng 10/10/2026</strong>
+                <span>• Đã giao</span>
+              </div>
+              <div class="account-order-body">
+                <div class="account-order-image"></div>
+                <div class="account-order-info">
+                  <h3>COMBO Cocoon Tẩy da chết cà phê Đak Lak (200ml) (IP07) + Tẩy da chết làm sạch da chết mặt Cocoon cà phê Đắk Lắk 150ml (IP07)</h3>
+                  <a href="#order-detail">Xem chi tiết <i class="bi bi-chevron-right" aria-hidden="true"></i></a>
+                </div>
+                <strong class="account-order-price">139.000đ</strong>
+                <span class="account-order-quantity">Số lượng: 04</span>
+              </div>
+              <div class="account-order-bottom">
+                <p><strong>Thành tiền:</strong> <span>556.000đ</span></p>
+                <button type="button">Mua lại</button>
+              </div>
+            </article>
+          </div>
+        </article>
+
+        <article class="account-content account-favorites-view" data-account-view="favorites" hidden>
+          <div class="account-favorites-header">
+            <div>
+              <h2>SẢN PHẨM YÊU THÍCH</h2>
+              <p>Có <span data-favorite-count>0</span> sản phẩm</p>
+            </div>
+            <div class="account-favorites-actions">
+              <label><input type="checkbox" data-favorite-select-all> Chọn tất cả</label>
+              <button class="account-favorites-add-selected" type="button"><i class="bi bi-basket2-fill" aria-hidden="true"></i> THÊM VÀO GIỎ</button>
+            </div>
+          </div>
+
+          <p class="account-favorites-empty" data-favorites-empty>Bạn chưa có sản phẩm yêu thích nào.</p>
+          <div class="account-favorites-grid" aria-label="Danh sách sản phẩm yêu thích"></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <main class="lookup-main" aria-live="polite" hidden>
+    <nav class="lookup-breadcrumb" aria-label="Đường dẫn trang tra cứu">
+      <div class="container lookup-breadcrumb-container">
+        <a href="#" data-lookup-home>Trang chủ</a>
+        <span>/</span>
+        <strong>Tra cứu đơn hàng</strong>
+      </div>
+    </nav>
+
+    <section class="lookup-section" aria-labelledby="lookup-title">
+      <form class="lookup-form" novalidate>
+        <h1 id="lookup-title">TRA CỨU ĐƠN HÀNG</h1>
+        <p>Bạn vui lòng cung cấp thông tin để tra cứu đơn hàng.</p>
+
+        <label class="lookup-field">
+          <span>Mã đơn <em>*</em></span>
+          <input type="text" placeholder="Nhập mã đơn" required>
+        </label>
+
+        <div class="lookup-radio-group">
+          <span>Tìm đơn theo <em>*</em></span>
+          <div>
+            <label><input type="radio" name="lookup-method" value="email" checked> Email</label>
+            <label><input type="radio" name="lookup-method" value="phone"> Số điện thoại nhận hàng</label>
+          </div>
+        </div>
+
+        <label class="lookup-field">
+          <span class="visually-hidden">Thông tin tra cứu</span>
+          <input type="email" placeholder="Nhập email của bạn" data-lookup-contact required>
+        </label>
+
+        <button type="submit">Tra cứu ngay</button>
+        <div class="lookup-status" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+
+  <main class="cart-main" aria-live="polite" hidden>
+    <nav class="cart-breadcrumb" aria-label="Đường dẫn giỏ hàng">
+      <div class="container cart-breadcrumb-container">
+        <a href="#" data-cart-home>Trang chủ</a>
+        <span>/</span>
+        <strong>Giỏ hàng</strong>
+      </div>
+    </nav>
+
+    <section class="cart-page-section" aria-labelledby="cart-page-title">
+      <div class="cart-page-container">
+        <div class="cart-page-layout">
+          <section class="cart-list-panel">
+            <div class="cart-list-header">
+              <h1 id="cart-page-title">GIỎ HÀNG <span>(<span data-cart-page-count>0</span> Sản phẩm)</span></h1>
+              <div class="cart-list-actions">
+                <label><input type="checkbox" data-cart-select-all> Chọn tất cả</label>
+                <button type="button" data-cart-clear>Xóa hết</button>
+              </div>
+            </div>
+            <p class="cart-page-empty" data-cart-page-empty>Giỏ hàng của bạn đang trống.</p>
+            <div class="cart-items" data-cart-items></div>
+          </section>
+
+          <aside class="cart-summary-panel">
+            <h2>THÔNG TIN ĐƠN HÀNG</h2>
+            <div class="cart-coupon">
+              <h3>Mã giảm giá</h3>
+              <div>
+                <input type="text" placeholder="Nhập mã giảm giá của bạn">
+                <button type="button">Áp dụng</button>
+              </div>
+            </div>
+            <dl class="cart-summary-lines">
+              <div><dt>Tổng sản phẩm đã chọn</dt><dd data-cart-selected-count>0</dd></div>
+              <div><dt>Tạm tính</dt><dd data-cart-subtotal>0đ</dd></div>
+              <div><dt>Phí giao hàng</dt><dd data-cart-shipping>0đ</dd></div>
+              <div><dt>Giảm giá</dt><dd data-cart-discount>0đ</dd></div>
+            </dl>
+            <div class="cart-summary-total">
+              <span>Tổng cộng</span>
+              <strong data-cart-total>0đ</strong>
+            </div>
+            <button class="cart-checkout-button" type="button">Thanh toán ngay <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+          </aside>
+        </div>
+
+        <section class="cart-related-section" aria-labelledby="cart-related-title">
+          <h2 id="cart-related-title">Có thể bạn thích</h2>
+          <div class="cart-related-grid" data-cart-related-grid></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <main class="checkout-main" aria-live="polite" hidden>
+    <nav class="checkout-breadcrumb" aria-label="Đường dẫn thanh toán">
+      <div class="container checkout-breadcrumb-container">
+        <a href="#" data-checkout-home>Trang chủ</a>
+        <span>/</span>
+        <strong>Thanh toán</strong>
+      </div>
+    </nav>
+
+    <section class="checkout-section" aria-labelledby="checkout-title">
+      <div class="checkout-container">
+        <div class="checkout-layout">
+          <div class="checkout-left">
+            <section class="checkout-card checkout-shipping-info">
+              <h1 id="checkout-title">THÔNG TIN GIAO HÀNG</h1>
+              <div class="checkout-card-body">
+                <fieldset class="checkout-radio-row">
+                  <legend>Loại địa chỉ *</legend>
+                  <label><input type="radio" name="checkout-address-type" checked> Nhà riêng</label>
+                  <label><input type="radio" name="checkout-address-type"> Công ty</label>
+                </fieldset>
+
+                <div class="checkout-form-grid">
+                  <label>Họ và tên *
+                    <input type="text" placeholder="Nhập họ và tên">
+                  </label>
+                  <label>Số điện thoại *
+                    <input type="tel" placeholder="Nhập số điện thoại">
+                  </label>
+                  <label>Email *
+                    <input type="email" placeholder="Nhập địa chỉ email">
+                  </label>
+                </div>
+
+                <label class="checkout-full-field">Địa chỉ nhận hàng *
+                  <input type="text" placeholder="Số nhà, tên đường, phường/xã...">
+                </label>
+
+                <div class="checkout-form-grid">
+                  <select aria-label="Chọn Tỉnh/Thành phố">
+                    <option>Chọn Tỉnh/Thành phố</option>
+                    <option>Cần Thơ</option>
+                    <option>Hồ Chí Minh</option>
+                    <option>Hà Nội</option>
+                    <option>Đà Nẵng</option>
+                  </select>
+                  <select aria-label="Chọn Quận/Huyện">
+                    <option>Chọn Quận/Huyện</option>
+                    <option>Ninh Kiều</option>
+                    <option>Quận 1</option>
+                    <option>Ba Đình</option>
+                    <option>Hải Châu</option>
+                  </select>
+                </div>
+
+                <label class="checkout-note-field">Ghi chú đơn hàng
+                  <textarea placeholder="Nhập nội dung"></textarea>
+                </label>
+              </div>
+            </section>
+
+            <section class="checkout-card checkout-delivery-methods">
+              <h2>PHƯƠNG THỨC VẬN CHUYỂN</h2>
+              <div class="checkout-card-body">
+                <label class="checkout-option-card">
+                  <input type="radio" name="checkout-delivery" value="15000" checked>
+                  <span><strong>Giao hàng Tiêu chuẩn</strong><small>Nhận hàng trong 2-4 ngày làm việc</small></span>
+                  <b>15.000đ</b>
+                </label>
+                <label class="checkout-option-card">
+                  <input type="radio" name="checkout-delivery" value="30000">
+                  <span><strong>Giao hàng Nhanh (Hỏa tốc)</strong><small>Nhận hàng trong 24h (chỉ áp dụng nội thành)</small></span>
+                  <b>30.000đ</b>
+                </label>
+              </div>
+            </section>
+
+            <section class="checkout-card checkout-payment-methods">
+              <h2>PHƯƠNG THỨC THANH TOÁN</h2>
+              <div class="checkout-card-body checkout-payment-grid">
+                <label class="checkout-option-card"><input type="radio" name="checkout-payment" checked><span><strong>Thanh toán khi nhận hàng (COD)</strong></span></label>
+                <label class="checkout-option-card"><input type="radio" name="checkout-payment"><span><strong>Ví MoMo</strong></span></label>
+                <label class="checkout-option-card"><input type="radio" name="checkout-payment"><span><strong>Chuyển khoản ngân hàng</strong></span></label>
+                <label class="checkout-option-card"><input type="radio" name="checkout-payment"><span><strong>ZaloPay</strong></span></label>
+              </div>
+            </section>
+          </div>
+
+          <aside class="checkout-right">
+            <section class="checkout-cart-box">
+              <h2>GIỎ HÀNG <span>(<span data-checkout-cart-count>0</span> Sản phẩm)</span></h2>
+              <div data-checkout-cart-preview></div>
+              <div class="checkout-cart-total">
+                <span>Tổng tiền:</span>
+                <strong data-checkout-cart-total>0đ</strong>
+              </div>
+            </section>
+
+            <section class="checkout-order-box">
+              <h2>THÔNG TIN ĐƠN HÀNG</h2>
+              <div class="checkout-coupon">
+                <h3>Mã giảm giá</h3>
+                <div>
+                  <input type="text" placeholder="Nhập mã giảm giá của bạn">
+                  <button type="button">Áp dụng</button>
+                </div>
+              </div>
+              <dl class="checkout-summary-lines">
+                <div><dt>Tổng sản phẩm đã chọn</dt><dd data-checkout-selected-count>0</dd></div>
+                <div><dt>Tạm tính</dt><dd data-checkout-subtotal>0đ</dd></div>
+                <div><dt>Phí giao hàng</dt><dd data-checkout-shipping>0đ</dd></div>
+                <div><dt>Giảm giá</dt><dd data-checkout-discount>0đ</dd></div>
+              </dl>
+              <div class="checkout-summary-total">
+                <span>Tổng cộng</span>
+                <strong data-checkout-total>0đ</strong>
+              </div>
+              <button class="checkout-submit-button" type="button">Thanh toán ngay <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+            </section>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="address-drawer-overlay" data-address-drawer-overlay hidden></div>
+  <aside class="address-drawer" data-address-drawer aria-labelledby="address-drawer-title" aria-hidden="true">
+    <div class="address-drawer-header">
+      <h2 id="address-drawer-title">Thêm địa chỉ mới</h2>
+      <button type="button" data-address-drawer-close aria-label="Đóng form thêm địa chỉ">
+        <i class="bi bi-x-lg" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <form class="address-drawer-form" novalidate>
+      <section>
+        <h3>Thông tin người nhận</h3>
+        <input type="text" placeholder="Họ và tên" aria-label="Họ và tên" data-address-name-input>
+        <input type="tel" placeholder="Số điện thoại" aria-label="Số điện thoại" data-address-phone-input>
+      </section>
+
+      <section>
+        <h3>Địa chỉ nhận hàng</h3>
+        <div class="address-sort-options" role="radiogroup" aria-label="Kiểu sắp xếp địa chỉ">
+          <label><input type="radio" name="address-sort" checked> Trước sắp nhập</label>
+          <label><input type="radio" name="address-sort"> Sau sắp nhập</label>
+        </div>
+
+        <div class="address-select-wrap">
+          <button class="address-select-field" type="button" data-address-city-toggle>
+            <span class="address-select-text">
+              <span class="address-select-placeholder">Chọn Tỉnh/Thành phố</span>
+              <strong data-address-city-label></strong>
+            </span>
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div class="address-select-menu" data-address-city-menu hidden>
+            <button type="button" data-address-city-option="Cần Thơ">Cần Thơ</button>
+            <button type="button" data-address-city-option="Hồ Chí Minh">Hồ Chí Minh</button>
+            <button type="button" data-address-city-option="Hà Nội">Hà Nội</button>
+            <button type="button" data-address-city-option="Đà Nẵng">Đà Nẵng</button>
+          </div>
+        </div>
+        <div class="address-select-wrap">
+          <button class="address-select-field is-disabled" type="button" data-address-district-toggle disabled>
+            <span class="address-select-text">
+              <span class="address-select-placeholder">Chọn Quận/Huyện</span>
+              <strong data-address-district-label></strong>
+            </span>
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div class="address-select-menu" data-address-district-menu hidden></div>
+        </div>
+        <div class="address-select-wrap">
+          <button class="address-select-field is-disabled" type="button" data-address-ward-toggle disabled>
+            <span class="address-select-text">
+              <span class="address-select-placeholder">Chọn Phường/Xã</span>
+              <strong data-address-ward-label></strong>
+            </span>
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div class="address-select-menu" data-address-ward-menu hidden></div>
+        </div>
+        <input type="text" placeholder="Nhập địa chỉ cụ thể" aria-label="Nhập địa chỉ cụ thể" data-address-detail-input>
+      </section>
+
+      <section class="address-type-section">
+        <h3>Loại địa chỉ</h3>
+        <div class="address-type-options">
+          <button class="is-selected" type="button">Nhà</button>
+          <button type="button">Văn phòng</button>
+        </div>
+      </section>
+
+      <section class="address-default-section">
+        <span>Đặt làm địa chỉ mặc định</span>
+        <label class="address-switch">
+          <input type="checkbox" aria-label="Đặt làm địa chỉ mặc định">
+          <span></span>
+        </label>
+      </section>
+    </form>
+
+    <div class="address-drawer-footer">
+      <button type="button" data-address-drawer-submit>Hoàn tất</button>
+    </div>
+  </aside>
+
+  <div class="auth-toast" role="status" aria-live="polite" hidden>
+    <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+    <span>Đăng nhập thành công</span>
+  </div>
+
+  <aside class="floating-tools" aria-label="Công cụ hỗ trợ">
+    <button class="options-tab" type="button" aria-pressed="false">
+      <img src="assets/Icon/Frame 205.png" alt="Tùy chọn">
+    </button>
+    <button class="scroll-top-button" type="button" aria-label="Lên đầu trang">
+      <img src="assets/Icon/Frame 209.png" alt="">
+    </button>
+    <button class="chat-support-button" type="button" aria-label="Chat hỗ trợ" data-bs-toggle="modal" data-bs-target="#supportModal">
+      <img src="assets/Icon/image 14.png" alt="">
+    </button>
+  </aside>
+
+  <footer class="site-footer">
+    <section class="newsletter-section" aria-labelledby="newsletter-title">
+      <div class="container newsletter-container">
+        <div class="newsletter-copy">
+          <h2 id="newsletter-title">NHẬN BẢN TIN LÀM ĐẸP</h2>
+          <p>Đừng bỏ lỡ hàng ngàn sản phẩm và chương trình siêu hấp dẫn</p>
+        </div>
+
+        <form class="newsletter-form" novalidate>
+          <label class="visually-hidden" for="newsletter-email">Email nhận bản tin</label>
+          <input id="newsletter-email" type="email" placeholder="Điền email của bạn" autocomplete="email">
+          <button type="submit">THEO DÕI</button>
+          <span class="newsletter-status" aria-live="polite"></span>
+        </form>
+      </div>
+    </section>
+
+    <div class="container footer-container">
+      <section class="footer-contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Thông tin liên hệ</h2>
+        <a class="footer-logo" href="#" aria-label="Beauty Glow - Trang chủ">
+          <img src="assets/images/logo.png" alt="Beauty Glow">
+        </a>
+        <p class="footer-description">Đồng hành cùng bạn trên hành trình chăm sóc sắc đẹp mỗi ngày với các sản phẩm mỹ phẩm chất lượng, an toàn và phù hợp với mọi nhu cầu làm đẹp.</p>
+        <p><strong>Địa chỉ:</strong> Số 600, đường Nguyễn Văn Cừ (nối dài), Phường An Bình, Quận Ninh Kiều, TP. Cần Thơ</p>
+        <p><strong>Số điện thoại:</strong> <a href="tel:19001900">1900 1900</a></p>
+        <p><strong>Email:</strong> <a href="mailto:cskh@glow.com">cskh@glow.com</a></p>
+
+        <div class="social-links" aria-label="Mạng xã hội Beauty Glow">
+          <a href="#facebook" aria-label="Facebook">
+            <img src="assets/Icon/2023_Facebook_icon.svg.webp" alt="">
+          </a>
+          <a href="#instagram" aria-label="Instagram">
+            <img src="assets/Icon/Instagram_icon.png.webp" alt="">
+          </a>
+          <a href="#tiktok" aria-label="TikTok">
+            <img src="assets/Icon/tiktok-icon-free-png.webp" alt="">
+          </a>
+          <a href="#zalo" aria-label="Zalo">
+            <img src="assets/Icon/Icon_of_Zalo.svg.webp" alt="">
+          </a>
+        </div>
+      </section>
+
+      <nav class="footer-links-column footer-about" aria-labelledby="about-title">
+        <h2 id="about-title">Về chúng tôi</h2>
+        <a href="#brand-story">Câu chuyện thương hiệu</a>
+        <a href="#terms">Điều khoản dịch vụ</a>
+        <a href="#careers">Tuyển dụng</a>
+        <a href="#stores">Hệ thống cửa hàng</a>
+        <a href="#official-retailer">Chứng nhận đại lý chính hãng</a>
+        <a href="#promotions">Chương trình khuyến mãi</a>
+        <a href="#beauty-tips">Beauty Tips</a>
+      </nav>
+
+      <nav class="footer-links-column footer-policy" aria-labelledby="policy-title">
+        <h2 id="policy-title">Chính sách</h2>
+        <a href="#shopping-guide">Hướng dẫn mua hàng</a>
+        <a href="#payment-policy">Quy định và hình thức thanh toán</a>
+        <a href="#shipping-policy">Chính sách giao hàng</a>
+        <a href="#return-policy">Chính sách đổi trả</a>
+        <a href="#points-policy">Chính sách tích lũy điểm</a>
+        <a href="#privacy-policy">Chính sách bảo mật thông tin</a>
+        <a href="#express-delivery">Giao hàng siêu tốc 1H</a>
+      </nav>
+
+      <section class="footer-download" aria-labelledby="download-title">
+        <h2 id="download-title">Tải app ngay</h2>
+        <div class="download-row">
+          <div class="qr-placeholder" aria-label="Mã QR tải ứng dụng"></div>
+          <div class="store-buttons">
+            <a class="store-button" href="#app-store" aria-label="Tải trên App Store">
+              <img src="assets/Icon/Store download button.png" alt="Download on the App Store">
+            </a>
+            <a class="store-button" href="#google-play" aria-label="Tải trên Google Play">
+              <img src="assets/Icon/Store download button2.png" alt="Get it on Google Play">
+            </a>
+          </div>
+        </div>
+
+        <div class="payment-section">
+          <h2>Chấp nhận phương thức thanh toán</h2>
+          <div class="payment-icons" aria-label="Các phương thức thanh toán">
+            <img class="payment-vnpay" src="assets/Icon/vnpaylogo.png" alt="VNPAY">
+            <img src="assets/Icon/Logo-MoMo-Square.webp" alt="MoMo">
+            <img class="payment-visa" src="assets/Icon/visalogo.png" alt="Visa">
+            <img class="payment-mastercard" src="assets/Icon/MasterCard-Logo.png" alt="Mastercard">
+            <span class="payment-jcb" aria-label="JCB"><b>J</b><b>C</b><b>B</b></span>
+            <img class="payment-cash" src="assets/Icon/tiền mặt.png" alt="Thanh toán tiền mặt">
+          </div>
+          <img class="commerce-certificate" src="assets/Icon/Layer 2.png" alt="Đã thông báo Bộ Công Thương">
+        </div>
+      </section>
+    </div>
+  </footer>
+
+  <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="accountModalLabel">Tài khoản Beauty Glow</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+        <div class="modal-body">Chức năng đăng nhập và đăng ký sẽ được hoàn thiện ở phần tiếp theo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="supportModal" tabindex="-1" aria-labelledby="supportModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="supportModalLabel">Hỗ trợ Beauty Glow</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+        <div class="modal-body">Beauty Glow xin chào! Chúng tôi có thể hỗ trợ gì cho bạn?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartPanel" aria-labelledby="cartPanelLabel">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title fs-5" id="cartPanelLabel">Giỏ hàng</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Đóng"></button>
+    </div>
+    <div class="offcanvas-body cart-empty-state">
+      <i class="bi bi-basket2" aria-hidden="true"></i>
+      <p>Giỏ hàng của bạn đang trống.</p>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
