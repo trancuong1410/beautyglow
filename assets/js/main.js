@@ -85,57 +85,100 @@
     $(this).toggleClass("is-active", isActive).attr("aria-pressed", isActive);
   });
 
-  const saleProducts = Array.from({ length: 10 }, function (_, index) {
-    return {
-      id: index + 1,
+  const productImageBase = "assets/hình ảnh sản phâm/";
+  const productCatalog = [
+    {
+      id: "cocoon-lotus-pumpkin",
       brand: "Cocoon",
-      name: "COMBO Cocoon Tẩy da chết cà phê Đak Lak (200ml)...",
-      salePrice: "139,000₫",
-      originalPrice: "305,000₫",
-      rating: 5
-    };
+      name: "COMBO Cocoon nước cân bằng sen Hậu Giang 310ml + nước tẩy trang bí đao 500ml",
+      salePrice: "329,000đ",
+      originalPrice: "428,000đ",
+      rating: 5,
+      category: "skincare",
+      images: [
+        productImageBase + "facebook-dynamic-combo-cocoon-nuoc-can-bang-sen-hau-giang-310ml-nuoc-tay-trang-bi-dao-500ml-1741320900_img_450x450_31d6f9_fit_center.jpg",
+        productImageBase + "google-shopping-combo-cocoon-nuoc-sen-hau-giang-310ml-nuoc-tay-trang-bi-dao-500ml-1717033790_img_450x450_31d6f9_fit_center.jpg"
+      ]
+    },
+    {
+      id: "cocoon-coffee-exfoliating",
+      brand: "Cocoon",
+      name: "COMBO Cocoon tẩy tế bào chết cho mặt và toàn thân từ cà phê",
+      salePrice: "139,000đ",
+      originalPrice: "305,000đ",
+      rating: 5,
+      category: "bodycare",
+      images: [
+        productImageBase + "facebook-dynamic-combo-cocoon-tay-te-bao-chet-cho-mat-va-toan-than-tu-ca-phe-1738553656_img_450x450_31d6f9_fit_center.jpg",
+        productImageBase + "google-shopping-combo-cocoon-tay-te-bao-chet-cho-mat-va-toan-than-tu-ca-phe-1738553658_img_450x450_31d6f9_fit_center.jpg"
+      ]
+    },
+    {
+      id: "dalba-serum-sunscreen",
+      brand: "d'Alba",
+      name: "COMBO d'Alba serum xịt căng bóng 100ml + kem chống nắng nâng tông 50ml",
+      salePrice: "699,000đ",
+      originalPrice: "930,000đ",
+      rating: 5,
+      category: "skincare",
+      images: [
+        productImageBase + "facebook-dynamic-combo-d-alba-serum-dang-xit-cang-bong-kem-chong-nang-nang-tong-100ml-50ml-1741080129_img_450x450_31d6f9_fit_center.jpg",
+        productImageBase + "google-shopping-combo-d-alba-serum-dang-xit-cang-bong-kem-chong-nang-nang-tong-100ml-50ml-1732779089_img_450x450_31d6f9_fit_center.jpg"
+      ]
+    },
+    {
+      id: "olay-day-night-cream",
+      brand: "Olay",
+      name: "COMBO Olay kem dưỡng sáng da mờ thâm nám ngày và đêm 50g",
+      salePrice: "499,000đ",
+      originalPrice: "650,000đ",
+      rating: 5,
+      category: "skincare",
+      images: [
+        productImageBase + "facebook-dynamic-combo-kem-duong-olay-sang-da-mo-tham-nam-ngay-va-dem-50g-1758270314_img_450x450_31d6f9_fit_center.jpg",
+        productImageBase + "google-shopping-combo-kem-duong-olay-sang-da-mo-tham-nam-ngay-va-dem-50g-1747037310_img_450x450_31d6f9_fit_center.jpg"
+      ]
+    },
+    {
+      id: "loreal-brightening-combo",
+      brand: "L'Oréal",
+      name: "COMBO L'Oréal serum sáng da mờ thâm mụn 30ml + 2 kem dưỡng ban ngày 15ml",
+      salePrice: "529,000đ",
+      originalPrice: "720,000đ",
+      rating: 5,
+      category: "skincare",
+      images: [
+        productImageBase + "facebook-dynamic-combo-l-oreal-serum-sang-da-mo-tham-mun-nam-30ml-2-kem-duong-mo-tham-nam-ban-ngay-15ml-1758188649_img_450x450_31d6f9_fit_center.jpg",
+        productImageBase + "google-shopping-combo-l-oreal-serum-sang-da-mo-tham-mun-nam-30ml-2-kem-duong-mo-tham-nam-ban-ngay-15ml-1758188154_img_450x450_31d6f9_fit_center.jpg"
+      ]
+    }
+  ];
+
+  function catalogProductAt(index, idPrefix, extra) {
+    const baseProduct = productCatalog[index % productCatalog.length];
+    const imageIndex = Math.floor(index / productCatalog.length) % Math.max(baseProduct.images.length, 1);
+
+    return $.extend({}, baseProduct, extra || {}, {
+      id: idPrefix || `${baseProduct.id}-${index + 1}`,
+      key: idPrefix || `${baseProduct.id}-${index + 1}`,
+      image: baseProduct.images[imageIndex] || baseProduct.images[0]
+    });
+  }
+
+  const saleProducts = Array.from({ length: 10 }, function (_, index) {
+    return catalogProductAt(index, `sale-${index + 1}`);
   });
 
   const $saleGrid = $(".sale-product-grid");
 
   $.each(saleProducts, function (_, product) {
-    const productKey = `sale-${product.id}`;
-    const $card = $("<article>", { class: "sale-product-card", "data-product-key": productKey });
-    const $image = $("<div>", { class: "sale-product-image", "aria-label": `Ảnh ${product.name}` });
-    const $info = $("<div>", { class: "sale-product-info" });
-    const $rating = $("<div>", { class: "sale-product-rating", "aria-label": `${product.rating} trên 5 sao` });
-
-    for (let star = 0; star < product.rating; star += 1) {
-      $rating.append($("<i>", { class: "bi bi-star-fill", "aria-hidden": "true" }));
-    }
-
-    const $price = $("<div>", { class: "sale-product-price" })
-      .append($("<strong>", { text: product.salePrice }))
-      .append($("<del>", { text: product.originalPrice }));
-
-    const $addButton = $("<button>", {
-      class: "sale-add-cart",
-      type: "button",
-      "data-product-id": product.id,
-      "aria-label": `Thêm ${product.name} vào giỏ hàng`
-    }).append($("<i>", { class: "bi bi-basket2-fill", "aria-hidden": "true" }));
-    const $favoriteButton = createFavoriteButton(product.name, "sale-favorite-button", productKey);
-
-    $info
-      .append($("<p>", { class: "sale-product-brand", text: product.brand }))
-      .append($("<h3>", { class: "sale-product-name", text: product.name }))
-      .append($rating)
-      .append($price)
-      .append($favoriteButton)
-      .append($addButton);
-
-    $card.append($image, $info);
-    $saleGrid.append($card);
+    $saleGrid.append(createStoreProductCard(product));
   });
 
   let cartCount = 0;
   let cartItems = [];
   let favoriteProducts = [];
+  let currentDetailProduct = catalogProductAt(1, "detail-cocoon-coffee");
 
   function createFavoriteButton(productName, extraClass, productKey) {
     return $("<button>", {
@@ -164,11 +207,26 @@
       favoriteClass: "sale-favorite-button",
       actionsClass: ""
     }, config || {});
-    const productKey = product.id || getFavoriteKey(product.name);
+    const productKey = product.key || product.id || getFavoriteKey(product.name);
     const $card = $("<article>", { class: options.cardClass, "data-product-key": productKey });
     const $image = $("<div>", { class: options.imageClass, "aria-label": `Ảnh ${product.name}` });
     const $info = $("<div>", { class: options.infoClass });
     const $rating = $("<div>", { class: options.ratingClass, "aria-label": `${product.rating} trên 5 sao` });
+    const productImages = product.images && product.images.length ? product.images : [product.image].filter(Boolean);
+
+    $card.data("productData", $.extend({}, product, {
+      key: productKey,
+      image: product.image || productImages[0],
+      images: productImages
+    }));
+
+    if (product.image || productImages[0]) {
+      $image.append($("<img>", {
+        class: "product-card-image",
+        src: product.image || productImages[0],
+        alt: product.name
+      }));
+    }
 
     for (let star = 0; star < product.rating; star += 1) {
       $rating.append($("<i>", { class: "bi bi-star-fill", "aria-hidden": "true" }));
@@ -228,7 +286,8 @@
       key: $card.data("product-key") || $button.data("product-id") || getFavoriteKey(name),
       brand: $.trim($card.find("p").first().text()) || "COCOON",
       name,
-      price: parsePriceValue(priceText)
+      price: parsePriceValue(priceText),
+      image: $card.find(".product-card-image").first().attr("src") || ""
     };
   }
 
@@ -236,10 +295,12 @@
     const name = $.trim($("#product-detail-title").text()) || "COMBO Cocoon Tẩy da chết cà phê Đak Lak (200ml)...";
 
     return {
-      key: getFavoriteKey(name),
+      key: currentDetailProduct.key || currentDetailProduct.id || getFavoriteKey(name),
       brand: $.trim($(".product-detail-brand").text()) || "Cocoon",
       name,
-      price: parsePriceValue($(".product-detail-price strong").text())
+      price: parsePriceValue($(".product-detail-price strong").text()),
+      image: currentDetailProduct.image || "",
+      images: currentDetailProduct.images || []
     };
   }
 
@@ -268,7 +329,7 @@
       const $item = $("<article>", { class: "cart-item", "data-cart-key": item.key });
 
       $item
-        .append($("<div>", { class: "cart-item-image" }))
+        .append($("<div>", { class: "cart-item-image" }).append(item.image ? $("<img>", { src: item.image, alt: item.name }) : []))
         .append(
           $("<div>", { class: "cart-item-info" })
             .append($("<h3>", { text: item.name }))
@@ -308,7 +369,7 @@
 
       $preview.append(
         $("<article>", { class: "checkout-cart-item" })
-          .append($("<div>", { class: "checkout-cart-image" }))
+          .append($("<div>", { class: "checkout-cart-image" }).append(firstItem.image ? $("<img>", { src: firstItem.image, alt: firstItem.name }) : []))
           .append(
             $("<div>", { class: "checkout-cart-info" })
               .append($("<h3>", { text: firstItem.name }))
@@ -360,7 +421,9 @@
         name: detailProduct.name,
         salePrice: formatVnd(detailProduct.price),
         originalPrice: $.trim($(".product-detail-price del").first().text()) || "305,000đ",
-        rating: 5
+        rating: 5,
+        image: detailProduct.image,
+        images: detailProduct.images
       };
     }
 
@@ -375,7 +438,9 @@
         name: detailProduct.name,
         salePrice: formatVnd(detailProduct.price),
         originalPrice: $.trim($(".product-detail-price del").first().text()) || "305,000đ",
-        rating: 5
+        rating: 5,
+        image: detailProduct.image,
+        images: detailProduct.images
       };
     }
 
@@ -384,6 +449,7 @@
     const salePrice = $.trim($card.find("strong").first().text()) || "139,000₫";
     const originalPrice = $.trim($card.find("del").first().text()) || "305,000₫";
     const rating = Math.max($card.find(".bi-star-fill").length, 5);
+    const productData = $card.data("productData") || {};
 
     return {
       key: $button.data("product-key") || $card.data("product-key") || getFavoriteKey(productName),
@@ -391,7 +457,9 @@
       name: productName,
       salePrice,
       originalPrice,
-      rating
+      rating,
+      image: productData.image || $card.find(".product-card-image").first().attr("src") || "",
+      images: productData.images || []
     };
   }
 
@@ -420,7 +488,8 @@
     const $card = $("<article>", { class: "account-favorite-card", "data-favorite-key": product.key });
     const $check = $("<label>", { class: "account-favorite-check" })
       .append($("<input>", { type: "checkbox", "aria-label": "Chọn sản phẩm yêu thích" }));
-    const $image = $("<div>", { class: "account-favorite-image", "aria-label": `Ảnh ${product.name}` });
+    const $image = $("<div>", { class: "account-favorite-image", "aria-label": `Ảnh ${product.name}` })
+      .append(product.image ? $("<img>", { src: product.image, alt: product.name }) : []);
     const $info = $("<div>", { class: "account-favorite-info" });
     const $rating = $("<div>", { class: "account-favorite-rating", "aria-label": `${product.rating} trên 5 sao` });
 
@@ -470,14 +539,7 @@
   });
 
   const topProducts = Array.from({ length: 12 }, function (_, index) {
-    return {
-      id: `top-${index + 1}`,
-      brand: "Cocoon",
-      name: "COMBO Cocoon Tẩy da chết cà phê Đak Lak (200ml) (IP07) + ...",
-      salePrice: "139,000₫",
-      originalPrice: "305,000₫",
-      rating: 5
-    };
+    return catalogProductAt(index, `top-${index + 1}`);
   });
 
   const $topProductGrid = $(".top-product-grid");
@@ -531,15 +593,9 @@
 
   const beautyCategories = ["makeup", "skincare", "bodycare"];
   const beautyProducts = Array.from({ length: 45 }, function (_, index) {
-    return {
-      id: `beauty-${index + 1}`,
-      category: beautyCategories[Math.floor(index / 15)],
-      brand: "Cocoon",
-      name: "COMBO Cocoon Tẩy da chết cà phê Đak Lak (200ml)...",
-      salePrice: "139,000đ",
-      originalPrice: "305,000đ",
-      rating: 5
-    };
+    return catalogProductAt(index, `beauty-${index + 1}`, {
+      category: beautyCategories[Math.floor(index / 15)]
+    });
   });
 
   const $beautyProductGrid = $(".beauty-product-grid");
@@ -1211,28 +1267,99 @@
 
   let currentListingCategory = "makeup";
 
-  const listingProducts = Array.from({ length: 20 }, function (_, index) {
-    return {
-      id: `listing-${index + 1}`,
-      brand: "Cocoon",
-      name: "COMBO Cocoon Tẩy da chết cà phê Đak Lak (200ml)...",
-      salePrice: "139,000đ",
-      originalPrice: "305,000đ",
-      rating: 5
-    };
+  const listingProducts = Array.from({ length: 100 }, function (_, index) {
+    return catalogProductAt(index, `listing-${index + 1}`, {
+      listingIndex: index,
+      soldCount: 100 - ((index * 7) % 83)
+    });
   });
 
   let listingLimit = 20;
+  let currentListingPage = 1;
+  let currentListingSort = "featured";
+
+  function getSortedListingProducts() {
+    const products = listingProducts.slice();
+
+    if (currentListingSort === "price-asc") {
+      products.sort((first, second) => parsePriceValue(first.salePrice) - parsePriceValue(second.salePrice));
+    } else if (currentListingSort === "price-desc") {
+      products.sort((first, second) => parsePriceValue(second.salePrice) - parsePriceValue(first.salePrice));
+    } else if (currentListingSort === "newest") {
+      products.sort((first, second) => second.listingIndex - first.listingIndex);
+    } else if (currentListingSort === "best-seller") {
+      products.sort((first, second) => second.soldCount - first.soldCount);
+    }
+
+    return products;
+  }
+
+  function renderListingPagination(totalPages) {
+    const $pagination = $(".listing-pagination");
+
+    $pagination.empty();
+
+    const appendPageButton = function (page) {
+      $pagination.append($("<button>", {
+        class: page === currentListingPage ? "is-active" : "",
+        type: "button",
+        "data-listing-page": page,
+        text: page
+      }));
+    };
+
+    $pagination.append($("<button>", {
+      type: "button",
+      "data-listing-page-action": "prev",
+      "aria-label": "Trang trước",
+      disabled: currentListingPage === 1
+    }).append($("<i>", { class: "bi bi-chevron-double-left", "aria-hidden": "true" })));
+
+    appendPageButton(1);
+
+    if (totalPages > 1) {
+      const middleStart = Math.max(2, Math.min(currentListingPage - 1, totalPages - 3));
+      const middleEnd = Math.min(totalPages - 1, middleStart + 2);
+
+      if (middleStart > 2) {
+        $pagination.append($("<span>", { text: "..." }));
+      }
+
+      for (let page = middleStart; page <= middleEnd; page += 1) {
+        appendPageButton(page);
+      }
+
+      if (middleEnd < totalPages - 1) {
+        $pagination.append($("<span>", { text: "..." }));
+      }
+
+      if (totalPages > 1) {
+        appendPageButton(totalPages);
+      }
+    }
+
+    $pagination.append($("<button>", {
+      type: "button",
+      "data-listing-page-action": "next",
+      "aria-label": "Trang sau",
+      disabled: currentListingPage === totalPages
+    }).append($("<i>", { class: "bi bi-chevron-double-right", "aria-hidden": "true" })));
+  }
 
   function renderListingProducts() {
     const category = listingCategoryConfig[currentListingCategory] || listingCategoryConfig.makeup;
+    const sortedProducts = getSortedListingProducts();
+    const totalPages = Math.max(1, Math.ceil(sortedProducts.length / listingLimit));
+    currentListingPage = Math.min(currentListingPage, totalPages);
+    const pageStart = (currentListingPage - 1) * listingLimit;
+    const pageProducts = sortedProducts.slice(pageStart, pageStart + listingLimit);
+
     $listingProductGrid.empty();
 
-    $.each(listingProducts.slice(0, listingLimit), function (_, product) {
+    $.each(pageProducts, function (_, product) {
       const categoryProduct = Object.assign({}, product, {
         id: `${currentListingCategory}-${product.id}`,
-        brand: category.brand,
-        name: category.productName
+        key: `${currentListingCategory}-${product.id}`
       });
 
       $listingProductGrid.append(createStoreProductCard(categoryProduct, {
@@ -1248,12 +1375,15 @@
         actionsClass: "listing-product-actions product-card-actions"
       }));
     });
+
+    renderListingPagination(totalPages);
   }
 
   function setListingCategory(categoryKey) {
     const nextKey = listingCategoryConfig[categoryKey] ? categoryKey : "makeup";
     const category = listingCategoryConfig[nextKey];
     currentListingCategory = nextKey;
+    currentListingPage = 1;
 
     $(".listing-breadcrumb-container strong").text(category.label);
     $("#listing-title").html(`${category.label.toLocaleUpperCase("vi-VN")} <span>(100 Sản phẩm)</span>`);
@@ -1285,10 +1415,6 @@
         .addClass("bi-chevron-down");
       $activeFilter.find(".category-filter-sublist").prop("hidden", false);
     }
-
-    $(".listing-pagination button").removeClass("is-active").filter(function () {
-      return $.trim($(this).text()) === "1";
-    }).addClass("is-active");
 
     renderListingProducts();
   }
@@ -1398,7 +1524,50 @@
     openAuthPage($(this).data("mobile-auth") || "login");
   });
 
-  function openProductDetailPage() {
+  function renderProductDetail(product) {
+    const nextProduct = product || currentDetailProduct || catalogProductAt(1, "detail-cocoon-coffee");
+    const images = nextProduct.images && nextProduct.images.length
+      ? nextProduct.images
+      : [nextProduct.image].filter(Boolean);
+
+    currentDetailProduct = $.extend({}, nextProduct, {
+      image: nextProduct.image || images[0],
+      images
+    });
+
+    $(".product-detail-brand").text(currentDetailProduct.brand);
+    $("#product-detail-title").text(currentDetailProduct.name);
+    $(".product-detail-price strong").text(currentDetailProduct.salePrice);
+    $(".product-detail-price del").text(currentDetailProduct.originalPrice);
+    $(".detail-breadcrumb-container strong").text(currentDetailProduct.name);
+
+    const $mainImage = $(".product-gallery-main");
+    const $thumbs = $(".product-thumbnails");
+    $mainImage.empty();
+    $thumbs.empty();
+
+    if (images.length) {
+      $mainImage.append($("<img>", { src: images[0], alt: currentDetailProduct.name }));
+
+      $.each(images, function (index, image) {
+        $thumbs.append(
+          $("<button>", {
+            class: index === 0 ? "is-active" : "",
+            type: "button",
+            "data-detail-image": image,
+            "aria-label": `Ảnh sản phẩm ${index + 1}`
+          }).append($("<img>", { src: image, alt: "" }))
+        );
+      });
+    }
+
+    $(".product-detail-favorite-button")
+      .attr("data-product-key", currentDetailProduct.key || currentDetailProduct.id || getFavoriteKey(currentDetailProduct.name))
+      .toggleClass("is-favorite", favoriteProducts.some((favorite) => favorite.key === (currentDetailProduct.key || currentDetailProduct.id || getFavoriteKey(currentDetailProduct.name))));
+  }
+
+  function openProductDetailPage(product) {
+    renderProductDetail(product);
     $homeMain.prop("hidden", true);
     $blogPageMain.prop("hidden", true);
     $listingMain.prop("hidden", true);
@@ -1584,12 +1753,19 @@
     ".related-product-image",
     ".related-product-name"
   ].join(", "), function () {
-    openProductDetailPage();
+    const product = $(this).closest("article").data("productData");
+    openProductDetailPage(product);
   });
 
-  $(".product-thumbnails button").on("click", function () {
+  $(".product-thumbnails").on("click", "button", function () {
+    const image = $(this).data("detail-image");
+
     $(".product-thumbnails button").removeClass("is-active");
     $(this).addClass("is-active");
+
+    if (image) {
+      $(".product-gallery-main").empty().append($("<img>", { src: image, alt: currentDetailProduct.name }));
+    }
   });
 
   $(".product-qty-minus").on("click", function () {
@@ -1786,19 +1962,36 @@
   updateDescriptionMoreButton();
 
   $(".listing-sort button").on("click", function () {
+    const sortOptions = ["featured", "price-asc", "price-desc", "newest", "best-seller"];
+
+    currentListingSort = sortOptions[$(".listing-sort button").index(this)] || "featured";
+    currentListingPage = 1;
     $(".listing-sort button").removeClass("is-active");
     $(this).addClass("is-active");
+    renderListingProducts();
   });
 
-  $(".listing-pagination button").on("click", function () {
-    const label = $.trim($(this).text());
-
-    if (!label || $(this).find("i").length) {
+  $(".listing-pagination").on("click", "button", function () {
+    if ($(this).prop("disabled")) {
       return;
     }
 
-    $(".listing-pagination button").removeClass("is-active");
-    $(this).addClass("is-active");
+    const action = $(this).data("listing-page-action");
+    const page = Number($(this).data("listing-page"));
+    const totalPages = Math.max(1, Math.ceil(listingProducts.length / listingLimit));
+
+    if (action === "prev") {
+      currentListingPage = Math.max(1, currentListingPage - 1);
+    } else if (action === "next") {
+      currentListingPage = Math.min(totalPages, currentListingPage + 1);
+    } else if (page) {
+      currentListingPage = Math.min(totalPages, Math.max(1, page));
+    }
+
+    renderListingProducts();
+    $("html, body").stop(true, true).animate({
+      scrollTop: Math.max(0, $(".listing-heading").offset().top - 130)
+    }, 250);
   });
 
   $(".listing-limit").on("click", function (event) {
@@ -1811,6 +2004,7 @@
   $(".listing-limit-menu button").on("click", function (event) {
     event.stopPropagation();
     listingLimit = Number($(this).data("listing-limit")) || 20;
+    currentListingPage = 1;
 
     $(".listing-limit span").text(`Hiển thị ${listingLimit}`);
     $(".listing-limit").attr("aria-expanded", "false");
@@ -2632,7 +2826,8 @@
         key: product.key,
         brand: product.brand,
         name: product.name,
-        price: parsePriceValue(product.salePrice)
+        price: parsePriceValue(product.salePrice),
+        image: product.image || ""
       }, 1);
     });
 
@@ -2641,9 +2836,78 @@
   });
 
   const $accountOrderList = $(".account-order-list");
-  while ($accountOrderList.children(".account-order-card").length < 5) {
-    $accountOrderList.children(".account-order-card").first().clone().appendTo($accountOrderList);
+  const accountOrders = productCatalog.map(function (product, index) {
+    const quantity = index === 0 ? 4 : index + 1;
+    const price = parsePriceValue(product.salePrice);
+
+    return {
+      code: `BG${String(202607100 + index)}`,
+      date: "10/10/2026",
+      status: "Đã giao",
+      product,
+      quantity,
+      total: price * quantity
+    };
+  });
+
+  function createAccountOrderCard(order) {
+    const product = order.product;
+    const image = product.image || (product.images && product.images[0]) || "";
+
+    return $("<article>", { class: "account-order-card", "data-order-code": order.code })
+      .append(
+        $("<div>", { class: "account-order-top" })
+          .append($("<strong>", { text: `Đơn hàng ${order.date}` }))
+          .append($("<span>", { text: `• ${order.status}` }))
+      )
+      .append(
+        $("<div>", { class: "account-order-body" })
+          .append($("<div>", { class: "account-order-image" }).append(image ? $("<img>", { src: image, alt: product.name }) : []))
+          .append(
+            $("<div>", { class: "account-order-info" })
+              .append($("<h3>", { text: product.name }))
+              .append($("<a>", { href: "#order-detail" })
+                .append("Xem chi tiết ")
+                .append($("<i>", { class: "bi bi-chevron-right", "aria-hidden": "true" })))
+          )
+          .append($("<strong>", { class: "account-order-price", text: product.salePrice }))
+          .append($("<span>", { class: "account-order-quantity", text: `Số lượng: ${String(order.quantity).padStart(2, "0")}` }))
+      )
+      .append(
+        $("<div>", { class: "account-order-bottom" })
+          .append($("<p>").append("Thành tiền: ").append($("<span>", { text: formatVnd(order.total) })))
+          .append($("<button>", { class: "account-order-buy-again", type: "button", text: "Mua lại" }).data("orderProduct", product))
+      );
   }
+
+  function renderAccountOrders() {
+    $accountOrderList.empty();
+
+    $.each(accountOrders, function (_, order) {
+      $accountOrderList.append(createAccountOrderCard(order));
+    });
+  }
+
+  renderAccountOrders();
+
+  $accountOrderList.on("click", ".account-order-buy-again", function () {
+    const product = $(this).data("orderProduct");
+
+    if (!product) {
+      return;
+    }
+
+    addCartProduct({
+      key: product.key || product.id,
+      brand: product.brand,
+      name: product.name,
+      price: parsePriceValue(product.salePrice),
+      image: product.image || (product.images && product.images[0]) || ""
+    }, 1);
+
+    $(this).addClass("is-added");
+    window.setTimeout(() => $(this).removeClass("is-added"), 300);
+  });
 
   $("[data-account-logout]").on("click", function () {
     try {
