@@ -103,42 +103,7 @@
                 </a>
               </div>
 
-              <div class="mega-menu-content">
-                <div class="mega-menu-panel is-active" data-menu-panel="makeup">
-                <section class="mega-menu-column" aria-labelledby="makeup-face-title">
-                  <h2 id="makeup-face-title">MẶT</h2>
-                  <a href="#foundation">Kem nền - BB Cream</a>
-                  <a href="#cushion">Cushion - Phấn nước</a>
-                  <a href="#powder">Phấn nền - Phấn phủ</a>
-                  <a href="#concealer">Che khuyết điểm</a>
-                  <a href="#blush">Má hồng</a>
-                  <a href="#primer">Kem lót</a>
-                  <a href="#contour">Tạo khối</a>
-                  <a href="#setting-spray">Xịt khóa nền</a>
-                </section>
-
-                <section class="mega-menu-column" aria-labelledby="makeup-eye-title">
-                  <h2 id="makeup-eye-title">MẮT - CHỈ MÀY</h2>
-                  <a href="#eyebrow">Chỉ kẻ mày</a>
-                  <a href="#mascara">Mascara</a>
-                  <a href="#eyeliner">Kẻ mắt - Eyeliner</a>
-                  <a href="#eyeshadow">Phấn mắt</a>
-                </section>
-
-                <section class="mega-menu-column" aria-labelledby="makeup-lip-title">
-                  <h2 id="makeup-lip-title">MÔI</h2>
-                  <a href="#lipstick">Son môi</a>
-                  <a href="#lip-balm">Son dưỡng</a>
-                </section>
-
-                <section class="mega-menu-column" aria-labelledby="makeup-tools-title">
-                  <h2 id="makeup-tools-title">PHỤ KIỆN TRANG ĐIỂM</h2>
-                  <a href="#other-makeup-tools">Dụng cụ trang điểm khác</a>
-                  <a href="#makeup-sponge">Bông mút trang điểm</a>
-                  <a href="#makeup-brush">Cọ trang điểm</a>
-                </section>
-                </div>
-              </div>
+              <div class="mega-menu-content"></div>
             </div>
           </div>
         </div>
@@ -610,7 +575,15 @@
         </a>
 
         <div class="listing-layout">
+          <button class="listing-filter-overlay" type="button" aria-label="Đóng bộ lọc"></button>
           <aside class="listing-sidebar" aria-label="Bộ lọc sản phẩm">
+            <div class="listing-filter-drawer-header">
+              <button class="listing-filter-close" type="button" aria-label="Đóng bộ lọc">
+                <i class="bi bi-chevron-left" aria-hidden="true"></i>
+              </button>
+              <strong>Bộ lọc</strong>
+              <span aria-hidden="true"></span>
+            </div>
             <div class="filter-block category-filter is-open">
               <button class="filter-title" type="button" data-filter-toggle aria-expanded="true">
                 <span>DANH MỤC</span>
@@ -827,11 +800,20 @@
                 <label><input type="checkbox"> Skinlosophy</label>
               </div>
             </div>
+
+            <div class="listing-filter-actions">
+              <button class="listing-filter-reset" type="button">ĐẶT LẠI</button>
+              <button class="listing-filter-apply" type="button">ÁP DỤNG</button>
+            </div>
           </aside>
 
           <section class="listing-content">
             <div class="listing-heading">
               <h1 id="listing-title">TRANG ĐIỂM <span>(100 Sản phẩm)</span></h1>
+              <button class="listing-filter-open" type="button" aria-expanded="false">
+                <span>Bộ lọc</span>
+                <i class="bi bi-filter" aria-hidden="true"></i>
+              </button>
               <div class="listing-sort">
                 <strong>Sắp xếp:</strong>
                 <button class="is-active" type="button">Nổi bật</button>
@@ -993,7 +975,11 @@
 
         <div class="customer-reviews-layout">
           <div class="customer-reviews-main">
-            <div class="review-filter-box" aria-label="Bộ lọc đánh giá">
+            <button class="review-filter-toggle" type="button" aria-expanded="false" aria-controls="review-filter-box">
+              <span>Bộ lọc đánh giá</span>
+              <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div id="review-filter-box" class="review-filter-box" aria-label="Bộ lọc đánh giá">
               <button type="button">Tất cả (100)</button>
               <button type="button">5 Sao (100)</button>
               <button type="button">4 Sao (100)</button>
@@ -1595,7 +1581,7 @@
   <aside class="address-drawer" data-address-drawer aria-labelledby="address-drawer-title" aria-hidden="true">
     <div class="address-drawer-header">
       <h2 id="address-drawer-title">Thêm địa chỉ mới</h2>
-      <button type="button" data-address-drawer-close aria-label="Đóng form thêm địa chỉ">
+      <button class="address-drawer-close" type="button" data-address-drawer-close aria-label="Đóng form thêm địa chỉ">
         <i class="bi bi-x-lg" aria-hidden="true"></i>
       </button>
     </div>
@@ -1737,6 +1723,10 @@
 
       <nav class="footer-links-column footer-about" aria-labelledby="about-title">
         <h2 id="about-title">Về chúng tôi</h2>
+        <button class="footer-mobile-toggle" type="button" aria-expanded="false">
+          <span>Về chúng tôi</span>
+          <i class="bi bi-chevron-down" aria-hidden="true"></i>
+        </button>
         <a href="#brand-story">Câu chuyện thương hiệu</a>
         <a href="#terms">Điều khoản dịch vụ</a>
         <a href="#careers">Tuyển dụng</a>
@@ -1748,6 +1738,10 @@
 
       <nav class="footer-links-column footer-policy" aria-labelledby="policy-title">
         <h2 id="policy-title">Chính sách</h2>
+        <button class="footer-mobile-toggle" type="button" aria-expanded="false">
+          <span>Chính sách</span>
+          <i class="bi bi-chevron-down" aria-hidden="true"></i>
+        </button>
         <a href="#shopping-guide">Hướng dẫn mua hàng</a>
         <a href="#payment-policy">Quy định và hình thức thanh toán</a>
         <a href="#shipping-policy">Chính sách giao hàng</a>
@@ -1760,7 +1754,7 @@
       <section class="footer-download" aria-labelledby="download-title">
         <h2 id="download-title">Tải app ngay</h2>
         <div class="download-row">
-          <div class="qr-placeholder" aria-label="Mã QR tải ứng dụng"></div>
+          <img class="qr-placeholder" src="assets/images/qrcode_trancuong1410.github.io.png" alt="Mã QR tải ứng dụng Beauty Glow">
           <div class="store-buttons">
             <a class="store-button" href="#app-store" aria-label="Tải trên App Store">
               <img src="assets/Icon/Store download button.png" alt="Download on the App Store">

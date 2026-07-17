@@ -151,6 +151,54 @@
     }));
   }
 
+  function createStoreProductCard(product, config) {
+    const options = $.extend({
+      cardClass: "sale-product-card",
+      imageClass: "sale-product-image",
+      infoClass: "sale-product-info",
+      brandClass: "sale-product-brand",
+      nameClass: "sale-product-name",
+      ratingClass: "sale-product-rating",
+      priceClass: "sale-product-price",
+      addClass: "sale-add-cart",
+      favoriteClass: "sale-favorite-button",
+      actionsClass: ""
+    }, config || {});
+    const productKey = product.id || getFavoriteKey(product.name);
+    const $card = $("<article>", { class: options.cardClass, "data-product-key": productKey });
+    const $image = $("<div>", { class: options.imageClass, "aria-label": `Ảnh ${product.name}` });
+    const $info = $("<div>", { class: options.infoClass });
+    const $rating = $("<div>", { class: options.ratingClass, "aria-label": `${product.rating} trên 5 sao` });
+
+    for (let star = 0; star < product.rating; star += 1) {
+      $rating.append($("<i>", { class: "bi bi-star-fill", "aria-hidden": "true" }));
+    }
+
+    const $price = $("<div>", { class: options.priceClass })
+      .append($("<strong>", { text: product.salePrice }))
+      .append($("<del>", { text: product.originalPrice }));
+    const $favoriteButton = createFavoriteButton(product.name, options.favoriteClass, productKey);
+    const $addButton = $("<button>", {
+      class: options.addClass,
+      type: "button",
+      "data-product-id": productKey,
+      "aria-label": `Thêm ${product.name} vào giỏ hàng`
+    }).append($("<i>", { class: "bi bi-basket2-fill", "aria-hidden": "true" }));
+    const actionNodes = options.actionsClass
+      ? $("<div>", { class: options.actionsClass }).append($favoriteButton, $addButton)
+      : [$favoriteButton, $addButton];
+
+    $info
+      .append($("<p>", { class: options.brandClass, text: product.brand }))
+      .append($("<h3>", { class: options.nameClass, text: product.name }))
+      .append($rating)
+      .append($price)
+      .append(actionNodes);
+
+    $card.append($image, $info);
+    return $card;
+  }
+
   function parsePriceValue(priceText) {
     return Number(String(priceText || "").replace(/[^\d]/g, "")) || 139000;
   }
@@ -440,37 +488,17 @@
 
     for (let offset = 0; offset < 6; offset += 1) {
       const product = topProducts[(topProductStart + offset) % topProducts.length];
-      const $card = $("<article>", { class: "top-product-card", "data-product-key": product.id });
-      const $image = $("<div>", { class: "top-product-image", "aria-label": `Ảnh ${product.name}` });
-      const $info = $("<div>", { class: "top-product-info" });
-      const $rating = $("<div>", { class: "top-product-rating", "aria-label": `${product.rating} trên 5 sao` });
-
-      for (let star = 0; star < product.rating; star += 1) {
-        $rating.append($("<i>", { class: "bi bi-star-fill", "aria-hidden": "true" }));
-      }
-
-      const $price = $("<div>", { class: "top-product-price" })
-        .append($("<strong>", { text: product.salePrice }))
-        .append($("<del>", { text: product.originalPrice }));
-
-      const $addButton = $("<button>", {
-        class: "top-add-cart",
-        type: "button",
-        "data-product-id": product.id,
-        "aria-label": `Thêm ${product.name} vào giỏ hàng`
-      }).append($("<i>", { class: "bi bi-basket2-fill", "aria-hidden": "true" }));
-      const $favoriteButton = createFavoriteButton(product.name, "top-favorite-button", product.id);
-
-      $info
-        .append($("<p>", { class: "top-product-brand", text: product.brand }))
-        .append($("<h3>", { class: "top-product-name", text: product.name }))
-        .append($rating)
-        .append($price)
-        .append($favoriteButton)
-        .append($addButton);
-
-      $card.append($image, $info);
-      $topProductGrid.append($card);
+      $topProductGrid.append(createStoreProductCard(product, {
+        cardClass: "top-product-card",
+        imageClass: "top-product-image",
+        infoClass: "top-product-info",
+        brandClass: "top-product-brand",
+        nameClass: "top-product-name",
+        ratingClass: "top-product-rating",
+        priceClass: "top-product-price",
+        addClass: "top-add-cart",
+        favoriteClass: "top-favorite-button"
+      }));
     }
   }
 
@@ -521,37 +549,7 @@
     $beautyProductGrid.empty();
 
     $.each(products, function (_, product) {
-      const $card = $("<article>", { class: "sale-product-card", "data-product-key": product.id });
-      const $image = $("<div>", { class: "sale-product-image", "aria-label": `Ảnh ${product.name}` });
-      const $info = $("<div>", { class: "sale-product-info" });
-      const $rating = $("<div>", { class: "sale-product-rating", "aria-label": `${product.rating} trên 5 sao` });
-
-      for (let star = 0; star < product.rating; star += 1) {
-        $rating.append($("<i>", { class: "bi bi-star-fill", "aria-hidden": "true" }));
-      }
-
-      const $price = $("<div>", { class: "sale-product-price" })
-        .append($("<strong>", { text: product.salePrice }))
-        .append($("<del>", { text: product.originalPrice }));
-
-      const $addButton = $("<button>", {
-        class: "sale-add-cart",
-        type: "button",
-        "data-product-id": product.id,
-        "aria-label": `Thêm ${product.name} vào giỏ hàng`
-      }).append($("<i>", { class: "bi bi-basket2-fill", "aria-hidden": "true" }));
-      const $favoriteButton = createFavoriteButton(product.name, "sale-favorite-button", product.id);
-
-      $info
-        .append($("<p>", { class: "sale-product-brand", text: product.brand }))
-        .append($("<h3>", { class: "sale-product-name", text: product.name }))
-        .append($rating)
-        .append($price)
-        .append($favoriteButton)
-        .append($addButton);
-
-      $card.append($image, $info);
-      $beautyProductGrid.append($card);
+      $beautyProductGrid.append(createStoreProductCard(product));
     });
   }
 
@@ -593,6 +591,28 @@
   window.setInterval(updateSaleCountdown, 1000);
 
   const megaMenuPanels = {
+    makeup: [
+      {
+        title: "MẶT",
+        left: 30,
+        items: ["Kem nền - BB Cream", "Cushion - Phấn nước", "Phấn nền - Phấn phủ", "Che khuyết điểm", "Má hồng", "Kem lót", "Tạo khối", "Xịt khóa nền"]
+      },
+      {
+        title: "MẮT - CHÂN MÀY",
+        left: 249,
+        items: ["Chì kẻ mày", "Mascara", "Kẻ mắt - Eyeliner", "Phấn mắt"]
+      },
+      {
+        title: "MÔI",
+        left: 444,
+        items: ["Son môi", "Son dưỡng"]
+      },
+      {
+        title: "PHỤ KIỆN TRANG ĐIỂM",
+        left: 639,
+        items: ["Dụng cụ trang điểm khác", "Bông mút trang điểm", "Cọ trang điểm"]
+      }
+    ],
     skincare: [
       {
         title: "LÀM SẠCH",
@@ -749,11 +769,220 @@
     ]
   };
 
+  const mobileCategoryLabels = {
+    makeup: "Trang điểm",
+    skincare: "Chăm sóc da",
+    bodycare: "Chăm sóc cơ thể",
+    haircare: "Chăm sóc tóc",
+    tools: "Tools & Brushes",
+    accessories: "Phụ kiện",
+    men: "Dành cho nam",
+    brands: "Tất cả thương hiệu"
+  };
+
+  const $mobileCategoryAccordion = $("<div>", {
+    class: "mobile-category-accordion",
+    "aria-label": "Danh mục sản phẩm trên điện thoại"
+  });
+  const $mobileMenuOverlay = $("<button>", {
+    class: "mobile-menu-overlay",
+    type: "button",
+    "aria-label": "Đóng menu"
+  });
+  const $mobileMenuHeader = $("<div>", { class: "mobile-drawer-header" })
+    .append(
+      $("<button>", {
+        class: "mobile-drawer-close",
+        type: "button",
+        "aria-label": "Quay lại"
+      }).append($("<i>", { class: "bi bi-chevron-left", "aria-hidden": "true" }))
+    )
+    .append($("<strong>", { text: "Menu" }))
+    .append($("<span>", { "aria-hidden": "true" }));
+  const $mobileAccountPanel = $("<div>", {
+    class: "mobile-drawer-account",
+    role: "group",
+    "aria-label": "Tài khoản"
+  })
+    .append($("<i>", { class: "bi bi-person-circle", "aria-hidden": "true" }))
+    .append(
+      $("<span>")
+        .append($("<small>", { text: "TÀI KHOẢN" }))
+        .append(
+          $("<strong>")
+            .append($("<button>", { type: "button", "data-mobile-auth": "login", text: "Đăng nhập" }))
+            .append($("<span>", { text: " / " }))
+            .append($("<button>", { type: "button", "data-mobile-auth": "register", text: "Đăng ký" }))
+        )
+    );
+  const $mobileCategoryMaster = $("<button>", {
+    class: "mobile-category-master",
+    type: "button",
+    "aria-expanded": "false"
+  })
+    .append($("<span>", { text: "Danh mục sản phẩm" }))
+    .append($("<span>", { class: "mobile-accordion-icon", text: "+", "aria-hidden": "true" }));
+  const $mobileCategoryBody = $("<div>", {
+    class: "mobile-category-body",
+    hidden: true
+  });
+
+  $.each(mobileCategoryLabels, function (panelName, label) {
+    const panelId = `mobile-category-panel-${panelName}`;
+    const $section = $("<section>", { class: "mobile-category-section" });
+    const $row = $("<div>", { class: "mobile-category-row" });
+    const $link = $("<button>", {
+      class: "mobile-category-link",
+      type: "button",
+      "data-mobile-category-link": panelName,
+      text: label
+    });
+    const $toggle = $("<button>", {
+      class: "mobile-category-toggle",
+      type: "button",
+      "aria-expanded": "false",
+      "aria-controls": panelId,
+      "aria-label": `Mở ${label}`
+    })
+      .append($("<span>", { class: "mobile-accordion-icon", text: "+", "aria-hidden": "true" }));
+    const $panel = $("<div>", {
+      id: panelId,
+      class: "mobile-category-panel",
+      hidden: true
+    });
+
+    $.each(megaMenuPanels[panelName] || [], function (columnIndex, column) {
+      const $group = $("<div>", { class: "mobile-category-group" });
+      $group.append($("<h3>", { text: column.title }));
+
+      $.each(column.items, function (itemIndex, item) {
+        $group.append($("<a>", {
+          href: `#${panelName}`,
+          "data-mobile-subcategory": `${columnIndex}-${itemIndex}`,
+          text: item
+        }));
+      });
+
+      $panel.append($group);
+    });
+
+    $row.append($link, $toggle);
+    $section.append($row, $panel);
+    $mobileCategoryBody.append($section);
+  });
+
+  $mobileCategoryAccordion.append($mobileCategoryMaster, $mobileCategoryBody);
+  const $mobileDrawerLinks = $("<nav>", {
+    class: "mobile-drawer-links",
+    "aria-label": "Liên kết hỗ trợ"
+  });
+
+  [
+    ["Hotline: 1900 1900", "tel:19001900"],
+    ["Tra cứu đơn hàng", "#order-lookup"],
+    ["Hệ thống cửa hàng", "#stores"],
+    ["Beauty Tips", "#beauty-tips"]
+  ].forEach(function (link) {
+    $mobileDrawerLinks.append(
+      $("<a>", { href: link[1] })
+        .append($("<span>", { text: link[0] }))
+        .append($("<i>", { class: "bi bi-chevron-right", "aria-hidden": "true" }))
+    );
+  });
+
+  $(".category-container").append(
+    $mobileMenuHeader,
+    $mobileAccountPanel,
+    $mobileCategoryAccordion,
+    $mobileDrawerLinks
+  );
+  $mobileMenuOverlay.insertBefore($primaryNavigation);
+
+  function setMobileDrawer(open) {
+    $primaryNavigation.toggleClass("is-open", open);
+    if (window.matchMedia("(max-width: 767.98px)").matches) {
+      $primaryNavigation.attr("aria-hidden", open ? "false" : "true");
+    } else {
+      $primaryNavigation.removeAttr("aria-hidden");
+    }
+    $mobileMenuOverlay.toggleClass("is-open", open);
+    $("body").toggleClass("mobile-menu-open", open);
+    $mobileMenuButton
+      .attr("aria-expanded", open)
+      .attr("aria-label", open ? "Đóng menu" : "Mở menu")
+      .find("i")
+      .toggleClass("bi-list", !open)
+      .toggleClass("bi-x-lg", open);
+
+    if (open && $mobileCategoryMaster.attr("aria-expanded") !== "true") {
+      $mobileCategoryMaster.attr("aria-expanded", "true").find(".mobile-accordion-icon").text("−");
+      $mobileCategoryBody.prop("hidden", false).show();
+    }
+  }
+
+  $mobileMenuOverlay.add($mobileMenuHeader.find(".mobile-drawer-close")).on("click", function () {
+    setMobileDrawer(false);
+  });
+
+  $mobileDrawerLinks.on("click", "a", function () {
+    setMobileDrawer(false);
+  });
+
+  function setMobileAccordionPanel($button, open) {
+    const panelId = $button.attr("aria-controls");
+    const $panel = panelId ? $(`#${panelId}`) : $button.next(".mobile-category-body");
+    const $section = $button.closest(".mobile-category-section");
+
+    $button
+      .attr("aria-expanded", open)
+      .find(".mobile-accordion-icon")
+      .text(open ? "−" : "+");
+
+    $section.toggleClass("is-open", open);
+    $panel.stop(true, true);
+
+    if (open) {
+      $panel
+        .prop("hidden", false)
+        .attr("aria-hidden", "false")
+        .css("display", "block");
+    } else {
+      $panel
+        .prop("hidden", true)
+        .attr("aria-hidden", "true")
+        .css("display", "none");
+    }
+  }
+
+  $mobileCategoryAccordion.on("click", ".mobile-category-master", function () {
+    setMobileAccordionPanel($(this), $(this).attr("aria-expanded") !== "true");
+  });
+
+  $mobileCategoryAccordion.on("click", ".mobile-category-link", function () {
+    const categoryKey = $(this).data("mobile-category-link");
+    setMobileDrawer(false);
+    openListingPage(categoryKey);
+  });
+
+  $mobileCategoryAccordion.on("click", ".mobile-category-toggle", function () {
+    const $currentButton = $(this);
+    const shouldOpen = $currentButton.attr("aria-expanded") !== "true";
+
+    $mobileCategoryAccordion.find(".mobile-category-toggle").each(function () {
+      const $button = $(this);
+      if (!$button.is($currentButton)) {
+        setMobileAccordionPanel($button, false);
+      }
+    });
+
+    setMobileAccordionPanel($currentButton, shouldOpen);
+  });
+
   const $megaMenuContent = $(".mega-menu-content");
 
   $.each(megaMenuPanels, function (panelName, columns) {
     const $panel = $("<div>", {
-      class: "mega-menu-panel",
+      class: `mega-menu-panel${panelName === "makeup" ? " is-active" : ""}`,
       "data-menu-panel": panelName
     });
 
@@ -864,13 +1093,14 @@
 
   $mobileMenuButton.on("click", function () {
     const isOpen = !$primaryNavigation.hasClass("is-open");
-    $primaryNavigation.toggleClass("is-open", isOpen);
-    $(this)
-      .attr("aria-expanded", isOpen)
-      .attr("aria-label", isOpen ? "Đóng menu" : "Mở menu")
-      .find("i")
-      .toggleClass("bi-list", !isOpen)
-      .toggleClass("bi-x-lg", isOpen);
+    setMobileDrawer(isOpen);
+  });
+
+  $(document).on("keydown", function (event) {
+    if (event.key === "Escape" && $primaryNavigation.hasClass("is-open")) {
+      setMobileDrawer(false);
+      $mobileMenuButton.trigger("focus");
+    }
   });
 
   $(".search-form").on("submit", function (event) {
@@ -1004,37 +1234,19 @@
         brand: category.brand,
         name: category.productName
       });
-      const $card = $("<article>", { class: "listing-product-card", "data-product-key": categoryProduct.id });
-      const $image = $("<div>", { class: "listing-product-image", "aria-label": `Ảnh ${categoryProduct.name}` });
-      const $info = $("<div>", { class: "listing-product-info" });
-      const $rating = $("<div>", { class: "listing-product-rating", "aria-label": `${categoryProduct.rating} trên 5 sao` });
 
-      for (let star = 0; star < categoryProduct.rating; star += 1) {
-        $rating.append($("<i>", { class: "bi bi-star-fill", "aria-hidden": "true" }));
-      }
-
-      const $price = $("<div>", { class: "listing-product-price" })
-        .append($("<strong>", { text: categoryProduct.salePrice }))
-        .append($("<del>", { text: categoryProduct.originalPrice }));
-
-      const $addButton = $("<button>", {
-        class: "listing-add-cart",
-        type: "button",
-        "data-product-id": categoryProduct.id,
-        "aria-label": `Thêm ${categoryProduct.name} vào giỏ hàng`
-      }).append($("<i>", { class: "bi bi-basket2-fill", "aria-hidden": "true" }));
-      const $favoriteButton = createFavoriteButton(categoryProduct.name, "listing-favorite-button", categoryProduct.id);
-
-      $info
-        .append($("<p>", { class: "listing-product-brand", text: categoryProduct.brand }))
-        .append($("<h3>", { class: "listing-product-name", text: categoryProduct.name }))
-        .append($rating)
-        .append($price)
-        .append($favoriteButton)
-        .append($addButton);
-
-      $card.append($image, $info);
-      $listingProductGrid.append($card);
+      $listingProductGrid.append(createStoreProductCard(categoryProduct, {
+        cardClass: "listing-product-card",
+        imageClass: "listing-product-image",
+        infoClass: "listing-product-info",
+        brandClass: "listing-product-brand",
+        nameClass: "listing-product-name",
+        ratingClass: "listing-product-rating",
+        priceClass: "listing-product-price",
+        addClass: "listing-add-cart",
+        favoriteClass: "listing-favorite-button",
+        actionsClass: "listing-product-actions product-card-actions"
+      }));
     });
   }
 
@@ -1086,36 +1298,18 @@
   const relatedProducts = listingProducts.slice(0, 5);
 
   function createRelatedProductCard(product) {
-    const $card = $("<article>", { class: "related-product-card", "data-product-key": product.id });
-    const $image = $("<div>", { class: "related-product-image", "aria-label": `Ảnh ${product.name}` });
-    const $info = $("<div>", { class: "related-product-info" });
-    const $rating = $("<div>", { class: "related-product-rating", "aria-label": `${product.rating} trên 5 sao` });
-
-    for (let star = 0; star < product.rating; star += 1) {
-      $rating.append($("<i>", { class: "bi bi-star-fill", "aria-hidden": "true" }));
-    }
-
-    const $price = $("<div>", { class: "related-product-price" })
-      .append($("<strong>", { text: product.salePrice }))
-      .append($("<del>", { text: product.originalPrice }));
-
-    const $addButton = $("<button>", {
-      class: "related-add-cart",
-      type: "button",
-      "aria-label": `Thêm ${product.name} vào giỏ hàng`
-    }).append($("<i>", { class: "bi bi-basket2-fill", "aria-hidden": "true" }));
-    const $favoriteButton = createFavoriteButton(product.name, "related-favorite-button", product.id);
-
-    $info
-      .append($("<p>", { class: "related-product-brand", text: product.brand }))
-      .append($("<h3>", { class: "related-product-name", text: product.name }))
-      .append($rating)
-      .append($price)
-      .append($favoriteButton)
-      .append($addButton);
-
-    $card.append($image, $info);
-    return $card;
+    return createStoreProductCard(product, {
+      cardClass: "related-product-card",
+      imageClass: "related-product-image",
+      infoClass: "related-product-info",
+      brandClass: "related-product-brand",
+      nameClass: "related-product-name",
+      ratingClass: "related-product-rating",
+      priceClass: "related-product-price",
+      addClass: "related-add-cart",
+      favoriteClass: "related-favorite-button",
+      actionsClass: "related-product-actions product-card-actions"
+    });
   }
 
   $.each(relatedProducts, function (_, product) {
@@ -1197,6 +1391,11 @@
 
     const selectedMode = $(event.target).closest("[data-auth-choice]").data("auth-choice");
     openAuthPage(selectedMode || $(this).data("auth-open") || "login");
+  });
+
+  $(document).on("click", "[data-mobile-auth]", function () {
+    setMobileDrawer(false);
+    openAuthPage($(this).data("mobile-auth") || "login");
   });
 
   function openProductDetailPage() {
@@ -1352,6 +1551,11 @@
     const categoryKey = String($(this).attr("href") || "").replace("#", "");
     openListingPage(categoryKey);
 
+    if (window.matchMedia("(max-width: 991.98px)").matches) {
+      setMobileDrawer(false);
+      setCategoryMenu(false);
+    }
+
     if (window.history && window.history.replaceState) {
       window.history.replaceState(null, "", `#${categoryKey}`);
     }
@@ -1504,7 +1708,31 @@
   });
 
   $(".review-filter-box").on("click", "button", function () {
+    const selectedText = $(this).text();
+
     $(this).addClass("is-active").siblings("button").removeClass("is-active");
+    $(".review-filter-toggle span").text(selectedText);
+
+    if (window.matchMedia("(max-width: 767.98px)").matches) {
+      $(".review-filter-toggle")
+        .attr("aria-expanded", "false")
+        .find("i")
+        .addClass("bi-chevron-down")
+        .removeClass("bi-chevron-up");
+      $(".review-filter-box").removeClass("is-open");
+    }
+  });
+
+  $(".review-filter-toggle").on("click", function () {
+    const isOpen = $(this).attr("aria-expanded") === "true";
+
+    $(this)
+      .attr("aria-expanded", !isOpen)
+      .find("i")
+      .toggleClass("bi-chevron-down", isOpen)
+      .toggleClass("bi-chevron-up", !isOpen);
+
+    $(".review-filter-box").toggleClass("is-open", !isOpen);
   });
 
   $(".review-input").on("submit", function (event) {
@@ -1598,6 +1826,46 @@
     $(".listing-limit-menu").prop("hidden", true);
   });
 
+  const $listingSidebar = $(".listing-sidebar");
+  const $listingFilterOverlay = $(".listing-filter-overlay");
+
+  function setListingFilterDrawer(open) {
+    $listingSidebar.toggleClass("is-mobile-open", open);
+    $listingFilterOverlay.toggleClass("is-open", open);
+    $("body").toggleClass("listing-filter-opened", open);
+    $(".listing-filter-open").attr("aria-expanded", open);
+
+    if (open) {
+      $listingSidebar.find(".filter-block").removeClass("is-open");
+      $listingSidebar.find(".filter-title").attr("aria-expanded", "false");
+      $listingSidebar.find(".filter-block > .filter-panel").prop("hidden", true);
+    }
+  }
+
+  $(".listing-filter-open").on("click", function () {
+    setListingFilterDrawer(true);
+  });
+
+  $(".listing-filter-close, .listing-filter-overlay, .listing-filter-apply").on("click", function () {
+    setListingFilterDrawer(false);
+  });
+
+  $(".listing-filter-reset").on("click", function () {
+    $listingSidebar.find('input[type="checkbox"]').prop("checked", false);
+    $priceMinRange.val(0);
+    $priceMaxRange.val(priceLimit);
+    $priceMinInput.val("");
+    $priceMaxInput.val("");
+    updatePriceFilter();
+  });
+
+  $(document).on("keydown", function (event) {
+    if (event.key === "Escape" && $listingSidebar.hasClass("is-mobile-open")) {
+      setListingFilterDrawer(false);
+      $(".listing-filter-open").trigger("focus");
+    }
+  });
+
   $(".listing-sidebar").on("click", "[data-filter-toggle]", function () {
     const $button = $(this);
     const $block = $button.closest(".filter-block");
@@ -1606,7 +1874,9 @@
 
     $block.toggleClass("is-open", isOpen);
     $button.attr("aria-expanded", isOpen);
-    $button.find("i").toggleClass("bi-chevron-down", isOpen).toggleClass("bi-chevron-right", !isOpen);
+    $button.find("i")
+      .toggleClass("bi-chevron-down", isOpen && !$button.find("i").hasClass("bi-plus-lg"))
+      .toggleClass("bi-chevron-right", !isOpen && !$button.find("i").hasClass("bi-plus-lg"));
     $panel.prop("hidden", !isOpen);
   });
 
@@ -2387,10 +2657,25 @@
     openAuthPage("login");
   });
 
+  $(".footer-mobile-toggle").on("click", function () {
+    const $button = $(this);
+    const $column = $button.closest(".footer-links-column");
+    const isOpen = !$column.hasClass("is-open");
+
+    $column.toggleClass("is-open", isOpen);
+    $button.attr("aria-expanded", isOpen);
+    $button.find("i")
+      .toggleClass("bi-chevron-down", !isOpen)
+      .toggleClass("bi-chevron-up", isOpen);
+  });
+
   $(window).on("resize", function () {
+    if (window.matchMedia("(min-width: 431px)").matches) {
+      setListingFilterDrawer(false);
+    }
+
     if (window.matchMedia("(min-width: 992px)").matches) {
-      $primaryNavigation.removeClass("is-open");
-      $mobileMenuButton.attr("aria-expanded", "false").find("i").addClass("bi-list").removeClass("bi-x-lg");
+      setMobileDrawer(false);
     } else {
       setCategoryMenu(false);
     }
