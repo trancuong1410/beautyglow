@@ -6,13 +6,13 @@
   <title>Beauty Glow</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260718-2">
 </head>
 <body>
   <header class="site-header" aria-label="Đầu trang Beauty Glow">
     <div class="header-main">
       <div class="container header-container">
-        <a class="brand-logo" href="#" aria-label="Beauty Glow - Trang chủ">
+        <a class="brand-logo" href="#home" aria-label="Beauty Glow - Trang chủ">
           <img src="assets/images/logo.png" alt="Beauty Glow">
         </a>
 
@@ -27,7 +27,7 @@
           <div class="header-actions">
             <form class="search-form" role="search" novalidate>
               <label class="visually-hidden" for="site-search">Tìm kiếm sản phẩm</label>
-              <input id="site-search" type="search" placeholder="Tìm sản phẩm, danh mục hay thương hiệu mong muốn" autocomplete="off">
+                <input id="site-search" name="site-search" type="search" placeholder="Tìm sản phẩm, danh mục hay thương hiệu mong muốn" autocomplete="off">
               <button type="submit" aria-label="Tìm kiếm">
                 <i class="bi bi-search" aria-hidden="true"></i>
               </button>
@@ -37,9 +37,9 @@
             <button class="account-button header-pill" type="button" data-auth-open="login">
               <i class="bi bi-person-fill" aria-hidden="true"></i>
               <span class="account-button-label">
-                <span data-auth-choice="login">??ng nh?p</span>
+                <span data-auth-choice="login">Đăng nhập</span>
                 <span class="account-separator">/</span>
-                <span data-auth-choice="register">??ng k?</span>
+                <span data-auth-choice="register">Đăng ký</span>
               </span>
             </button>
 
@@ -449,7 +449,7 @@
   <main class="blog-page-main" aria-live="polite" hidden>
     <nav class="blog-page-breadcrumb" aria-label="Đường dẫn Beauty Tips">
       <div class="container blog-page-breadcrumb-container">
-        <a href="#" data-blog-home>Trang chủ</a>
+        <a href="#home" data-blog-home>Trang chủ</a>
         <span>/</span>
         <strong>Beauty Tips</strong>
       </div>
@@ -572,7 +572,7 @@
   <main class="listing-main" aria-live="polite" hidden>
     <nav class="listing-breadcrumb" aria-label="Đường dẫn danh mục">
       <div class="container listing-breadcrumb-container">
-        <a href="#" data-listing-home>Trang chủ</a>
+        <a href="#home" data-listing-home>Trang chủ</a>
         <span>/</span>
         <a href="#categories">Danh mục</a>
         <span>/</span>
@@ -780,17 +780,17 @@
               <div class="filter-panel">
                 <div class="price-slider">
                   <div class="price-slider-track"></div>
-                  <input class="price-range-min" type="range" min="0" max="1000000" step="10000" value="0" aria-label="Giá thấp nhất">
-                  <input class="price-range-max" type="range" min="0" max="1000000" step="10000" value="1000000" aria-label="Giá cao nhất">
+                  <input class="price-range-min" name="price-min-range" type="range" min="0" max="1000000" step="10000" value="0" aria-label="Giá thấp nhất">
+                  <input class="price-range-max" name="price-max-range" type="range" min="0" max="1000000" step="10000" value="1000000" aria-label="Giá cao nhất">
                 </div>
                 <div class="price-range-labels">
                   <span class="price-label-min">0đ</span>
                   <span class="price-label-max">1,000,000đ</span>
                 </div>
                 <div class="price-inputs">
-                  <input class="price-input-min" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Từ" aria-label="Giá từ">
+                  <input class="price-input-min" name="price-min" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Từ" aria-label="Giá từ">
                   <span>-</span>
-                  <input class="price-input-max" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Đến" aria-label="Giá đến">
+                  <input class="price-input-max" name="price-max" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Đến" aria-label="Giá đến">
                 </div>
               </div>
             </div>
@@ -883,7 +883,7 @@
   <main class="product-detail-main" aria-live="polite" hidden>
     <nav class="detail-breadcrumb" aria-label="Đường dẫn chi tiết sản phẩm">
       <div class="container detail-breadcrumb-container">
-        <a href="#" data-detail-home>Trang chủ</a>
+        <a href="#home" data-detail-home>Trang chủ</a>
         <span>/</span>
         <a href="#makeup" data-detail-listing>Trang điểm</a>
         <span>/</span>
@@ -933,7 +933,7 @@
           <div class="product-action-row">
             <div class="product-quantity" aria-label="Số lượng sản phẩm">
               <button class="product-qty-minus" type="button" aria-label="Giảm số lượng">-</button>
-              <input type="text" value="1" inputmode="numeric" aria-label="Số lượng">
+              <input type="text" name="product-quantity" value="1" inputmode="numeric" pattern="[0-9]*" aria-label="Số lượng">
               <button class="product-qty-plus" type="button" aria-label="Tăng số lượng">+</button>
             </div>
 
@@ -1021,7 +1021,7 @@
 
             <form class="review-input" novalidate>
               <button type="button" aria-label="Thêm hình ảnh hoặc video"><i class="bi bi-plus-lg" aria-hidden="true"></i></button>
-              <input type="text" placeholder="Viết chút cảm nghĩ của bạn về sản phẩm" aria-label="Viết đánh giá">
+              <input type="text" name="review-content" placeholder="Viết chút cảm nghĩ của bạn về sản phẩm" aria-label="Viết đánh giá" required>
               <button type="submit" aria-label="Gửi đánh giá"><i class="bi bi-send-fill" aria-hidden="true"></i></button>
             </form>
 
@@ -1076,7 +1076,7 @@
   <main class="auth-main" aria-live="polite" hidden>
     <nav class="auth-breadcrumb" aria-label="Đường dẫn tài khoản">
       <div class="container auth-breadcrumb-container">
-        <a href="#" data-auth-home>Trang chủ</a>
+        <a href="#home" data-auth-home>Trang chủ</a>
         <span>/</span>
         <strong data-auth-breadcrumb-current>Đăng nhập</strong>
       </div>
@@ -1099,7 +1099,7 @@
             <label for="login-email">Địa chỉ Email</label>
             <div class="auth-input">
               <i class="bi bi-envelope" aria-hidden="true"></i>
-              <input id="login-email" type="email" placeholder="Nhập email của bạn" autocomplete="email" required>
+              <input id="login-email" name="login-email" type="email" placeholder="Nhập email của bạn" autocomplete="email" required>
             </div>
           </div>
 
@@ -1110,7 +1110,7 @@
             </div>
             <div class="auth-input">
               <i class="bi bi-lock" aria-hidden="true"></i>
-              <input id="login-password" type="password" placeholder="Nhập mật khẩu" autocomplete="current-password" required>
+              <input id="login-password" name="login-password" type="password" minlength="6" placeholder="Nhập mật khẩu" autocomplete="current-password" required>
               <button class="auth-password-toggle" type="button" aria-label="Hiện mật khẩu">
                 <i class="bi bi-eye-slash" aria-hidden="true"></i>
               </button>
@@ -1135,7 +1135,7 @@
             <label for="register-name">Họ và tên</label>
             <div class="auth-input">
               <i class="bi bi-person" aria-hidden="true"></i>
-              <input id="register-name" type="text" placeholder="Nhập họ và tên" autocomplete="name" required>
+              <input id="register-name" name="register-name" type="text" placeholder="Nhập họ và tên" autocomplete="name" required>
             </div>
           </div>
 
@@ -1143,7 +1143,7 @@
             <label for="register-phone">Số điện thoại</label>
             <div class="auth-input">
               <i class="bi bi-telephone" aria-hidden="true"></i>
-              <input id="register-phone" type="tel" placeholder="Nhập số điện thoại" autocomplete="tel" required>
+              <input id="register-phone" name="register-phone" type="tel" inputmode="numeric" pattern="[0-9]{9,11}" maxlength="11" placeholder="Nhập số điện thoại" autocomplete="tel" required>
             </div>
           </div>
 
@@ -1151,7 +1151,7 @@
             <label for="register-email">Địa chỉ Email</label>
             <div class="auth-input">
               <i class="bi bi-envelope" aria-hidden="true"></i>
-              <input id="register-email" type="email" placeholder="Nhập email của bạn" autocomplete="email" required>
+              <input id="register-email" name="register-email" type="email" placeholder="Nhập email của bạn" autocomplete="email" required>
             </div>
           </div>
 
@@ -1159,7 +1159,7 @@
             <label for="register-password">Mật khẩu</label>
             <div class="auth-input">
               <i class="bi bi-lock" aria-hidden="true"></i>
-              <input id="register-password" type="password" placeholder="Tạo mật khẩu" autocomplete="new-password" required>
+              <input id="register-password" name="register-password" type="password" minlength="6" placeholder="Tạo mật khẩu" autocomplete="new-password" required>
               <button class="auth-password-toggle" type="button" aria-label="Hiện mật khẩu">
                 <i class="bi bi-eye-slash" aria-hidden="true"></i>
               </button>
@@ -1170,7 +1170,7 @@
             <label for="register-confirm-password">Xác nhận mật khẩu</label>
             <div class="auth-input">
               <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>
-              <input id="register-confirm-password" type="password" placeholder="Nhập lại mật khẩu" autocomplete="new-password" required>
+              <input id="register-confirm-password" name="register-confirm-password" type="password" minlength="6" placeholder="Nhập lại mật khẩu" autocomplete="new-password" required>
               <button class="auth-password-toggle" type="button" aria-label="Hiện mật khẩu">
                 <i class="bi bi-eye-slash" aria-hidden="true"></i>
               </button>
@@ -1207,7 +1207,7 @@
   <main class="account-main" aria-live="polite" hidden>
     <nav class="account-breadcrumb" aria-label="Đường dẫn tài khoản">
       <div class="container account-breadcrumb-container">
-        <a href="#" data-account-home>Trang chủ</a>
+        <a href="#home" data-account-home>Trang chủ</a>
         <span>/</span>
         <a href="#account">Tài khoản</a>
         <span>/</span>
@@ -1241,11 +1241,11 @@
           <form class="account-profile-form" data-account-profile-form hidden novalidate>
             <label>
               Họ và tên
-              <input type="text" placeholder="Nhập họ và tên" data-profile-fullname-input>
+              <input type="text" name="profile-fullname" placeholder="Nhập họ và tên" data-profile-fullname-input>
             </label>
             <label>
               Giới tính
-              <select data-profile-gender-input>
+              <select name="profile-gender" data-profile-gender-input>
                 <option value="">Chọn giới tính</option>
                 <option value="Nam">Nam</option>
                 <option value="Nữ">Nữ</option>
@@ -1254,11 +1254,11 @@
             </label>
             <label>
               Ngày sinh
-              <input type="date" data-profile-birthday-input>
+              <input type="date" name="profile-birthday" data-profile-birthday-input>
             </label>
             <label>
               Số điện thoại
-              <input type="tel" placeholder="Nhập số điện thoại" data-profile-phone-input>
+              <input type="tel" name="profile-phone" inputmode="numeric" pattern="[0-9]{9,11}" maxlength="11" placeholder="Nhập số điện thoại" data-profile-phone-input>
             </label>
             <div class="account-profile-form-actions">
               <button type="submit">Lưu thông tin</button>
@@ -1288,7 +1288,7 @@
             <h2>Đơn hàng của bạn</h2>
             <form class="account-order-search" novalidate>
               <label class="visually-hidden" for="account-order-search">Tìm đơn hàng</label>
-              <input id="account-order-search" type="search" placeholder="Tìm theo tên đơn, mã đơn, hoặc ghi tên sản phẩm...">
+                <input id="account-order-search" name="account-order-search" type="search" placeholder="Tìm theo tên đơn, mã đơn, hoặc ghi tên sản phẩm...">
               <button type="submit" aria-label="Tìm kiếm đơn hàng">
                 <i class="bi bi-search" aria-hidden="true"></i>
               </button>
@@ -1374,7 +1374,7 @@
               <p>Có <span data-favorite-count>0</span> sản phẩm</p>
             </div>
             <div class="account-favorites-actions">
-              <label><input type="checkbox" data-favorite-select-all> Chọn tất cả</label>
+              <label><input type="checkbox" name="favorite-select-all" data-favorite-select-all> Chọn tất cả</label>
               <button class="account-favorites-add-selected" type="button"><i class="bi bi-basket2-fill" aria-hidden="true"></i> THÊM VÀO GIỎ</button>
             </div>
           </div>
@@ -1389,7 +1389,7 @@
   <main class="lookup-main" aria-live="polite" hidden>
     <nav class="lookup-breadcrumb" aria-label="Đường dẫn trang tra cứu">
       <div class="container lookup-breadcrumb-container">
-        <a href="#" data-lookup-home>Trang chủ</a>
+        <a href="#home" data-lookup-home>Trang chủ</a>
         <span>/</span>
         <strong>Tra cứu đơn hàng</strong>
       </div>
@@ -1402,7 +1402,7 @@
 
         <label class="lookup-field">
           <span>Mã đơn <em>*</em></span>
-          <input type="text" placeholder="Nhập mã đơn" required>
+            <input type="text" name="lookup-order-code" placeholder="Nhập mã đơn" required>
         </label>
 
         <div class="lookup-radio-group">
@@ -1415,7 +1415,7 @@
 
         <label class="lookup-field">
           <span class="visually-hidden">Thông tin tra cứu</span>
-          <input type="email" placeholder="Nhập email của bạn" data-lookup-contact required>
+            <input type="email" name="lookup-contact" placeholder="Nhập email của bạn" data-lookup-contact required>
         </label>
 
         <button type="submit">Tra cứu ngay</button>
@@ -1427,7 +1427,7 @@
   <main class="cart-main" aria-live="polite" hidden>
     <nav class="cart-breadcrumb" aria-label="Đường dẫn giỏ hàng">
       <div class="container cart-breadcrumb-container">
-        <a href="#" data-cart-home>Trang chủ</a>
+        <a href="#home" data-cart-home>Trang chủ</a>
         <span>/</span>
         <strong>Giỏ hàng</strong>
       </div>
@@ -1440,7 +1440,7 @@
             <div class="cart-list-header">
               <h1 id="cart-page-title">GIỎ HÀNG <span>(<span data-cart-page-count>0</span> Sản phẩm)</span></h1>
               <div class="cart-list-actions">
-                <label><input type="checkbox" data-cart-select-all> Chọn tất cả</label>
+            <label><input type="checkbox" name="cart-select-all" data-cart-select-all> Chọn tất cả</label>
                 <button type="button" data-cart-clear>Xóa hết</button>
               </div>
             </div>
@@ -1453,7 +1453,7 @@
             <div class="cart-coupon">
               <h3>Mã giảm giá</h3>
               <div>
-                <input type="text" placeholder="Nhập mã giảm giá của bạn">
+                <input type="text" name="cart-coupon" placeholder="Nhập mã giảm giá của bạn">
                 <button type="button">Áp dụng</button>
               </div>
             </div>
@@ -1482,7 +1482,7 @@
   <main class="checkout-main" aria-live="polite" hidden>
     <nav class="checkout-breadcrumb" aria-label="Đường dẫn thanh toán">
       <div class="container checkout-breadcrumb-container">
-        <a href="#" data-checkout-home>Trang chủ</a>
+        <a href="#home" data-checkout-home>Trang chủ</a>
         <span>/</span>
         <strong>Thanh toán</strong>
       </div>
@@ -1490,43 +1490,43 @@
 
     <section class="checkout-section" aria-labelledby="checkout-title">
       <div class="checkout-container">
-        <div class="checkout-layout">
+        <form class="checkout-layout checkout-form" novalidate>
           <div class="checkout-left">
             <section class="checkout-card checkout-shipping-info">
               <h1 id="checkout-title">THÔNG TIN GIAO HÀNG</h1>
               <div class="checkout-card-body">
                 <fieldset class="checkout-radio-row">
                   <legend>Loại địa chỉ *</legend>
-                  <label><input type="radio" name="checkout-address-type" checked> Nhà riêng</label>
-                  <label><input type="radio" name="checkout-address-type"> Công ty</label>
+                  <label><input type="radio" name="checkout-address-type" value="home" checked required> Nhà riêng</label>
+                  <label><input type="radio" name="checkout-address-type" value="company" required> Công ty</label>
                 </fieldset>
 
                 <div class="checkout-form-grid">
                   <label>Họ và tên *
-                    <input type="text" placeholder="Nhập họ và tên">
+                    <input type="text" name="checkout-name" autocomplete="name" placeholder="Nhập họ và tên" required>
                   </label>
                   <label>Số điện thoại *
-                    <input type="tel" placeholder="Nhập số điện thoại">
+                    <input type="tel" name="checkout-phone" inputmode="numeric" pattern="[0-9]{9,11}" maxlength="11" autocomplete="tel" placeholder="Nhập số điện thoại" required>
                   </label>
                   <label>Email *
-                    <input type="email" placeholder="Nhập địa chỉ email">
+                    <input type="email" name="checkout-email" autocomplete="email" placeholder="Nhập địa chỉ email" required>
                   </label>
                 </div>
 
                 <label class="checkout-full-field">Địa chỉ nhận hàng *
-                  <input type="text" placeholder="Số nhà, tên đường, phường/xã...">
+                  <input type="text" name="checkout-address" autocomplete="street-address" placeholder="Số nhà, tên đường, phường/xã..." required>
                 </label>
 
                 <div class="checkout-form-grid">
-                  <select aria-label="Chọn Tỉnh/Thành phố">
-                    <option>Chọn Tỉnh/Thành phố</option>
+                  <select name="checkout-city" aria-label="Chọn Tỉnh/Thành phố" required>
+                    <option value="" selected disabled>Chọn Tỉnh/Thành phố</option>
                     <option>Cần Thơ</option>
                     <option>Hồ Chí Minh</option>
                     <option>Hà Nội</option>
                     <option>Đà Nẵng</option>
                   </select>
-                  <select aria-label="Chọn Quận/Huyện">
-                    <option>Chọn Quận/Huyện</option>
+                  <select name="checkout-district" aria-label="Chọn Quận/Huyện" required>
+                    <option value="" selected disabled>Chọn Quận/Huyện</option>
                     <option>Ninh Kiều</option>
                     <option>Quận 1</option>
                     <option>Ba Đình</option>
@@ -1535,7 +1535,7 @@
                 </div>
 
                 <label class="checkout-note-field">Ghi chú đơn hàng
-                  <textarea placeholder="Nhập nội dung"></textarea>
+                  <textarea name="checkout-note" placeholder="Nhập nội dung"></textarea>
                 </label>
               </div>
             </section>
@@ -1544,12 +1544,12 @@
               <h2>PHƯƠNG THỨC VẬN CHUYỂN</h2>
               <div class="checkout-card-body">
                 <label class="checkout-option-card">
-                  <input type="radio" name="checkout-delivery" value="15000" checked>
+                  <input type="radio" name="checkout-delivery" value="15000" checked required>
                   <span><strong>Giao hàng Tiêu chuẩn</strong><small>Nhận hàng trong 2-4 ngày làm việc</small></span>
                   <b>15.000đ</b>
                 </label>
                 <label class="checkout-option-card">
-                  <input type="radio" name="checkout-delivery" value="30000">
+                  <input type="radio" name="checkout-delivery" value="30000" required>
                   <span><strong>Giao hàng Nhanh (Hỏa tốc)</strong><small>Nhận hàng trong 24h (chỉ áp dụng nội thành)</small></span>
                   <b>30.000đ</b>
                 </label>
@@ -1559,10 +1559,10 @@
             <section class="checkout-card checkout-payment-methods">
               <h2>PHƯƠNG THỨC THANH TOÁN</h2>
               <div class="checkout-card-body checkout-payment-grid">
-                <label class="checkout-option-card"><input type="radio" name="checkout-payment" checked><span><strong>Thanh toán khi nhận hàng (COD)</strong></span></label>
-                <label class="checkout-option-card"><input type="radio" name="checkout-payment"><span><strong>Ví MoMo</strong></span></label>
-                <label class="checkout-option-card"><input type="radio" name="checkout-payment"><span><strong>Chuyển khoản ngân hàng</strong></span></label>
-                <label class="checkout-option-card"><input type="radio" name="checkout-payment"><span><strong>ZaloPay</strong></span></label>
+                <label class="checkout-option-card"><input type="radio" name="checkout-payment" value="cod" checked required><span><strong>Thanh toán khi nhận hàng (COD)</strong></span></label>
+                <label class="checkout-option-card"><input type="radio" name="checkout-payment" value="momo" required><span><strong>Ví MoMo</strong></span></label>
+                <label class="checkout-option-card"><input type="radio" name="checkout-payment" value="bank" required><span><strong>Chuyển khoản ngân hàng</strong></span></label>
+                <label class="checkout-option-card"><input type="radio" name="checkout-payment" value="zalopay" required><span><strong>ZaloPay</strong></span></label>
               </div>
             </section>
           </div>
@@ -1582,7 +1582,7 @@
               <div class="checkout-coupon">
                 <h3>Mã giảm giá</h3>
                 <div>
-                  <input type="text" placeholder="Nhập mã giảm giá của bạn">
+                  <input type="text" name="checkout-coupon" placeholder="Nhập mã giảm giá của bạn">
                   <button type="button">Áp dụng</button>
                 </div>
               </div>
@@ -1596,10 +1596,29 @@
                 <span>Tổng cộng</span>
                 <strong data-checkout-total>0đ</strong>
               </div>
-              <button class="checkout-submit-button" type="button">Thanh toán ngay <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+              <button class="checkout-submit-button" type="submit">Thanh toán ngay <i class="bi bi-arrow-right" aria-hidden="true"></i></button>
+              <p class="checkout-status" role="status" aria-live="polite"></p>
             </section>
           </aside>
-        </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <main class="thank-you-main" aria-live="polite" hidden>
+    <nav class="checkout-breadcrumb" aria-label="Đường dẫn cảm ơn">
+      <div class="container checkout-breadcrumb-container">
+        <a href="#home" data-thank-you-home>Trang chủ</a>
+        <span>/</span>
+        <strong>Đặt hàng thành công</strong>
+      </div>
+    </nav>
+    <section class="thank-you-section" aria-labelledby="thank-you-title">
+      <div class="thank-you-card">
+        <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+        <h1 id="thank-you-title">Cảm ơn bạn đã đặt hàng</h1>
+        <p>Đơn hàng mẫu đã được ghi nhận. Beauty Glow sẽ sớm liên hệ để xác nhận thông tin.</p>
+        <button type="button" data-thank-you-home>Tiếp tục mua sắm</button>
       </div>
     </section>
   </main>
@@ -1616,8 +1635,8 @@
     <form class="address-drawer-form" novalidate>
       <section>
         <h3>Thông tin người nhận</h3>
-        <input type="text" placeholder="Họ và tên" aria-label="Họ và tên" data-address-name-input>
-        <input type="tel" placeholder="Số điện thoại" aria-label="Số điện thoại" data-address-phone-input>
+        <input type="text" name="address-name" placeholder="Họ và tên" aria-label="Họ và tên" data-address-name-input required>
+        <input type="tel" name="address-phone" inputmode="numeric" pattern="[0-9]{9,11}" maxlength="11" placeholder="Số điện thoại" aria-label="Số điện thoại" data-address-phone-input required>
       </section>
 
       <section>
@@ -1662,7 +1681,7 @@
           </button>
           <div class="address-select-menu" data-address-ward-menu hidden></div>
         </div>
-        <input type="text" placeholder="Nhập địa chỉ cụ thể" aria-label="Nhập địa chỉ cụ thể" data-address-detail-input>
+        <input type="text" name="address-detail" placeholder="Nhập địa chỉ cụ thể" aria-label="Nhập địa chỉ cụ thể" data-address-detail-input required>
       </section>
 
       <section class="address-type-section">
@@ -1676,10 +1695,11 @@
       <section class="address-default-section">
         <span>Đặt làm địa chỉ mặc định</span>
         <label class="address-switch">
-          <input type="checkbox" aria-label="Đặt làm địa chỉ mặc định">
+          <input type="checkbox" name="address-default" aria-label="Đặt làm địa chỉ mặc định">
           <span></span>
         </label>
       </section>
+      <p class="address-form-status" role="status" aria-live="polite"></p>
     </form>
 
     <div class="address-drawer-footer">
@@ -1714,7 +1734,7 @@
 
         <form class="newsletter-form" novalidate>
           <label class="visually-hidden" for="newsletter-email">Email nhận bản tin</label>
-          <input id="newsletter-email" type="email" placeholder="Điền email của bạn" autocomplete="email">
+          <input id="newsletter-email" name="newsletter-email" type="email" placeholder="Điền email của bạn" autocomplete="email" required>
           <button type="submit">THEO DÕI</button>
           <span class="newsletter-status" aria-live="polite"></span>
         </form>
@@ -1724,7 +1744,7 @@
     <div class="container footer-container">
       <section class="footer-contact" aria-labelledby="contact-title">
         <h2 id="contact-title">Thông tin liên hệ</h2>
-        <a class="footer-logo" href="#" aria-label="Beauty Glow - Trang chủ">
+        <a class="footer-logo" href="#home" aria-label="Beauty Glow - Trang chủ">
           <img src="assets/images/logo.png" alt="Beauty Glow">
         </a>
         <p class="footer-description">Đồng hành cùng bạn trên hành trình chăm sóc sắc đẹp mỗi ngày với các sản phẩm mỹ phẩm chất lượng, an toàn và phù hợp với mọi nhu cầu làm đẹp.</p>
@@ -1808,31 +1828,8 @@
     </div>
   </footer>
 
-  <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title fs-5" id="accountModalLabel">Tài khoản Beauty Glow</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-        </div>
-        <div class="modal-body">Chức năng đăng nhập và đăng ký sẽ được hoàn thiện ở phần tiếp theo.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartPanel" aria-labelledby="cartPanelLabel">
-    <div class="offcanvas-header">
-      <h2 class="offcanvas-title fs-5" id="cartPanelLabel">Giỏ hàng</h2>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Đóng"></button>
-    </div>
-    <div class="offcanvas-body cart-empty-state">
-      <i class="bi bi-basket2" aria-hidden="true"></i>
-      <p>Giỏ hàng của bạn đang trống.</p>
-    </div>
-  </div>
-
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=20260718-2"></script>
 </body>
 </html>

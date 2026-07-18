@@ -175,8 +175,9 @@
     $saleGrid.append(createStoreProductCard(product));
   });
 
+  const cartStorageKey = "beautyGlowCart";
   let cartCount = 0;
-  let cartItems = [];
+  let cartItems = loadCartItems();
   let favoriteProducts = [];
   let currentDetailProduct = catalogProductAt(1, "detail-cocoon-coffee");
 
@@ -224,7 +225,8 @@
       $image.append($("<img>", {
         class: "product-card-image",
         src: product.image || productImages[0],
-        alt: product.name
+        alt: product.name,
+        loading: "lazy"
       }));
     }
 
@@ -265,9 +267,46 @@
     return `${Number(value || 0).toLocaleString("vi-VN")}đ`;
   }
 
+  function loadCartItems() {
+    try {
+      const storedCart = JSON.parse(window.localStorage.getItem(cartStorageKey) || "[]");
+
+      if (!Array.isArray(storedCart)) {
+        return [];
+      }
+
+      return storedCart.filter(function (item) {
+        return item && item.key && item.name && Number.isFinite(Number(item.price));
+      }).map(function (item) {
+        return {
+          key: String(item.key),
+          brand: String(item.brand || "Beauty Glow"),
+          name: String(item.name),
+          price: Math.max(0, Number(item.price) || 0),
+          image: String(item.image || ""),
+          quantity: Math.max(1, Number(item.quantity) || 1),
+          selected: item.selected !== false
+        };
+      });
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function saveCartItems() {
+    try {
+      window.localStorage.setItem(cartStorageKey, JSON.stringify(cartItems));
+    } catch (error) {
+      // Giỏ hàng vẫn hoạt động trong phiên hiện tại nếu trình duyệt chặn lưu trữ.
+    }
+  }
+
   function getCartTotals(shippingOverride) {
-    const hasItems = cartItems.length > 0;
-    const subtotal = cartItems.reduce(function (total, item) {
+    const selectedItems = cartItems.filter(function (item) {
+      return item.selected !== false;
+    });
+    const hasItems = selectedItems.length > 0;
+    const subtotal = selectedItems.reduce(function (total, item) {
       return total + item.price * item.quantity;
     }, 0);
     const shipping = hasItems ? (Number(shippingOverride) || 15000) : 0;
@@ -315,21 +354,27 @@
   function renderCartPage() {
     const $cartItems = $("[data-cart-items]");
     const totals = getCartTotals();
+    const selectedCount = cartItems.reduce(function (total, item) {
+      return total + (item.selected !== false ? item.quantity : 0);
+    }, 0);
 
     $cartItems.empty();
     $("[data-cart-page-empty]").prop("hidden", totals.hasItems);
     $("[data-cart-page-count]").text(cartCount);
-    $("[data-cart-selected-count]").text(cartCount);
+    $("[data-cart-selected-count]").text(selectedCount);
     $("[data-cart-subtotal]").text(formatVnd(totals.subtotal));
     $("[data-cart-shipping]").text(formatVnd(totals.shipping));
     $("[data-cart-discount]").text(totals.hasItems ? `-${formatVnd(totals.discount)}` : "0đ");
     $("[data-cart-total]").text(formatVnd(totals.total));
+    $(".cart-checkout-button")
+      .prop("disabled", !totals.hasItems)
+      .attr("aria-disabled", totals.hasItems ? "false" : "true");
 
     $.each(cartItems, function (_, item) {
       const $item = $("<article>", { class: "cart-item", "data-cart-key": item.key });
 
       $item
-        .append($("<div>", { class: "cart-item-image" }).append(item.image ? $("<img>", { src: item.image, alt: item.name }) : []))
+        .append($("<div>", { class: "cart-item-image" }).append(item.image ? $("<img>", { src: item.image, alt: item.name, loading: "lazy" }) : []))
         .append(
           $("<div>", { class: "cart-item-info" })
             .append($("<h3>", { text: item.name }))
@@ -342,30 +387,39 @@
         )
         .append(
           $("<div>", { class: "cart-item-quantity" })
-            .append($("<button>", { type: "button", "data-cart-minus": "", text: "−" }))
+            .append($("<button>", { type: "button", "data-cart-minus": "", text: "−", disabled: item.quantity <= 1, "aria-label": "Giảm số lượng" }))
             .append($("<span>", { text: item.quantity }))
-            .append($("<button>", { type: "button", "data-cart-plus": "", text: "+" }))
+            .append($("<button>", { type: "button", "data-cart-plus": "", text: "+", "aria-label": "Tăng số lượng" }))
         )
         .append($("<div>", { class: "cart-item-price" }).append("Tạm tính").append($("<strong>", { text: formatVnd(item.price * item.quantity) })))
-        .append($("<input>", { class: "cart-item-check", type: "checkbox", checked: true, "aria-label": "Chọn sản phẩm" }));
+        .append($("<input>", { class: "cart-item-check", type: "checkbox", name: "cart-item", checked: item.selected !== false, "aria-label": "Chọn sản phẩm" }));
 
       $cartItems.append($item);
     });
 
-    $("[data-cart-select-all]").prop("checked", totals.hasItems);
+    $("[data-cart-select-all]").prop("checked", cartItems.length > 0 && cartItems.every(function (item) {
+      return item.selected !== false;
+    }));
   }
 
   function renderCheckoutPage() {
     const selectedShipping = $('input[name="checkout-delivery"]:checked').val();
     const totals = getCartTotals(selectedShipping);
     const $preview = $("[data-checkout-cart-preview]");
+    const selectedCount = cartItems.reduce(function (total, item) {
+      return total + (item.selected !== false ? item.quantity : 0);
+    }, 0);
 
     $preview.empty();
 
-    if (!cartItems.length) {
+    const checkoutItems = cartItems.filter(function (item) {
+      return item.selected !== false;
+    });
+
+    if (!checkoutItems.length) {
       $preview.append($("<p>", { class: "cart-page-empty", text: "Giỏ hàng của bạn đang trống." }));
     } else {
-      const firstItem = cartItems[0];
+      const firstItem = checkoutItems[0];
 
       $preview.append(
         $("<article>", { class: "checkout-cart-item" })
@@ -373,19 +427,22 @@
           .append(
             $("<div>", { class: "checkout-cart-info" })
               .append($("<h3>", { text: firstItem.name }))
-              .append($("<p>", { text: `Số lượng: ${String(cartCount).padStart(2, "0")}` }))
+              .append($("<p>", { text: `Số lượng: ${String(selectedCount).padStart(2, "0")}` }))
               .append($("<p>").append("Thành tiền: ").append($("<strong>", { text: formatVnd(totals.subtotal) })))
           )
       );
     }
 
-    $("[data-checkout-cart-count]").text(cartCount);
+    $("[data-checkout-cart-count]").text(selectedCount);
     $("[data-checkout-cart-total]").text(formatVnd(totals.subtotal));
-    $("[data-checkout-selected-count]").text(String(cartCount).padStart(2, "0"));
+    $("[data-checkout-selected-count]").text(String(selectedCount).padStart(2, "0"));
     $("[data-checkout-subtotal]").text(formatVnd(totals.subtotal));
     $("[data-checkout-shipping]").text(formatVnd(totals.shipping));
     $("[data-checkout-discount]").text(totals.hasItems ? `-${formatVnd(totals.discount)}` : "0đ");
     $("[data-checkout-total]").text(formatVnd(totals.total));
+    $(".checkout-submit-button")
+      .prop("disabled", !totals.hasItems)
+      .attr("aria-disabled", totals.hasItems ? "false" : "true");
   }
 
   function addCartProduct(product, quantity) {
@@ -396,15 +453,18 @@
 
     if (existing) {
       existing.quantity += amount;
+      existing.selected = true;
     } else {
       cartItems.push({
         ...product,
-        quantity: amount
+        quantity: amount,
+        selected: true
       });
     }
 
     updateCartCount();
     renderCartPage();
+    saveCartItems();
   }
 
   function getFavoriteKey(productName) {
@@ -487,7 +547,7 @@
   function createAccountFavoriteCard(product) {
     const $card = $("<article>", { class: "account-favorite-card", "data-favorite-key": product.key });
     const $check = $("<label>", { class: "account-favorite-check" })
-      .append($("<input>", { type: "checkbox", "aria-label": "Chọn sản phẩm yêu thích" }));
+      .append($("<input>", { type: "checkbox", name: "favorite-item", "aria-label": "Chọn sản phẩm yêu thích" }));
     const $image = $("<div>", { class: "account-favorite-image", "aria-label": `Ảnh ${product.name}` })
       .append(product.image ? $("<img>", { src: product.image, alt: product.name }) : []);
     const $info = $("<div>", { class: "account-favorite-info" });
@@ -529,6 +589,7 @@
   }
 
   updateCartCount();
+  renderCartPage();
   renderFavoriteProducts();
 
   $saleGrid.on("click", ".sale-add-cart", function () {
@@ -1219,6 +1280,7 @@
   const $lookupMain = $(".lookup-main");
   const $cartMain = $(".cart-main");
   const $checkoutMain = $(".checkout-main");
+  const $thankYouMain = $(".thank-you-main");
   const $authSection = $(".auth-section");
   const $floatingTools = $(".floating-tools");
 
@@ -1464,6 +1526,7 @@
   }
 
   function openAuthPage(mode) {
+    $thankYouMain.prop("hidden", true);
     $homeMain.prop("hidden", true);
     $blogPageMain.prop("hidden", true);
     $listingMain.prop("hidden", true);
@@ -1479,6 +1542,7 @@
   }
 
   function openListingPage(categoryKey) {
+    $thankYouMain.prop("hidden", true);
     setListingCategory(categoryKey || currentListingCategory);
     $homeMain.prop("hidden", true);
     $blogPageMain.prop("hidden", true);
@@ -1495,6 +1559,7 @@
   }
 
   function openHomePage() {
+    $thankYouMain.prop("hidden", true);
     $authMain.prop("hidden", true);
     $accountMain.prop("hidden", true);
     $blogPageMain.prop("hidden", true);
@@ -1567,6 +1632,7 @@
   }
 
   function openProductDetailPage(product) {
+    $thankYouMain.prop("hidden", true);
     renderProductDetail(product);
     $homeMain.prop("hidden", true);
     $blogPageMain.prop("hidden", true);
@@ -1583,6 +1649,7 @@
   }
 
   function openLookupPage() {
+    $thankYouMain.prop("hidden", true);
     $homeMain.prop("hidden", true);
     $blogPageMain.prop("hidden", true);
     $listingMain.prop("hidden", true);
@@ -1598,6 +1665,7 @@
   }
 
   function openCartPage() {
+    $thankYouMain.prop("hidden", true);
     $homeMain.prop("hidden", true);
     $blogPageMain.prop("hidden", true);
     $listingMain.prop("hidden", true);
@@ -1614,6 +1682,12 @@
   }
 
   function openCheckoutPage() {
+    if (!getCartTotals().hasItems) {
+      openCartPage();
+      return;
+    }
+
+    $thankYouMain.prop("hidden", true);
     $homeMain.prop("hidden", true);
     $blogPageMain.prop("hidden", true);
     $listingMain.prop("hidden", true);
@@ -1629,7 +1703,24 @@
     $("html, body").stop(true, true).scrollTop(0);
   }
 
+  function openThankYouPage() {
+    $homeMain.prop("hidden", true);
+    $blogPageMain.prop("hidden", true);
+    $listingMain.prop("hidden", true);
+    $productDetailMain.prop("hidden", true);
+    $authMain.prop("hidden", true);
+    $accountMain.prop("hidden", true);
+    $lookupMain.prop("hidden", true);
+    $cartMain.prop("hidden", true);
+    $checkoutMain.prop("hidden", true);
+    $thankYouMain.prop("hidden", false);
+    $floatingTools.prop("hidden", true);
+    setCategoryMenu(false);
+    $("html, body").stop(true, true).scrollTop(0);
+  }
+
   function openBlogPage() {
+    $thankYouMain.prop("hidden", true);
     $homeMain.prop("hidden", true);
     $listingMain.prop("hidden", true);
     $productDetailMain.prop("hidden", true);
@@ -1665,7 +1756,70 @@
   });
 
   $(".cart-checkout-button").on("click", function () {
+    if (!getCartTotals().hasItems) {
+      return;
+    }
     openCheckoutPage();
+  });
+
+  $(".checkout-form").on("submit", function (event) {
+    event.preventDefault();
+
+    const form = this;
+    const $status = $(form).find(".checkout-status");
+
+    if (!getCartTotals().hasItems) {
+      $status.text("Giỏ hàng đang trống. Vui lòng thêm sản phẩm trước khi thanh toán.");
+      return;
+    }
+
+    if (!form.checkValidity()) {
+      const $invalidField = $(form).find(":input").filter(function () {
+        return !this.checkValidity();
+      }).first();
+
+      $status.text("Vui lòng nhập đầy đủ thông tin giao hàng hợp lệ.");
+      $invalidField.trigger("focus");
+      return;
+    }
+
+    const orderItems = cartItems.filter(function (item) {
+      return item.selected !== false;
+    }).map(function (item) {
+      return { ...item };
+    });
+    const totals = getCartTotals($(form).find('input[name="checkout-delivery"]:checked').val());
+
+    if (typeof accountOrders !== "undefined" && orderItems.length) {
+      accountOrders.unshift({
+        code: `BG${Date.now()}`,
+        date: new Date().toLocaleDateString("vi-VN"),
+        status: "Đang xử lý",
+        product: orderItems[0],
+        quantity: orderItems.reduce(function (total, item) {
+          return total + item.quantity;
+        }, 0),
+        total: totals.total
+      });
+      renderAccountOrders();
+    }
+
+    cartItems = [];
+    saveCartItems();
+    updateCartCount();
+    renderCartPage();
+    form.reset();
+    $status.text("");
+    openThankYouPage();
+  });
+
+  $(document).on("input", "#register-phone, .checkout-form input[name=\"checkout-phone\"], [data-address-phone-input], [data-lookup-contact][type=\"tel\"]", function () {
+    $(this).val($(this).val().replace(/\D/g, "").slice(0, 11));
+  });
+
+  $("[data-thank-you-home]").on("click", function (event) {
+    event.preventDefault();
+    openHomePage();
   });
 
   $('input[name="checkout-delivery"]').on("change", function () {
@@ -1683,6 +1837,9 @@
     $("[data-lookup-contact]")
       .attr("type", isPhone ? "tel" : "email")
       .attr("placeholder", isPhone ? "Nhập số điện thoại nhận hàng" : "Nhập email của bạn")
+      .attr("inputmode", isPhone ? "numeric" : "email")
+      .attr("pattern", isPhone ? "[0-9]{9,11}" : "")
+      .attr("maxlength", isPhone ? "11" : "")
       .val("");
     $(".lookup-status").text("");
   });
@@ -1693,8 +1850,13 @@
     const orderCode = $.trim($(this).find('input[type="text"]').val());
     const contact = $.trim($("[data-lookup-contact]").val());
 
-    if (!orderCode || !contact) {
-      $(".lookup-status").text("Vui lòng nhập đầy đủ thông tin tra cứu.");
+    const contactInput = $("[data-lookup-contact]")[0];
+
+    if (!orderCode || !contact || !contactInput || !contactInput.checkValidity()) {
+      $(".lookup-status").text("Vui lòng nhập đầy đủ thông tin tra cứu hợp lệ.");
+      if (contactInput && !contactInput.checkValidity()) {
+        contactInput.focus();
+      }
       return;
     }
 
@@ -1820,17 +1982,12 @@
     if ($(this).is("[data-cart-plus]")) {
       item.quantity += 1;
     } else {
-      item.quantity -= 1;
-    }
-
-    if (item.quantity <= 0) {
-      cartItems = cartItems.filter(function (cartItem) {
-        return cartItem.key !== key;
-      });
+      item.quantity = Math.max(1, item.quantity - 1);
     }
 
     updateCartCount();
     renderCartPage();
+    saveCartItems();
   });
 
   $("[data-cart-items]").on("click", ".cart-item-remove", function () {
@@ -1842,16 +1999,39 @@
 
     updateCartCount();
     renderCartPage();
+    saveCartItems();
   });
 
   $("[data-cart-clear]").on("click", function () {
     cartItems = [];
     updateCartCount();
     renderCartPage();
+    saveCartItems();
   });
 
   $("[data-cart-select-all]").on("change", function () {
-    $(".cart-item-check").prop("checked", $(this).prop("checked"));
+    const isSelected = $(this).prop("checked");
+
+    cartItems.forEach(function (item) {
+      item.selected = isSelected;
+    });
+    renderCartPage();
+    saveCartItems();
+  });
+
+  $("[data-cart-items]").on("change", ".cart-item-check", function () {
+    const key = $(this).closest(".cart-item").data("cart-key");
+    const item = cartItems.find(function (cartItem) {
+      return cartItem.key === key;
+    });
+
+    if (!item) {
+      return;
+    }
+
+    item.selected = $(this).prop("checked");
+    renderCartPage();
+    saveCartItems();
   });
 
   $(document).on("click", ".product-favorite-button", function (event) {
@@ -1913,7 +2093,16 @@
 
   $(".review-input").on("submit", function (event) {
     event.preventDefault();
-    $(this).find("input").val("");
+    const input = $(this).find("input")[0];
+
+    if (!input || !input.checkValidity()) {
+      if (input) {
+        input.focus();
+      }
+      return;
+    }
+
+    $(input).val("");
   });
 
   $(".product-description-tabs button").on("click", function () {
@@ -2022,6 +2211,9 @@
 
   const $listingSidebar = $(".listing-sidebar");
   const $listingFilterOverlay = $(".listing-filter-overlay");
+
+  $listingSidebar.find(".category-filter-sublist input[type=\"checkbox\"]").attr("name", "listing-category");
+  $listingSidebar.find(".brand-filter input[type=\"checkbox\"]").attr("name", "listing-brand");
 
   function setListingFilterDrawer(open) {
     $listingSidebar.toggleClass("is-mobile-open", open);
@@ -2182,14 +2374,6 @@
 
   let currentDemoAccount = null;
 
-  function getStoredAccounts() {
-    return [];
-  }
-
-  function saveStoredAccounts(accounts) {
-    return accounts;
-  }
-
   function setCurrentAccount(account) {
     currentDemoAccount = {
       ...account,
@@ -2245,6 +2429,7 @@
   }
 
   function openAccountPage() {
+    $thankYouMain.prop("hidden", true);
     renderAccountPage();
     setAccountView("profile");
     $homeMain.prop("hidden", true);
@@ -2261,42 +2446,11 @@
     $("html, body").stop(true, true).scrollTop(0);
   }
 
-  function showAuthToast(message) {
-    const $toast = $(".auth-toast");
-
-    $toast.find("span").text(message);
-    $toast.prop("hidden", false).addClass("is-visible");
-    window.clearTimeout($toast.data("hideTimer"));
-    $toast.data("hideTimer", window.setTimeout(function () {
-      $toast.prop("hidden", true).removeClass("is-visible");
-    }, 2200));
-  }
-
   function hideAuthToast() {
     const $toast = $(".auth-toast");
 
     window.clearTimeout($toast.data("hideTimer"));
     $toast.prop("hidden", true).removeClass("is-visible");
-  }
-
-  function redirectAfterAuthSuccess() {
-    let hasRedirected = false;
-
-    function finishRedirect() {
-      if (hasRedirected) {
-        return;
-      }
-
-      hasRedirected = true;
-      $(document).off("click.auth-success-redirect");
-      hideAuthToast();
-      openHomePage();
-    }
-
-    window.setTimeout(finishRedirect, 1600);
-    window.setTimeout(function () {
-      $(document).one("click.auth-success-redirect", finishRedirect);
-    }, 0);
   }
 
   function updateAccountButton() {
@@ -2383,92 +2537,6 @@
     $form[0].reset();
     hideAuthToast();
     openHomePage();
-    return;
-
-    try {
-      const accounts = getStoredAccounts();
-
-      if (mode === "register") {
-        const name = $.trim($("#register-name").val());
-        const phone = $.trim($("#register-phone").val());
-        const email = $.trim($("#register-email").val()).toLowerCase();
-        const password = $("#register-password").val();
-        const confirmPassword = $("#register-confirm-password").val();
-
-        if (password !== confirmPassword) {
-          $status.removeClass("is-success").text("Mật khẩu xác nhận chưa khớp.");
-          $("#register-confirm-password").trigger("focus");
-          return;
-        }
-
-        if (accounts.some((account) => account.email === email)) {
-          $status.removeClass("is-success").text("Email này đã được đăng ký. Vui lòng đăng nhập.");
-          $("#register-email").trigger("focus");
-          return;
-        }
-
-        const newAccount = {
-          name,
-          phone,
-          email,
-          password,
-          createdAt: new Date().toISOString()
-        };
-
-        accounts.push(newAccount);
-        saveStoredAccounts(accounts);
-        setCurrentAccount(newAccount);
-        updateAccountButton();
-        renderAccountPage();
-        showAuthToast("Đăng ký thành công");
-
-        $status.addClass("is-success").text("Đăng ký thành công. Tài khoản đã được lưu.");
-        $form[0].reset();
-        return;
-      }
-
-      const email = $.trim($("#login-email").val()).toLowerCase();
-      const password = $("#login-password").val();
-      const account = accounts.find((item) => item.email === email && item.password === password);
-
-      if (!account) {
-        $status.removeClass("is-success").text("Email hoặc mật khẩu không đúng.");
-        $("#login-email").trigger("focus");
-        return;
-      }
-
-      setCurrentAccount(account);
-      updateAccountButton();
-      renderAccountPage();
-      showAuthToast("Đăng nhập thành công");
-      $status.addClass("is-success").text(`Đăng nhập thành công. Xin chào ${account.name}!`);
-      $form[0].reset();
-      return;
-    } catch (error) {
-      $status.removeClass("is-success").text("Trình duyệt không cho phép lưu tài khoản lúc này.");
-      return;
-    }
-
-    if (mode === "register") {
-      const password = $("#register-password").val();
-      const confirmPassword = $("#register-confirm-password").val();
-
-      if (password !== confirmPassword) {
-        $status.removeClass("is-success").text("Mật khẩu xác nhận chưa khớp.");
-        $("#register-confirm-password").trigger("focus");
-        return;
-      }
-    }
-
-    $status
-      .addClass("is-success")
-      .text(mode === "register" ? "Đăng ký thành công." : "Đăng nhập thành công.");
-
-    try {
-      currentDemoAccount = currentDemoAccount;
-    } catch (error) {
-      // The fake account flow still works when storage is unavailable.
-    }
   });
 
   updateAccountButton();
@@ -2582,6 +2650,7 @@
 
   function resetAddressForm() {
     $(".address-drawer-form")[0].reset();
+    $(".address-form-status").text("");
     $("[data-address-city-label], [data-address-district-label], [data-address-ward-label]").text("");
     $("[data-address-city-toggle], [data-address-district-toggle], [data-address-ward-toggle]").removeClass("has-value");
     resetAddressDistrict();
@@ -2594,13 +2663,35 @@
   updateAddressView();
 
   $("[data-address-drawer-submit]").on("click", function () {
-    const name = $.trim($("[data-address-name-input]").val()) || "Trần Tấn Cường";
-    const phone = $.trim($("[data-address-phone-input]").val()) || "0912364122";
-    const city = $.trim($("[data-address-city-label]").text()) || "Cần Thơ";
+    const form = $(".address-drawer-form")[0];
+    const $status = $(".address-form-status");
+    const name = $.trim($("[data-address-name-input]").val());
+    const phone = $.trim($("[data-address-phone-input]").val());
+    const city = $.trim($("[data-address-city-label]").text());
     const district = $.trim($("[data-address-district-label]").text());
     const ward = $.trim($("[data-address-ward-label]").text());
-    const detail = $.trim($("[data-address-detail-input]").val()) || "476, Lê Duẩn";
+    const detail = $.trim($("[data-address-detail-input]").val());
     const type = $(".address-type-options button.is-selected").text() || "Nhà";
+
+    if (!form || !form.checkValidity()) {
+      const invalidField = form && $(form).find(":input").filter(function () {
+        return !this.checkValidity();
+      })[0];
+
+      $status.text("Vui lòng nhập đầy đủ họ tên, số điện thoại và địa chỉ cụ thể.");
+      if (invalidField) {
+        invalidField.focus();
+      }
+      return;
+    }
+
+    if (!city || !district || !ward) {
+      $status.text("Vui lòng chọn đầy đủ Tỉnh/Thành phố, Quận/Huyện và Phường/Xã.");
+      $("[data-address-city-toggle]").trigger("focus");
+      return;
+    }
+
+    $status.text("");
 
     savedAddresses = [{
       name,
@@ -2866,7 +2957,7 @@
           .append(
             $("<div>", { class: "account-order-info" })
               .append($("<h3>", { text: product.name }))
-              .append($("<a>", { href: "#order-detail" })
+              .append($("<a>", { href: "#product-detail", class: "account-order-detail-link" }).data("orderProduct", product)
                 .append("Xem chi tiết ")
                 .append($("<i>", { class: "bi bi-chevron-right", "aria-hidden": "true" })))
           )
@@ -2889,6 +2980,15 @@
   }
 
   renderAccountOrders();
+
+  $accountOrderList.on("click", ".account-order-detail-link", function (event) {
+    event.preventDefault();
+    const product = $(this).data("orderProduct");
+
+    if (product) {
+      openProductDetailPage(product);
+    }
+  });
 
   $accountOrderList.on("click", ".account-order-buy-again", function () {
     const product = $(this).data("orderProduct");

@@ -20,6 +20,193 @@
   background-color: #fff;
 }
 
+.cart-checkout-button:disabled,
+.checkout-submit-button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.45);
+  opacity: 0.6;
+}
+
+.checkout-status {
+  min-height: 20px;
+  margin: -4px 20px 16px;
+  color: #c5164c;
+  font-size: 13px;
+  text-align: center;
+}
+
+.address-form-status {
+  min-height: 18px;
+  margin: 10px 16px 0;
+  color: #c5164c;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.thank-you-main {
+  min-height: 520px;
+  background: #fafafa;
+}
+
+.thank-you-section {
+  display: grid;
+  min-height: 450px;
+  padding: 56px 20px;
+  place-items: start center;
+}
+
+.thank-you-card {
+  width: min(620px, 100%);
+  padding: 48px 32px;
+  border: 1px solid #ededed;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 8%);
+  text-align: center;
+}
+
+.thank-you-card > i {
+  color: #dfad00;
+  font-size: 52px;
+}
+
+.thank-you-card h1 {
+  margin: 18px 0 10px;
+  font-size: 28px;
+}
+
+.thank-you-card p {
+  margin: 0 auto 24px;
+  color: #555;
+}
+
+.thank-you-card button {
+  min-width: 190px;
+  height: 46px;
+  border: 0;
+  border-radius: 23px;
+  background: #dfad00;
+  color: #fff;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .header-container,
+  .category-container,
+  .sale-container,
+  .top-sale-container,
+  .beauty-showcase-container,
+  .featured-brands-container,
+  .blog-container,
+  .listing-container,
+  .product-detail-container,
+  .account-container,
+  .lookup-container,
+  .cart-container,
+  .checkout-container,
+  .blog-page-container,
+  .breadcrumb-container,
+  .footer-container,
+  .newsletter-container {
+    width: calc(100% - 32px);
+    max-width: none;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .category-links {
+    gap: 10px;
+  }
+
+  .category-links a {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .category-voucher-section {
+    height: auto;
+    padding: 20px 16px 28px;
+  }
+
+  .home-category-list {
+    position: static;
+    width: 100%;
+    gap: 18px;
+    transform: none;
+  }
+
+  .home-category-list a {
+    width: 78px;
+    height: 78px;
+    flex-basis: 78px;
+  }
+
+  .voucher-list {
+    position: static;
+    width: 100%;
+    margin-top: 32px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    transform: none;
+  }
+
+  .voucher-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .voucher-content {
+    min-width: 0;
+    padding-right: 8px;
+  }
+
+  .voucher-content p,
+  .voucher-content a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .banner-arrow {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .banner-arrow:hover,
+  .banner-arrow:focus-visible {
+    transform: translateY(-50%) scale(1.04);
+  }
+
+  .banner-arrow-prev {
+    left: 10px;
+  }
+
+  .banner-arrow-next {
+    right: 10px;
+  }
+
+  .thank-you-section {
+    min-height: 400px;
+    padding: 28px 12px;
+  }
+
+  .thank-you-card {
+    padding: 36px 20px;
+  }
+
+  .thank-you-card h1 {
+    font-size: 22px;
+  }
+}
+
 .footer-mobile-toggle {
   display: none;
 }
